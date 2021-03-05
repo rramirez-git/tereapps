@@ -1,0 +1,19 @@
+[run]
+omit =
+  *apps.py,
+  *migrations/*,
+  *datamigration/*,
+  *settings*,
+  urls.py,
+  *wsgi/*,
+  manage.py
+  *__init__.py
+  *asgi.py
+  *wsgi.py
+  run_auto_qa.py
+  run_req.py
+  run_git_pull_and_update.py
+  run_pydoc.py
+  *admin.py
+  *test*.py
+  *mock*
