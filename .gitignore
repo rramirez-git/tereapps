@@ -156,3 +156,10 @@ main_app_tool/asgi.py
 
 # PyCharm data
 .idea/*
+
+# updatables in prod
+.htaccess
+logs
+logs/*
+passenger_wsgi.py
+tmp/*
