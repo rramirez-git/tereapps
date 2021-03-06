@@ -10,6 +10,7 @@
             <th>Usuario</th>
             <th>Nombre</th>
             <th>Email</th>
+            <th>Teléfono</th>
             <th>Celular</th>
             <th>Whats App</th>
             <th></th>
@@ -27,6 +28,7 @@
             <th>Usuario</th>
             <th>Nombre</th>
             <th>Email</th>
+            <th>Teléfono</th>
             <th>Celular</th>
             <th>Whats App</th>
             <th></th>
@@ -57,6 +59,14 @@
                     <a data-action="call" href="tel:{{ reg.profile.telefono }}" target="_blank">
                         {% action_icon 'call' %}
                         {{ reg.profile.telefono }}
+                    </a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if reg.profile.celular %}
+                    <a data-action="call" href="tel:{{ reg.profile.celular }}" target="_blank">
+                        {% action_icon 'call' %}
+                        {{ reg.profile.celular }}
                     </a>
                     {% endif %}
                 </td>
