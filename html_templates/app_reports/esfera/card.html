@@ -1,5 +1,11 @@
 {% load html_helpers %}
 
+{% if esferas %}
+
+{% if include_title == "yes" %}
+    <h3>Esferas</h3>
+{% endif %}
+
 <div class="card-columns">
     {% for esfera in esferas %}
 
@@ -14,3 +20,5 @@
 
     {% endfor %}
 </div>
+
+{% endif %}

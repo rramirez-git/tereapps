@@ -6,7 +6,7 @@ register = template.Library()
 
 
 @register.inclusion_tag('app_reports/esfera/card.html')
-def esfera_card(user, context):
+def esfera_card(user, context, include_title="no"):
     """
     Inclusion tag: {% esfera_card user %}
     """
@@ -14,7 +14,7 @@ def esfera_card(user, context):
     for esfera in Esfera.objects.all():
         if esfera.accesible_by(user):
             esferas.append(esfera)
-    return {'esferas': esferas, 'context': context}
+    return {'esferas': esferas, 'context': context, 'include_title': include_title}
 
 
 @register.filter
