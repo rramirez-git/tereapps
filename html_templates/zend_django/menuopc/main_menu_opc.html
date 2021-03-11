@@ -3,24 +3,24 @@
 {% for opc in opciones %}
     {% if opc.hijos.all %}
         {% if nivel == 1 %}
-            <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" href="#">
-                <button type="button" class="btn btn-outline-light float-right btn-sm" data-toggle="collapse" data-target="#submenu-{{ opc.pk }}" aria-expanded="false" aria-controls="submenu-{{ opc.pk }}">
+            <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" role="button" data-toggle="collapse" href="#submenu-{{ opc.pk }}" aria-expanded="false" aria-controls="submenu-{{ opc.pk }}">
+                <button type="button" class="btn btn-outline-light float-right btn-sm">
                     <i class="fas fa-caret-down"></i>
                 </button>
                 <strong>{{ opc|safe }}</strong>
             </a>
             <div id="submenu-{{ opc.pk }}" class="collapse">
-                {% main_menu opc.hijos.all nivel user_id %}
+                {% main_menu opc.hijos.all nivel user_id tereapp %}
             </div>
         {% else %}
-            <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" href="#">
-                <button type="button" class="btn btn-outline-light float-right btn-sm" data-toggle="collapse" data-target="#submenu-{{ opc.pk }}" aria-expanded="false" aria-controls="submenu-{{ opc.pk }}">
+            <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" role="button" data-toggle="collapse" href="#submenu-{{ opc.pk }}" aria-expanded="false" aria-controls="submenu-{{ opc.pk }}">
+                <button type="button" class="btn btn-outline-light float-right btn-sm">
                     <i class="fas fa-caret-down"></i>
                 </button>
                 {{ opc|safe }}
             </a>
             <div id="submenu-{{ opc.pk }}" class="collapse">
-                {% main_menu opc.hijos.all nivel user_id %}
+                {% main_menu opc.hijos.all nivel user_id tereapp %}
             </div>
         {% endif %}
     {% else %}

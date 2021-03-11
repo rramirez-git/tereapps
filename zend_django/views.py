@@ -42,6 +42,7 @@ class GenericList(View):
     - titulo_descripcion = ""
     - main_data_model = None
     - model_name = ""
+    - tereapp = None
 
     Métodos
     -------
@@ -55,6 +56,7 @@ class GenericList(View):
     titulo_descripcion = ""
     main_data_model = None
     model_name = ""
+    tereapp = None
 
     __metaclass__ = ABCMeta
 
@@ -75,6 +77,7 @@ class GenericList(View):
             'req_chart': False,
             'search_value': search_value,
             'data': data,
+            'tereapp':self.tereapp,
         })
 
     def get(self, request):
@@ -104,6 +107,7 @@ class GenericRead(View):
     - model_name = ""
     - base_data_form = None
     - main_data_model = None
+    - tereapp = None
 
     Métodos
     -------
@@ -114,6 +118,7 @@ class GenericRead(View):
     model_name = ""
     base_data_form = None
     main_data_model = None
+    tereapp = None
 
     __metaclass__ = ABCMeta
 
@@ -133,7 +138,8 @@ class GenericRead(View):
             'alertas': [],
             'req_chart': False,
             'search_value': '',
-            'forms': {'top': [{'form': form}]}
+            'forms': {'top': [{'form': form}]},
+            'tereapp':self.tereapp,
         })
 
 
@@ -147,6 +153,7 @@ class GenericCreate(View):
     - titulo = ""
     - model_name = ""
     - base_data_form = None
+    - tereapp = None
 
     Métodos
     -------
@@ -158,6 +165,7 @@ class GenericCreate(View):
     titulo = ""
     model_name = ""
     base_data_form = None
+    tereapp = None
 
     __metaclass__ = ABCMeta
 
@@ -171,7 +179,8 @@ class GenericCreate(View):
             'alertas': [],
             'req_chart': False,
             'search_value': '',
-            'forms': forms
+            'forms': forms,
+            'tereapp':self.tereapp,
         })
 
     def get(self, request):
@@ -199,6 +208,7 @@ class GenericUpdate(View):
     - model_name = ""
     - base_data_form = None
     - main_data_model = None
+    - tereapp = None
 
     Métodos
     -------
@@ -211,6 +221,7 @@ class GenericUpdate(View):
     model_name = ""
     base_data_form = None
     main_data_model = None
+    tereapp = None
 
     __metaclass__ = ABCMeta
 
@@ -224,7 +235,8 @@ class GenericUpdate(View):
             'alertas': [],
             'req_chart': False,
             'search_value': '',
-            'forms': {'top': [{'form': form}]}
+            'forms': {'top': [{'form': form}]},
+            'tereapp':self.tereapp,
         })
 
     def get(self, request, pk):
@@ -281,11 +293,12 @@ class GenericDelete(View):
 
 class Migrate(View):
     """
-    Vista para la aplicaciones de migraciones de datos
+    Vista para la aplicación de migraciones de datos
 
     Miembros
     --------
     - migr_dir = 'datamigration'
+    - tereapp = None
 
     Métodos
     -------
@@ -295,6 +308,7 @@ class Migrate(View):
     - get(filename)
     """
     migr_dir = 'datamigration'
+    tereapp = None
 
     def agregar_a_db(self, filename):
         """
@@ -400,4 +414,48 @@ class Migrate(View):
             'alertas': [],
             'req_chart': False,
             'migraciones': migraciones,
+            'tereapp':self.tereapp,
         })
+
+
+class GenericTereAppRootView(View):
+    """
+    Vista incial de TereApps
+
+    Miembros
+    --------
+    - html_template = ""
+    - titulo = ""
+    - titulo_descripcion = ""
+    - toolbar = None
+    - tereapp = None
+
+    Métodos
+    -------
+    - base_render(request)
+    - get(request)
+    - post(request)
+    """
+    html_template = ""
+    titulo = ""
+    titulo_descripcion = ""
+    toolbar = None
+    tereapp = None
+
+    def base_render(self, request):
+        return render(request, self.html_template, {
+            'titulo': self.titulo,
+            'titulo_descripcion': self.titulo_descripcion,
+            'toolbar': self.toolbar,
+            'footer': False,
+            'read_only': False,
+            'alertas': [],
+            'req_chart': False,
+            'tereapp':self.tereapp,
+        })
+
+    def get(self, request):
+        return self.base_render(request)
+
+    def post(self, request):
+        return self.base_render(request)
