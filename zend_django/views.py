@@ -308,7 +308,7 @@ class Migrate(View):
     - get(filename)
     """
     migr_dir = 'datamigration'
-    tereapp = None
+    tereapp = 'configuracion'
 
     def agregar_a_db(self, filename):
         """

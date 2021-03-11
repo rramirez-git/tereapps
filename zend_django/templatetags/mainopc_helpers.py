@@ -92,7 +92,6 @@ def main_menu(context, opciones=None, nivel=0, user_id=0, tereapp=None):
             with open('managed/tereapps.json', 'r') as json_file:
                 config = json.load(json_file)
             mnuOpc = MenuOpc.objects.get(padre=None, posicion=config[tereapp]['mnuopc_position'])
-            print(mnuOpc)
             opciones = list(MenuOpc.objects.filter(padre=mnuOpc))
         nivel = 1
     else:
