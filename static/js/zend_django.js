@@ -121,6 +121,107 @@ class clsApp {
         }
         return true;
     }
+    __get_recordid() {
+        let data = [];
+        $(`#data-grid-report input[type="checkbox"]`).each(function(){
+            if(this.checked) {
+                data.push($(this).data('recordid'));
+            }
+        });
+        return data;
+    }
+    update_many() {
+        let ids = this.__get_recordid();
+        if(0 == ids.length) { return false; }
+        let tmp_url = url_update.replace('__recordid__', ids[0]);
+        location.href = tmp_url;
+    }
+    delete_many() {
+        let ids = this.__get_recordid();
+        let count = 0;
+        if(0 == ids.length) { return false; }
+        this.openPanel(`Eliminando registros`, "Eliminando...", false);
+        for(let idx in ids) {
+            count++;
+            let tmp_url = url_delete.replace('__recordid__', ids[idx]);
+            $.get(tmp_url, function(){
+                count--;
+                if(0 == count) {
+                    location.reload();
+                }
+            });
+        }
+    }
+    sortDataGridReport(column_number, datatype) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        $("#data-grid-report thead th .sort-sign-asc").addClass('d-none');
+        $("#data-grid-report thead th .sort-sign-desc").addClass('d-none');
+        table = $("#data-grid-report tbody");
+        switching = true;
+        dir = "asc";
+        while (switching) {
+            switching = false;
+            rows = table.find('tr');
+            for(i = 0; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = $($(rows[i]).find("td")[column_number]);
+                y = $($(rows[i + 1]).find("td")[column_number]);
+                if("asc" == dir) {
+                    if("str" == datatype) {
+                        if(x.data('rawsortvalue') > y.data('rawsortvalue')) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                } else if("desc" == dir) {
+                    if("str" == datatype) {
+                        if(x.data('rawsortvalue') < y.data('rawsortvalue')) {
+                            shouldSwitch = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+        if("asc" == dir) {
+            $($("#data-grid-report thead th .sort-sign-asc")[column_number - 1]).removeClass('d-none');
+        } else if("desc" == dir) {
+            $($("#data-grid-report thead th .sort-sign-desc")[column_number - 1]).removeClass('d-none');
+        }
+    }
+    filterDataGridReport() {
+        let inputs = $(`#data-grid-report thead input[type="text"]`);
+        let trs = $("#data-grid-report tbody tr");
+        trs.removeClass('d-none');
+        for(let i = 0; i < trs.length; i++) {
+            let count = 0;
+            let tr = $(trs[i]);
+            for(let j = 0; j < inputs.length; j++) {
+                let value = $(tr.find('td')[j + 1]).data('rawfiltervalue');
+                if(value.indexOf($(inputs[j]).val()) > -1) {
+                    count ++;
+                    break;
+                }
+            }
+            if(0 == count) {
+                tr.addClass('d-none');
+            }
+        }
+    }
+    clearFilterDataGridReport() {
+        $(`#data-grid-report thead input[type="text"]`).val("");
+        $("#data-grid-report tbody tr").removeClass('d-none');
+    }
 }
 
 let App = new clsApp();

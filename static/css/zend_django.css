@@ -144,3 +144,16 @@ div.body-container {
 #main-toolbar form.form-inline {
     display: none;
 }
+
+#data-grid-report a.main-col-link {
+    color: rgb(33, 37, 41);
+}
+#data-grid-report a.main-col-link:hover {
+    color: #0056b3;
+}
+.toggle.ios, .toggle-on.ios, .toggle-off.ios {
+    border-radius: 20rem;
+}
+.toggle.ios .toggle-handle {
+    border-radius: 20rem;
+}

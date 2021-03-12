@@ -20,8 +20,8 @@ Action:
 """
 
 CRUD_icons = {
-    'create': '<i class="far fa-file"></i>',
-    'create_f': '<i class="far fa-file"></i>',
+    'create': '<i class="fas fa-plus"></i>',
+    'create_f': '<i class="fas fa-plus"></i>',
     'read': '<i class="far fa-eye"></i>',
     'update': '<i class="far fa-edit"></i>',
     'delete': '<i class="far fa-trash-alt"></i>',
