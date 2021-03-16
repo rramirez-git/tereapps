@@ -139,7 +139,7 @@ class clsApp {
     delete_many() {
         let ids = this.__get_recordid();
         let count = 0;
-        if(0 == ids.length) { return false; }
+        if(0 == ids.length || !window.confirm("¿Confirma que desea eliminar los registos seleccionados?")) { return false; }
         this.openPanel(`Eliminando registros`, "Eliminando...", false);
         for(let idx in ids) {
             count++;
@@ -153,7 +153,7 @@ class clsApp {
         }
     }
     sortDataGridReport(column_number, datatype) {
-        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        var table, rows, switching, i, x, y, x_data, y_data, shouldSwitch, dir, switchcount = 0;
         $("#data-grid-report thead th .sort-sign-asc").addClass('d-none');
         $("#data-grid-report thead th .sort-sign-desc").addClass('d-none');
         table = $("#data-grid-report tbody");
@@ -166,19 +166,21 @@ class clsApp {
                 shouldSwitch = false;
                 x = $($(rows[i]).find("td")[column_number]);
                 y = $($(rows[i + 1]).find("td")[column_number]);
+                x_data = ("number" === datatype ?
+                    Number(x.data('rawsortvalue'))
+                    : x.data('rawsortvalue'));
+                y_data = ("number" === datatype ?
+                    Number(y.data('rawsortvalue'))
+                    : y.data('rawsortvalue'));
                 if("asc" == dir) {
-                    if("str" == datatype) {
-                        if(x.data('rawsortvalue') > y.data('rawsortvalue')) {
-                            shouldSwitch = true;
-                            break;
-                        }
+                    if(x_data > y_data) {
+                        shouldSwitch = true;
+                        break;
                     }
                 } else if("desc" == dir) {
-                    if("str" == datatype) {
-                        if(x.data('rawsortvalue') < y.data('rawsortvalue')) {
-                            shouldSwitch = true;
-                            break;
-                        }
+                    if(x_data < y_data) {
+                        shouldSwitch = true;
+                        break;
                     }
                 }
             }
@@ -203,18 +205,17 @@ class clsApp {
         let inputs = $(`#data-grid-report thead input[type="text"]`);
         let trs = $("#data-grid-report tbody tr");
         trs.removeClass('d-none');
-        for(let i = 0; i < trs.length; i++) {
-            let count = 0;
-            let tr = $(trs[i]);
-            for(let j = 0; j < inputs.length; j++) {
-                let value = $(tr.find('td')[j + 1]).data('rawfiltervalue');
-                if(value.indexOf($(inputs[j]).val()) > -1) {
-                    count ++;
-                    break;
-                }
+        for(let j = 0; j < inputs.length; j++){
+            if("" === $(inputs[j]).val()) {
+                continue;
             }
-            if(0 == count) {
-                tr.addClass('d-none');
+            for(let i = 0; i < trs.length; i++) {
+                let count = 0;
+                let tr = $(trs[i]);
+                let value = `${$(tr.find('td')[j + 1]).data('rawfiltervalue')}`;
+                if(value.indexOf($(inputs[j]).val()) == -1) {
+                    tr.addClass('d-none');
+                }
             }
         }
     }

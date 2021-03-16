@@ -1,6 +1,7 @@
 {% extends "zend_django/html/html_struct.html" %}
 {% load i18n %}
 {% load op_helpers %}
+
 {% block content %}
 
 <script type="text/javascript">
@@ -10,17 +11,17 @@
 
 <div class="btn-group" role="group" aria-label="Acciones">
     {% if perms.auth.add_group %}
-    <a data-action="create" href="{% url 'group_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}" data-toggle="tooltip">
+    <a data-action="create" href="{% url 'group_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
         {% crud_icon 'create' %}
     </a>
     {% endif %}
     {% if perms.auth.change_group %}
-    <button type="button" onclick="App.update_many()" data-action="update" class="btn btn-outline-secondary"role="button" title="{% crud_label 'update' %}" data-toggle="tooltip">
+    <button type="button" onclick="App.update_many()" data-action="update" class="btn btn-outline-secondary"role="button" title="{% crud_label 'update' %}">
             {% crud_icon 'update' %}
     </button>
     {% endif %}
     {% if perms.auth.delete_group %}
-    <button type="button" data-action="delete" onclick="App.delete_many()" class="btn btn-outline-secondary"role="button" title="{% crud_label 'delete' %}" data-toggle="tooltip">
+    <button type="button" data-action="delete" onclick="App.delete_many()" class="btn btn-outline-secondary"role="button" title="{% crud_label 'delete' %}">
         {% crud_icon 'delete' %}
     </button>
     {% endif %}
@@ -30,13 +31,13 @@
     <thead>
         <tr>
             <th></th>
-            <th onclick="App.sortDataGridReport(1, 'str')">
+            <th onclick="App.sortDataGridReport(1, 'str')" style="cursor:pointer;">
                 <i class="fas fa-sort-down float-right d-none sort-sign-asc"></i>
                 <i class="fas fa-sort-up float-right d-none sort-sign-desc"></i>
                 Perfil
             </th>
             <th class="text-center">
-                <div class="d-inline-block" title="Filtros" data-toggle="tooltip">
+                <div class="d-inline-block" title="Filtros">
                     <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
                         <i class="fas fa-filter"></i>
                     </button>
@@ -49,12 +50,14 @@
                 <input type="text" class="form-control" id="filter_1" />
             </th>
             <th>
-                <button type="button" onclick="App.filterDataGridReport()" class="btn btn-outline-secondary btn-sm" role="button" title="Filtrar" data-toggle="tooltip">
-                    <i class="fas fa-redo-alt"></i>
-                </button>
-                <button type="button" onclick="App.clearFilterDataGridReport()" class="btn btn-outline-secondary btn-sm" role="button" title="Limpiar Filtros" data-toggle="tooltip" >
-                    <i class="fas fa-ban"></i>
-                </button>
+                <div class="btn-group" role="group" aria-label="Filtros">
+                    <button type="button" onclick="App.filterDataGridReport()" class="btn btn-outline-secondary" role="button" title="Filtrar">
+                        <i class="fas fa-redo-alt"></i>
+                    </button>
+                    <button type="button" onclick="App.clearFilterDataGridReport()" class="btn btn-outline-secondary" role="button" title="Limpiar Filtros">
+                        <i class="fas fa-ban"></i>
+                    </button>
+                </div>
             </th>
         </tr>
     </thead>
