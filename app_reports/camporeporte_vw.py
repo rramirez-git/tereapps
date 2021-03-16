@@ -27,6 +27,7 @@ def template_base_path(file):
 
 
 class List(View):
+    tereapp = 'configuracion'
 
     def base_render(self, request, pk_reporte):
         reporte = Reporte.objects.get(pk=pk_reporte)
@@ -57,6 +58,7 @@ class List(View):
             'alertas': [],
             'req_chart': False,
             'data': data,
+            'tereapp': self.tereapp
         })
 
     def get(self, request, pk_reporte):
@@ -67,6 +69,7 @@ class List(View):
 
 
 class Update(View):
+    tereapp = 'configuracion'
 
     def base_render(self, request, pk_reporte):
         reporte = Reporte.objects.get(pk=pk_reporte)
@@ -103,6 +106,7 @@ class Update(View):
             'data': data,
             'tipos_campo': FIELD_TYPES_Tuples,
             'reporte': reporte,
+            'tereapp': self.tereapp,
         })
 
     def get(self, request, pk_reporte):

@@ -144,3 +144,11 @@ div.body-container {
 #main-toolbar form.form-inline {
     display: none;
 }
+
+#bs-canvas-left hr {
+    margin: 0;
+    border: rgb(248, 249, 250) inset 1px;
+}
+#vertical-left-menu-content {
+    min-height: 40%!important;
+}
