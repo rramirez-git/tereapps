@@ -208,4 +208,7 @@ let setLeftMenuOpc = (valor) => {
 $(document).ready( () => {
     $("#main-toolbar form.form-inline").contents().appendTo($("#top-main-menu #finder"));
     $("#main-toolbar form.form-inline").remove();
+
+    $("#main-title-page").contents().appendTo($("#main-navbar-title"));
+    $("#main-title-page").remove();
 } );

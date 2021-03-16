@@ -4,29 +4,34 @@
 <!-- main_menu.html (Open) -->
 {% if user.is_authenticated %}
 
+<style type="text/css">
+</style>
 
 <nav id="top-main-menu" class="navbar navbar-light bg-light">
-    <button onclick="setLeftMenuOpc('True')" class="btn btn-outline-secondary" type="button" data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left">
+    <button onclick="setLeftMenuOpc('True')" class="btn btn-outline-secondary btn-sm" type="button" data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left">
         <i class="fas fa-bars"></i>
         <i class="fas fa-angle-right"></i>
     </button>
-    <a class="navbar-brand" href="{% url 'session_imin' %}">
+    <!--<a class="navbar-brand" href="{% url 'session_imin' %}">
         <img src="{{ MEDIA_URL }}{% parametro_de_sistema seccion='SitioGeneral' nombre='main_toolbar_logo' %}" class="d-inline-block align-top" height="30" />
-    </a>
+    </a>-->
+    <div id="main-navbar-title" class="navbar-brand">
+    </div>
     <form class="form-inline" id="finder" method="post" autocomplete="off">
     </form>
 </nav>
 
 <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-dark text-light h-100" data-offset="true" data-overlay="false">
-    <header class="p-3 h4">
-        <button onclick="setLeftMenuOpc('False')" type="button" class="bs-canvas-close close" aria-label="Close">
+    <header class="p-3 h6">
+        <button onclick="setLeftMenuOpc('False')" type="button" class="bs-canvas-close close btn-sm" aria-label="Close">
             <span aria-hidden="true" class="text-light">
-                <!--&times;-->
                 <i class="fas fa-angle-left"></i>
                 <i class="fas fa-bars"></i>
             </span>
         </button>
-        {% parametro_de_sistema seccion='SitioGeneral' nombre='site_name' %}
+        <a href="{% url 'session_imin' %}" style="color: inherit;">
+            {% parametro_de_sistema seccion='SitioGeneral' nombre='site_name' %}
+        </a>
     </header>
     <div id="vertical-left-menu-content" class="">
         <nav id="main-menu" class="nav flex-column">
