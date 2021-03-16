@@ -33,9 +33,17 @@
             {% parametro_de_sistema seccion='SitioGeneral' nombre='site_name' %}
         </a>
     </header>
-    <div id="vertical-left-menu-content" class="">
+    <hr />
+    <div id="vertical-left-menu-content">
+        <div class="p-3 h4" id="left-mnu-app-name">{% get_tereapp_name tereapp %}</div>
         <nav id="main-menu" class="nav flex-column">
-            {% main_menu %}
+            {% main_menu tereapp=tereapp %}
+        </nav>
+    </div>
+    <hr />
+    <div id="vertical-left-favs-content">
+        <div class="p-3 h4"><i class="fas fa-star"></i> Favoritos</div>
+        <nav id="favs-menu" class="nav flex-column">
         </nav>
     </div>
 </div>
@@ -49,4 +57,5 @@
 <div id="csrf_token">
     {% csrf_token %}
 </div>
+
 <!-- main_menu.html (Close) -->

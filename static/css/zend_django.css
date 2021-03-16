@@ -152,6 +152,27 @@ form.form-signin label{
     display: none;
 }
 
+#bs-canvas-left hr {
+    margin: 0;
+    border: rgb(248, 249, 250) inset 1px;
+}
+#vertical-left-menu-content {
+    min-height: 40%!important;
+}
+
+#data-grid-report a.main-col-link {
+    color: rgb(33, 37, 41);
+}
+#data-grid-report a.main-col-link:hover {
+    color: #0056b3;
+}
+.toggle.ios, .toggle-on.ios, .toggle-off.ios {
+    border-radius: 20rem;
+}
+.toggle.ios .toggle-handle {
+    border-radius: 20rem;
+}
+
 #bs-canvas-left header a{
     color: inherit;
 }

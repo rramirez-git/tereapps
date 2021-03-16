@@ -36,6 +36,7 @@ class List(GenericList):
     titulo_descripcion = "de sistema"
     main_data_model = main_model
     model_name = "parametrosistema"
+    tereapp = 'administrar'
 
     def get_data(self, search_value=''):
         if '' == search_value:
@@ -53,12 +54,14 @@ class Read(GenericRead):
     model_name = "parametrosistema"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'administrar'
 
 
 class Create(GenericCreate):
     titulo = "Parámetro de sistema"
     model_name = "parametrosistema"
     base_data_form = base_form
+    tereapp = 'administrar'
 
 
 class Update(GenericUpdate):
@@ -66,6 +69,7 @@ class Update(GenericUpdate):
     model_name = "parametrosistema"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'administrar'
 
 
 class Delete(GenericDelete):
@@ -95,6 +99,7 @@ class Set(View):
     titulo_descripcion = "de sistema (establecer)"
     main_data_model = main_model
     model_name = "parametrosistema"
+    tereapp = 'configuracion'
 
     def get(self, request):
         data = list(self.main_data_model.objects.filter(es_multiple=False))
@@ -107,6 +112,7 @@ class Set(View):
             'alertas': [],
             'req_chart': False,
             'singles': data,
+            'tereapp': self.tereapp,
         })
 
     def post(self, request):

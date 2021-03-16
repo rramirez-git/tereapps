@@ -79,8 +79,8 @@ class ImIn(View):
 
     def base_render(self, request):
         return render(request, self.html_template, {
-            'titulo': "Bienvenido",
-            'titulo_descripcion': request.user.get_short_name(),
+            'titulo': "Aplicaciones",
+            # 'titulo_descripcion': request.user.get_short_name(),
             'toolbar': [],
             'footer': False,
             'read_only': False,
