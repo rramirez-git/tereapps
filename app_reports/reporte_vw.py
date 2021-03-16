@@ -54,6 +54,7 @@ class List(GenericList):
     titulo_descripcion = ""
     main_data_model = main_model
     model_name = "reporte"
+    tereapp = 'configuracion'
 
     def get_data(self, search_value=''):
         if '' == search_value:
@@ -70,6 +71,7 @@ class Read(GenericRead):
     model_name = "reporte"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'configuracion'
 
     def get(self, request, pk):
         if not self.main_data_model.objects.filter(pk=pk).exists():
@@ -102,7 +104,8 @@ class Read(GenericRead):
             'forms': {
                 'left': [{'form': form['left']}],
                 'right': [{'form': form['right']}],
-            }
+            },
+            'tereapp': self.tereapp,
         })
 
 
@@ -110,6 +113,7 @@ class Create(GenericCreate):
     titulo = "Reporte"
     model_name = "reporte"
     base_data_form = base_form
+    tereapp = 'configuracion'
 
     def get(self, request):
         return self.base_render(request, {
@@ -136,6 +140,7 @@ class Update(GenericUpdate):
     model_name = "reporte"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'configuracion'
 
     def base_render(self, request, form):
         return render(request, self.html_template, {
@@ -150,7 +155,8 @@ class Update(GenericUpdate):
             'forms': {
                 'left': [{'form': form['left']}],
                 'right': [{'form': form['right']}],
-            }
+            },
+            'tereapp': self.tereapp,
         })
 
     def get(self, request, pk):
@@ -186,6 +192,7 @@ class Delete(GenericDelete):
 
 
 class Load(View):
+    tereapp = 'configuracion'
 
     def base_render(self, request):
         reportes = list(main_model.objects.all().order_by(
@@ -199,6 +206,7 @@ class Load(View):
             'alertas': [],
             'req_chart': False,
             'reportes': reportes,
+            'tereapp': self.tereapp,
         })
 
     def get(self, request):

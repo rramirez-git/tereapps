@@ -7,6 +7,7 @@ Cargar con {% load mainopc_helpers %}
 from django import template
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.models import User
+import json
 
 from zend_django.menuopc_models import MenuOpc
 
@@ -41,9 +42,22 @@ def print_menu_opc_adm(context, perms, opcion, nivel=-1):
     }
 
 
+def getMnuOpc4TereApp(tereapp):
+    with open('managed/tereapps.json', 'r') as json_file:
+        config = json.load(json_file)
+    return MenuOpc.objects.get(padre=None, posicion=config[tereapp]['mnuopc_position'])
+
+
+@register.simple_tag
+def get_tereapp_name(tereapp=None):
+    if "" == tereapp or tereapp is None:
+        return ""
+    return getMnuOpc4TereApp(tereapp).nombre
+
+
 @register.inclusion_tag(
     'zend_django/menuopc/main_menu_opc.html', takes_context=True)
-def main_menu(context, opciones=None, nivel=0, user_id=0):
+def main_menu(context, opciones=None, nivel=0, user_id=0, tereapp=None):
     """
     Inclusion tag: {% main_menu opciones nivel user_id %}
     Genera las etiquetas para generar el menú principal en la barra superior
@@ -54,6 +68,7 @@ def main_menu(context, opciones=None, nivel=0, user_id=0):
     opciones : array_like MenuOpc
     nivel : int [0]
     user_id : int [0] User.pk
+    tereapp: string
 
     Returns
     -------
@@ -62,14 +77,22 @@ def main_menu(context, opciones=None, nivel=0, user_id=0):
             'nivel': int
             'opciones': array_like MenuOpc
             'user_id': int
+            'tereapp'
     """
     user = context.get('user')
     if user is None:
-        user = User.objects.get(pk=user_id)
+        user = user_id if isinstance(
+            user_id, User) else User.objects.get(pk=user_id)
     if nivel == 0 and isinstance(user, AnonymousUser):
         return {}
     if opciones is None:
-        opciones = list(MenuOpc.objects.filter(padre=None))
+        if "" == tereapp or tereapp is None:
+            opciones = []
+        else:
+            with open('managed/tereapps.json', 'r') as json_file:
+                config = json.load(json_file)
+            mnuOpc = MenuOpc.objects.get(padre=None, posicion=config[tereapp]['mnuopc_position'])
+            opciones = list(MenuOpc.objects.filter(padre=mnuOpc))
         nivel = 1
     else:
         nivel += 1
@@ -78,5 +101,36 @@ def main_menu(context, opciones=None, nivel=0, user_id=0):
         if opc.user_has_option(user):
             opcs.append(opc)
     return {
-        'nivel': nivel, 'opciones': opcs, 'user_id': user.pk
+        'nivel': nivel, 'opciones': opcs, 'user_id': user.pk, 'tereapp': tereapp
+    }
+
+@register.inclusion_tag(
+    'zend_django/menuopc/get_tereapps.html', takes_context=True)
+def get_tereapps(context, user_id=0):
+    """
+    Inclusion tag: {% get_tereapps %}
+    Genera las etiquetas para generar el menú de TereApps con base en las
+    opciones de permisos en el menú principal
+    Las opciones del menú en nivel 1 son las TereApps
+
+    Parameters
+    ----------
+    context : ContextRequest
+    user_id : int [0] User.pk
+
+    Returns
+    -------
+    dict
+        Diccionario con las claves
+            'tereapps': array_like MenuOpc de nivel 1 correspondientes a las TereApps
+    """
+    user = context.get('user')
+    if user is None:
+        user = user_id if isinstance(
+            user_id, User) else User.objects.get(pk=user_id)
+    if isinstance(user, AnonymousUser):
+        return {}
+    opciones = list(MenuOpc.objects.filter(padre=None))
+    return {
+        'tereapps': [opc for opc in opciones if opc.user_has_option(user)],
     }

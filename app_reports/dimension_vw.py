@@ -30,6 +30,7 @@ class List(GenericList):
     titulo_descripcion = ""
     main_data_model = main_model
     model_name = "dimensionreporte"
+    tereapp = 'configuracion'
 
     def get_data(self, search_value=''):
         if '' == search_value:
@@ -48,12 +49,14 @@ class Read(GenericRead):
     model_name = "dimensionreporte"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'configuracion'
 
 
 class Create(GenericCreate):
     titulo = "Dimensión de Reporte"
     model_name = "dimensionreporte"
     base_data_form = base_form
+    tereapp = 'configuracion'
 
 
 class Update(GenericUpdate):
@@ -61,6 +64,7 @@ class Update(GenericUpdate):
     model_name = "dimensionreporte"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'configuracion'
 
 
 class Delete(GenericDelete):

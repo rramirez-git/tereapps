@@ -49,6 +49,7 @@ class List(GenericList):
     titulo_descripcion = ""
     main_data_model = main_model
     model_name = "user"
+    tereapp = 'configuracion'
 
     def get_data(self, search_value=''):
         if '' == search_value:
@@ -68,6 +69,7 @@ class Read(GenericRead):
     model_name = "user"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'administrar'
 
     def get(self, request, pk):
         if not self.main_data_model.objects.filter(pk=pk).exists():
@@ -104,7 +106,8 @@ class Read(GenericRead):
                 'bottom': [{'form': form['bottom']}],
                 'left': [{'form': form['left']}],
                 'right': [{'form': form['right']}],
-            }
+            },
+            'tereapp': self.tereapp,
         })
 
 
@@ -112,6 +115,7 @@ class Create(GenericCreate):
     titulo = "Usuario"
     model_name = "user"
     base_data_form = base_form
+    tereapp = 'administrar'
 
     def get(self, request):
         return self.base_render(request, {
@@ -150,6 +154,7 @@ class Update(GenericUpdate):
     titulo = "Usuario"
     model_name = "user"
     main_data_model = main_model
+    tereapp = 'administrar'
 
     def base_render(self, request, form):
         return render(request, self.html_template, {
@@ -165,7 +170,8 @@ class Update(GenericUpdate):
                 'bottom': [{'form': form['bottom']}],
                 'left': [{'form': form['left']}],
                 'right': [{'form': form['right']}],
-            }
+            },
+            'tereapp': self.tereapp
         })
 
     def get(self, request, pk):
@@ -228,6 +234,7 @@ class ResetPassword(View):
     - post(request, username='')
     """
     main_data_model = main_model
+    tereapp = 'configuracion'
 
     def base_render(self, request, form):
         return render(request, "zend_django/html/form.html", {
@@ -239,7 +246,8 @@ class ResetPassword(View):
             'alertas': [],
             'req_chart': False,
             'search_value': '',
-            'forms': {'top': [{'form': form}]}
+            'forms': {'top': [{'form': form}]},
+            'tereapp': self.tereapp,
         })
 
     def get(self, request, username=''):
@@ -264,7 +272,8 @@ class ResetPassword(View):
                         'footer': False,
                         'read_only': False,
                         'alertas': [],
-                        'req_chart': False
+                        'req_chart': False,
+                        'tereapp': self.tereapp,
                     })
             else:
                 form.add_error('username', "No existe el usuario")
