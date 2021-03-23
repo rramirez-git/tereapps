@@ -48,10 +48,6 @@ let App_Reports_load_bootstrapTable = () => {
         timeout: 10*1000
     });
     $.getScript("https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js",function( data, textStatus, jqxhr ) {
-        console.log(data);
-        console.log(textStatus);
-        console.log(jqxhr.status);
-        console.log("Script Cargado: bootstrap-table.min.js");
         App_Reports_load_bootstrapTableToolbar();
         App_Reports_load_bootstrapTableLocaleAll();
     });
@@ -61,20 +57,13 @@ let App_Reports_load_bootstrapTable = () => {
 }
 
 let App_Reports_load_bootstrapTableToolbar = () => {
-    $.getScript("https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/toolbar/bootstrap-table-toolbar.min.js",function( data, textStatus, jqxhr ) {
-        console.log(data);
-        console.log(textStatus);
-        console.log(jqxhr.status);
-        console.log("Script Cargado: bootstrap-table-toolbar.min.js");
-    });
+    $.getScript(
+        "https://unpkg.com/bootstrap-table@1.16.0/dist/extensions/toolbar/bootstrap-table-toolbar.min.js"
+    );
 }
 
 let App_Reports_load_bootstrapTableLocaleAll = () => {
     $.getScript("https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table-locale-all.min.js",function( data, textStatus, jqxhr ) {
-        console.log(data);
-        console.log(textStatus);
-        console.log(jqxhr.status);
-        console.log("Script Cargado: bootstrap-table-locale-all.min.js");
         let $table = $('#data-tbl-complete')
         $table.bootstrapTable();
         $table.bootstrapTable('refreshOptions', {
@@ -116,7 +105,7 @@ let GetDataTypes_4fields = () => {
                 tipo = 'DECIMAL';
             } if(element.type.toLowerCase().indexOf('int')>-1) {
                 tipo = 'INTEGER';
-            } 
+            }
             Add2Tbl_FieldRow(
                 "new_" + (idnew++),
                 tbl[0].rows.length + 1,

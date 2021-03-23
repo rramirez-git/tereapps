@@ -7,55 +7,42 @@
 <script type="text/javascript">
     let url_update = "{% url 'group_update' pk='__recordid__' %}";
     let url_delete = "{% url 'group_delete' pk='__recordid__' %}";
+    let url_read = "{% url 'group_read' pk='__recordid__' %}";
 </script>
 
 <div class="btn-group" role="group" aria-label="Acciones">
     {% if perms.auth.add_group %}
-    <a data-action="create" href="{% url 'group_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+    <a data-action="create" href="{% url 'user_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
         {% crud_icon 'create' %}
     </a>
     {% endif %}
     {% if perms.auth.change_group %}
-    <button type="button" onclick="App.update_many()" data-action="update" class="btn btn-outline-secondary"role="button" title="{% crud_label 'update' %}">
+    <button type="button" onclick="dataGridResultsGlobals.update_many()" data-action="update" class="btn btn-outline-secondary" role="button" title="{% crud_label 'update' %}">
             {% crud_icon 'update' %}
     </button>
     {% endif %}
     {% if perms.auth.delete_group %}
-    <button type="button" data-action="delete" onclick="App.delete_many()" class="btn btn-outline-secondary"role="button" title="{% crud_label 'delete' %}">
+    <button type="button" data-action="delete" onclick="dataGridResultsGlobals.delete_many()" class="btn btn-outline-secondary" role="button" title="{% crud_label 'delete' %}">
         {% crud_icon 'delete' %}
     </button>
     {% endif %}
+    <button type="button" data-action="toggle-cols" onclick="dataGridResultsGlobals.show_toggler_cols()" class="btn btn-outline-secondary" role="button" title="Mostrar/Ocultar Columnas">
+        {% crud_icon 'read' %}
+    </button>
 </div>
 
 <table id="data-grid-report" class="table table-striped table-sm table-responsive">
     <thead>
         <tr>
             <th></th>
-            <th onclick="App.sortDataGridReport(1, 'str')" style="cursor:pointer;">
-                <i class="fas fa-sort-down float-right d-none sort-sign-asc"></i>
-                <i class="fas fa-sort-up float-right d-none sort-sign-desc"></i>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="yes"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Perfil
             </th>
             <th class="text-center">
                 <div class="d-inline-block" title="Filtros">
                     <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
                         <i class="fas fa-filter"></i>
-                    </button>
-                </div>
-            </th>
-        </tr>
-        <tr id="filter-row" class="collapse">
-            <th></th>
-            <th>
-                <input type="text" class="form-control" id="filter_1" />
-            </th>
-            <th>
-                <div class="btn-group" role="group" aria-label="Filtros">
-                    <button type="button" onclick="App.filterDataGridReport()" class="btn btn-outline-secondary" role="button" title="Filtrar">
-                        <i class="fas fa-redo-alt"></i>
-                    </button>
-                    <button type="button" onclick="App.clearFilterDataGridReport()" class="btn btn-outline-secondary" role="button" title="Limpiar Filtros">
-                        <i class="fas fa-ban"></i>
                     </button>
                 </div>
             </th>
@@ -70,11 +57,12 @@
     </tfoot>
     <tbody id="data-tbl">
         {% for reg in data %}
-            <tr data-object-id="{{ reg.pk }}">
+            <tr data-dgr-object-id="{{ reg.pk }}">
                 <td class="text-center">
-                    <input type="checkbox" class="action-on-reg" data-recordid="{{ reg.pk }}" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" " />
+                    <!--<input type="checkbox" class="action-on-reg" data-recordid="{{ reg.pk }}" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" " />-->
+                    <input type="checkbox" class="form-check-inline massive-operations" data-dgr-object-id="{{ reg.pk }}" />
                 </td>
-                <td data-rawsortvalue="{{ reg.name|lower }}" data-rawfiltervalue="{{ reg.name|lower }}">
+                <td data-dgr-raw-sort-value="{{ reg.name|lower }}" data-dgr-raw-filter-value="{{ reg.name|lower }}">
                     <a class="main-col-link" href="{% url 'group_read' pk=reg.pk %}">
                         {{ reg.name }}
                     </a>
@@ -84,5 +72,7 @@
         {% endfor %}
     </tbody>
 </table>
+
+{% include 'zend_django/datagridresults/handlebars_tpls.html' %}
 
 {% endblock %}

@@ -1,31 +1,15 @@
 {% load op_helpers %}
 {% load mainopc_helpers %}
-<tr data-object-id="{{ reg.pk }}">
-    <td>
+<tr data-dgr-object-id="{{ reg.pk }}">
+    <td class="text-center">
+        <!--<input type="checkbox" class="action-on-reg" data-recordid="{{ reg.pk }}" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" " />-->
+        <input type="checkbox" class="form-check-inline massive-operations" data-dgr-object-id="{{ reg.pk }}" />
+    </td>
+    <td data-dgr-raw-sort-value="{{ reg|safe|lower }}" data-dgr-raw-filter-value="{{ reg|safe|lower }}">
         <span style="width: {% widthratio nivel 1 25 %}px; display: inline-block;"></span>
         {{ reg.posicion }}) {{ reg|safe }} {{permisos}}
     </td>
-    <td class="text-center">
-        {% if perms.zend_django.view_menuopc %}
-        <a data-action="read" href="{% url 'menuopc_read' pk=reg.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'read' %}">
-            {% crud_icon 'read' %}
-        </a>
-        {% endif %}
-    </td>
-    <td class="text-center">
-        {% if perms.zend_django.change_menuopc %}
-        <a data-action="update" href="{% url 'menuopc_update' pk=reg.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'update' %}">
-            {% crud_icon 'update' %}
-        </a>
-        {% endif %}
-    </td>
-    <td class="text-center">
-        {% if perms.zend_django.delete_menuopc %}
-        <button data-action="delete" onclick="App.showDeletingConfirmation(`{% url 'menuopc_delete' pk=reg.pk %}`, `opción de menú`, `la`)" type="button" class="btn btn-outline-secondary" title="{% crud_label 'delete' %}">
-            {% crud_icon 'delete' %}
-        </button>
-        {% endif %}
-    </td>
+    <td></td>
 </tr>
 {% for reg in reg.hijos.all %}
     {% print_menu_opc_adm nivel=nivel opcion=reg perms=perms %}
