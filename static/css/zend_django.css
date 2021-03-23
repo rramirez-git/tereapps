@@ -182,3 +182,20 @@ form.form-signin label{
 #bs-canvas-left header button.close {
     font-size: inherit;
 }
+
+#data-grid-report tfoot{
+    display: none;
+}
+
+.btn.btn-outline-secondary,
+.btn.btn-outline-light {
+    border: none;
+}
+
+#main-navbar-title {
+    margin-left: 1rem;
+    transition: all .4s ease-out;
+   -webkit-transition: all .4s ease-out;
+   -moz-transition: all .4s ease-out;
+   -ms-transition: all .4s ease-out;
+}

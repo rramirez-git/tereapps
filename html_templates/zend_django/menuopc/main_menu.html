@@ -4,21 +4,24 @@
 <!-- main_menu.html (Open) -->
 {% if user.is_authenticated %}
 
-<style type="text/css">
-</style>
-
 <nav id="top-main-menu" class="navbar navbar-light bg-light">
-    <button onclick="setLeftMenuOpc('True')" class="btn btn-outline-secondary btn-sm" type="button" data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left">
-        <i class="fas fa-bars"></i>
-        <i class="fas fa-angle-right"></i>
-    </button>
+    <div class="top-main-menu-section">
+        <button onclick="setLeftMenuOpc('True')" class="btn btn-outline-secondary btn-sm" type="button" data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-angle-right"></i>
+        </button>
+        <div id="main-navbar-title" class="navbar-brand">
+        </div>
+    </div>
     <!--<a class="navbar-brand" href="{% url 'session_imin' %}">
         <img src="{{ MEDIA_URL }}{% parametro_de_sistema seccion='SitioGeneral' nombre='main_toolbar_logo' %}" class="d-inline-block align-top" height="30" />
     </a>-->
-    <div id="main-navbar-title" class="navbar-brand">
+    <div class="top-main-menu-section">
     </div>
-    <form class="form-inline" id="finder" method="post" autocomplete="off">
-    </form>
+    <div class="top-main-menu-section">
+        <form class="form-inline" id="finder" method="post" autocomplete="off">
+        </form>
+    </div>
 </nav>
 
 <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-dark text-light h-100" data-offset="true" data-overlay="false">
@@ -35,14 +38,14 @@
     </header>
     <hr />
     <div id="vertical-left-menu-content">
-        <div class="p-3 h4" id="left-mnu-app-name">{% get_tereapp_name tereapp %}</div>
+        <div class="p-3 h6" id="left-mnu-app-name">{% get_tereapp_name tereapp %}</div>
         <nav id="main-menu" class="nav flex-column">
             {% main_menu tereapp=tereapp %}
         </nav>
     </div>
     <hr />
     <div id="vertical-left-favs-content">
-        <div class="p-3 h4"><i class="fas fa-star"></i> Favoritos</div>
+        <div class="p-3 h6"><i class="fas fa-star"></i> Favoritos</div>
         <nav id="favs-menu" class="nav flex-column">
         </nav>
     </div>

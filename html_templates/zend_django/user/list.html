@@ -7,6 +7,7 @@
 <script type="text/javascript">
     let url_update = "{% url 'user_update' pk='__recordid__' %}";
     let url_delete = "{% url 'user_delete' pk='__recordid__' %}";
+    let url_read = "{% url 'user_read' pk='__recordid__' %}";
 </script>
 
 <div class="btn-group" role="group" aria-label="Acciones">
@@ -16,86 +17,52 @@
     </a>
     {% endif %}
     {% if perms.auth.change_user %}
-    <button type="button" onclick="App.update_many()" data-action="update" class="btn btn-outline-secondary"role="button" title="{% crud_label 'update' %}">
+    <button type="button" onclick="dataGridResultsGlobals.update_many()" data-action="update" class="btn btn-outline-secondary" role="button" title="{% crud_label 'update' %}">
             {% crud_icon 'update' %}
     </button>
     {% endif %}
     {% if perms.auth.delete_user %}
-    <button type="button" data-action="delete" onclick="App.delete_many()" class="btn btn-outline-secondary"role="button" title="{% crud_label 'delete' %}">
+    <button type="button" data-action="delete" onclick="dataGridResultsGlobals.delete_many()" class="btn btn-outline-secondary" role="button" title="{% crud_label 'delete' %}">
         {% crud_icon 'delete' %}
     </button>
     {% endif %}
+    <button type="button" data-action="toggle-cols" onclick="dataGridResultsGlobals.show_toggler_cols()" class="btn btn-outline-secondary" role="button" title="Mostrar/Ocultar Columnas">
+        {% crud_icon 'read' %}
+    </button>
 </div>
 
 <table id="data-grid-report" class="table table-striped table-sm table-responsive">
     <thead>
         <tr>
             <th></th>
-            <th onclick="App.sortDataGridReport(1, 'str')" style="cursor:pointer;">
-                <i class="fas fa-sort-down float-right d-none sort-sign-asc"></i>
-                <i class="fas fa-sort-up float-right d-none sort-sign-desc"></i>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="yes"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Usuario
             </th>
-            <th onclick="App.sortDataGridReport(2, 'str')" style="cursor:pointer;">
-                <i class="fas fa-sort-down float-right d-none sort-sign-asc"></i>
-                <i class="fas fa-sort-up float-right d-none sort-sign-desc"></i>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="yes"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Nombre
             </th>
-            <th onclick="App.sortDataGridReport(3, 'str')" style="cursor:pointer;">
-                <i class="fas fa-sort-down float-right d-none sort-sign-asc"></i>
-                <i class="fas fa-sort-up float-right d-none sort-sign-desc"></i>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Email
             </th>
-            <th onclick="App.sortDataGridReport(4, 'str')" style="cursor:pointer;">
-                <i class="fas fa-sort-down float-right d-none sort-sign-asc"></i>
-                <i class="fas fa-sort-up float-right d-none sort-sign-desc"></i>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Teléfono
             </th>
-            <th onclick="App.sortDataGridReport(5, 'str')" style="cursor:pointer;">
-                <i class="fas fa-sort-down float-right d-none sort-sign-asc"></i>
-                <i class="fas fa-sort-up float-right d-none sort-sign-desc"></i>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Celular
             </th>
-            <th onclick="App.sortDataGridReport(6, 'str')" style="cursor:pointer;">
-                <i class="fas fa-sort-down float-right d-none sort-sign-asc"></i>
-                <i class="fas fa-sort-up float-right d-none sort-sign-desc"></i>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Whats App
             </th>
             <th class="text-center">
                 <div class="d-inline-block" title="Filtros">
                     <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
                         <i class="fas fa-filter"></i>
-                    </button>
-                </div>
-            </th>
-        </tr>
-        <tr id="filter-row" class="collapse">
-            <th></th>
-            <th>
-                <input type="text" class="form-control" id="filter_1" />
-            </th>
-            <th>
-                <input type="text" class="form-control" id="filter_2" />
-            </th>
-            <th>
-                <input type="text" class="form-control" id="filter_3" />
-            </th>
-            <th>
-                <input type="text" class="form-control" id="filter_4" />
-            </th>
-            <th>
-                <input type="text" class="form-control" id="filter_5" />
-            </th>
-            <th>
-                <input type="text" class="form-control" id="filter_6" />
-            </th>
-            <th>
-                <div class="btn-group" role="group" aria-label="Filtros">
-                    <button type="button" onclick="App.filterDataGridReport()" class="btn btn-outline-secondary" role="button" title="Filtrar">
-                        <i class="fas fa-redo-alt"></i>
-                    </button>
-                    <button type="button" onclick="App.clearFilterDataGridReport()" class="btn btn-outline-secondary" role="button" title="Limpiar Filtros">
-                        <i class="fas fa-ban"></i>
                     </button>
                 </div>
             </th>
@@ -115,21 +82,18 @@
     </tfoot>
     <tbody id="data-tbl">
         {% for reg in data %}
-            <tr data-object-id="{{ reg.pk }}">
+            <tr data-dgr-object-id="{{ reg.pk }}">
                 <td class="text-center">
-                    <input type="checkbox" class="action-on-reg" data-recordid="{{ reg.pk }}" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" " />
+                    <!--<input type="checkbox" class="action-on-reg" data-recordid="{{ reg.pk }}" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" " />-->
+                    <input type="checkbox" class="form-check-inline massive-operations" data-dgr-object-id="{{ reg.pk }}" />
                 </td>
-                <td data-rawsortvalue="{{ reg.username|lower }}" data-rawfiltervalue="{{ reg.username|lower }}">
-                    <a class="main-col-link" href="{% url 'user_read' pk=reg.pk %}">
-                        {{ reg.username }}
-                    </a>
+                <td data-dgr-raw-sort-value="{{ reg.username|lower }}" data-dgr-raw-filter-value="{{ reg.username|lower }}">
+                    {{ reg.username }}
                 </td>
-                <td data-rawsortvalue="{{ reg.get_full_name|lower }}" data-rawfiltervalue="{{ reg.get_full_name|lower }}">
-                    <a class="main-col-link" href="{% url 'user_read' pk=reg.pk %}">
-                        {{ reg.get_full_name }}
-                    </a>
+                <td data-dgr-raw-sort-value="{{ reg.get_full_name|lower }}" data-dgr-raw-filter-value="{{ reg.get_full_name|lower }}">
+                    {{ reg.get_full_name }}
                 </td>
-                <td data-rawsortvalue="{{ reg.email|lower }}" data-rawfiltervalue="{{ reg.email|lower }}">
+                <td data-dgr-raw-sort-value="{{ reg.email|lower }}" data-dgr-raw-filter-value="{{ reg.email|lower }}">
                     {% if reg.email %}
                     <a data-action="send_mail" href="mailto:{{ reg.email }}" target="_blank">
                         {% action_icon 'send_mail' %}
@@ -137,7 +101,7 @@
                     </a>
                     {% endif %}
                 </td>
-                <td data-rawsortvalue="{{ reg.profile.telefono|lower }}" data-rawfiltervalue="{{ reg.profile.telefono|lower }}">
+                <td data-dgr-raw-sort-value="{{ reg.profile.telefono|lower }}" data-dgr-raw-filter-value="{{ reg.profile.telefono|lower }}">
                     {% if reg.profile.telefono %}
                     <a data-action="call" href="tel:{{ reg.profile.telefono }}" target="_blank">
                         {% action_icon 'call' %}
@@ -145,7 +109,7 @@
                     </a>
                     {% endif %}
                 </td>
-                <td data-rawsortvalue="{{ reg.profile.celular|lower }}" data-rawfiltervalue="{{ reg.profile.celular|lower }}">
+                <td data-dgr-raw-sort-value="{{ reg.profile.celular|lower }}" data-dgr-raw-filter-value="{{ reg.profile.celular|lower }}">
                     {% if reg.profile.celular %}
                     <a data-action="call" href="tel:{{ reg.profile.celular }}" target="_blank">
                         {% action_icon 'call' %}
@@ -153,7 +117,7 @@
                     </a>
                     {% endif %}
                 </td>
-                <td data-rawsortvalue="{{ reg.profile.whatsapp|lower }}" data-rawfiltervalue="{{ reg.profile.whatsapp|lower }}">
+                <td data-dgr-raw-sort-value="{{ reg.profile.whatsapp|lower }}" data-dgr-raw-filter-value="{{ reg.profile.whatsapp|lower }}">
                     {% if reg.profile.whatsapp %}
                     <a data-action="send_whatsapp" href="https://api.whatsapp.com/send?phone=52{{ reg.profile.whatsapp }}" target="_blank">
                         {% action_icon 'send_whatsapp' %}
@@ -172,5 +136,7 @@
         {% endfor %}
     </tbody>
 </table>
+
+{% include 'zend_django/datagridresults/handlebars_tpls.html' %}
 
 {% endblock %}

@@ -49,7 +49,7 @@ class List(GenericList):
     titulo_descripcion = ""
     main_data_model = main_model
     model_name = "user"
-    tereapp = 'configuracion'
+    tereapp = 'administrar'
 
     def get_data(self, search_value=''):
         if '' == search_value:
