@@ -26,6 +26,7 @@ def template_base_path(file):
 
 
 class List(View):
+    tereapp = 'administrar'
 
     def base_render(self, request):
         data = list(main_model.objects.filter(padre=None))
@@ -39,6 +40,7 @@ class List(View):
             'alertas': [],
             'req_chart': False,
             'data': data,
+            'tereapp':self.tereapp,
         })
 
     def get(self, request):
@@ -53,12 +55,14 @@ class Read(GenericRead):
     model_name = "menuopc"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'administrar'
 
 
 class Create(GenericCreate):
     titulo = "Menú Principal (opciones)"
     model_name = "menuopc"
     base_data_form = base_form
+    tereapp = 'administrar'
 
 
 class Update(GenericUpdate):
@@ -66,8 +70,10 @@ class Update(GenericUpdate):
     model_name = "menuopc"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'administrar'
 
 
 class Delete(GenericDelete):
     model_name = "menuopc"
     main_data_model = main_model
+    tereapp = 'administrar'

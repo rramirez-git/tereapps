@@ -30,6 +30,7 @@ class List(GenericList):
     titulo_descripcion = "de usuario"
     main_data_model = main_model
     model_name = "permission"
+    tereapp = 'administrar'
 
     def get_data(self, search_value=''):
         if '' == search_value:
@@ -48,12 +49,14 @@ class Read(GenericRead):
     model_name = "permission"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'administrar'
 
 
 class Create(GenericCreate):
     titulo = "Permiso"
     model_name = "permission"
     base_data_form = base_form
+    tereapp = 'administrar'
 
 
 class Update(GenericUpdate):
@@ -61,8 +64,10 @@ class Update(GenericUpdate):
     model_name = "permission"
     base_data_form = base_form
     main_data_model = main_model
+    tereapp = 'administrar'
 
 
 class Delete(GenericDelete):
     model_name = "permission"
     main_data_model = main_model
+    tereapp = 'administrar'
