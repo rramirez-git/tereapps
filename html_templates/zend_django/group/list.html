@@ -12,7 +12,7 @@
 
 <div class="btn-group" role="group" aria-label="Acciones">
     {% if perms.auth.add_group %}
-    <a data-action="create" href="{% url 'user_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+    <a data-action="create" href="{% url 'group_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
         {% crud_icon 'create' %}
     </a>
     {% endif %}
