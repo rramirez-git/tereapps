@@ -1,3 +1,4 @@
+{% load op_helpers %}
 {% verbatim %}
 
 <script id="tpl-filter-empty-cell" type="text/x-handlebars-template">
@@ -45,7 +46,7 @@
                     <ul class="list-group" id="lst-tbl-cols">
                         {{#each columns}}
                             <li class="list-group-item tbl-col-item">
-                                    <input data-colnumber="{{this.idx}}" onchange="dataGridResultsGlobals.toggle_col($(this))" checked="checked" type="checkbox" data-toggle="toggle" data-size="xs" data-onstyle="success" data-style="ios" data-on=" " data-off=" "/>
+                                    <input data-colnumber="{{this.idx}}" onchange="dataGridResultsGlobals.toggle_col($(this))" checked="checked" type="checkbox" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" "/>
                                     {{this.label}}
                             </li>
                         {{/each }}
@@ -59,6 +60,30 @@
             </div>
         </div>
     </div>
+</script>
+
+<script type="text/x-handlebars-template" id="tpl-toggler-cols-submenu">
+    <li class="dropdown-submenu dropleft" title="Mostrar/Ocultar Columnas">
+        <a href="#" class="dropdown-item dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            {% endverbatim %}
+            {% crud_icon 'read' %}
+            {% verbatim %}
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            {{#each columns}}
+                <li class="dropdown-item" onclick="event.stopPropagation(); dataGridResultsGlobals.toggle_col($(this).find('input'));">
+                    <input data-colnumber="{{this.idx}}" checked="checked" type="checkbox" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" "/>
+                    {{{this.label}}}
+                </li>
+            {{/each }}
+            <li class="dropdown-item">
+                <label onclick="dataGridResultsGlobals.toggle_col()" style="cursor: pointer">
+                    <strong>Mostrar todas las columnas</strong>
+                </label>
+            </li>
+        </ul>
+    </li>
 </script>
 
 {% endverbatim %}
