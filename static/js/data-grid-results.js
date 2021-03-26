@@ -26,6 +26,15 @@ let dataGridResultsGlobals = {
             this.set_sorteable();
             this.set_filterable();
             this.set_link2detail();
+            let btnToggleCols = $(`button[data-action="toggle-cols"]`);
+            if(btnToggleCols.length) {
+                let cntr = $("#cntr-extra-actions");
+                let template = Handlebars.compile($("#tpl-toggler-cols-submenu").html());
+                let html = $(template({columns: this.cols.hiddenable()}));
+                html.find("input[type=checkbox]").bootstrapToggle();
+                cntr.append(html);
+                btnToggleCols.remove();
+            }
         }
     },
     cols: {
@@ -147,14 +156,16 @@ let dataGridResultsGlobals = {
             if(idx > -1) {
                 this.__hidden_cols.splice(idx, 1);
                 this.__table.find(`tr th:nth-child(${col_idx + 1}), tr td:nth-child(${col_idx + 1})`).removeClass('d-none');
+                column_indicator.bootstrapToggle('on',true);
             } else {
                 this.__hidden_cols.push(col_idx);
                 this.__table.find(`tr th:nth-child(${col_idx + 1}), tr td:nth-child(${col_idx + 1})`).addClass('d-none');
+                column_indicator.bootstrapToggle('off',true);
             }
         } else {
             this.__hidden_cols.length = 0;
             this.__table.find(`tr th, tr td`).removeClass('d-none');
-            $(`#lst-tbl-cols input[type="checkbox"]`).bootstrapToggle('on', true);
+            $(`#cntr-extra-actions input[type="checkbox"]`).bootstrapToggle('on', true);
         }
     },
     __get_selected_record_id(){
