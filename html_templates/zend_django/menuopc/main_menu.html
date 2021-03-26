@@ -1,6 +1,7 @@
 {% load static %}
 {% load mainopc_helpers %}
 {% load parametros_helpers %}
+{% load favorito_helpers %}
 <!-- main_menu.html (Open) -->
 {% if user.is_authenticated %}
 
@@ -45,8 +46,13 @@
     </div>
     <hr />
     <div id="vertical-left-favs-content">
-        <div class="p-3 h6"><i class="fas fa-star"></i> Favoritos</div>
+        <div class="p-3 h6">
+            <i class="fas fa-star"></i>
+            <i class="far fa-star"></i>
+            Favoritos
+        </div>
         <nav id="favs-menu" class="nav flex-column">
+            {% display_main_menu_fav_links 'nav-link text-light' %}
         </nav>
     </div>
 </div>

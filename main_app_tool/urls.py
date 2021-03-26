@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('zend_django.urls')),
     path('', include('app_reports.urls')),
+    path('', include('app_favoritos.urls')),
 ]
 
 urlpatterns += static(
