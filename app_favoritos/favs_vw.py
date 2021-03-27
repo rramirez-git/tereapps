@@ -12,7 +12,8 @@ Vistas
 - Get
 """
 from django.db.models import Q
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -27,8 +28,10 @@ from .admin_models import Favorito as main_model
 from .favs_forms import frmFavorito as base_form
 from zend_django.parametros_models import ParametroUsuario
 
+
 def template_base_path(file):
     return 'app_favoritos/favs/' + file + ".html"
+
 
 class List(GenericList):
     html_template = template_base_path("list")
@@ -101,16 +104,18 @@ class Delete(GenericDelete):
     model_name = "fav"
     main_data_model = main_model
 
+
 class Get(View):
 
     def base_render(self, request):
-        return render(request,template_base_path('get'), {})
+        return render(request, template_base_path('get'), {})
 
     def get(self, request):
         return self.base_render(request)
 
     def post(self, request):
         return self.base_render(request)
+
 
 class Set(View):
 
@@ -129,6 +134,7 @@ class Set(View):
     def post(self, request):
         return self.base_render(
             request, request.POST.get('etiqueta'), request.POST.get('url'))
+
 
 class Del(View):
 

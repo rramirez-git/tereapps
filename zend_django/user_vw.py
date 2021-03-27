@@ -36,7 +36,7 @@ from zend_django.templatetags.op_helpers import action_label
 from zend_django.templatetags.op_helpers import crud_icon
 from zend_django.templatetags.op_helpers import crud_label
 from zend_django.templatetags.op_helpers import crud_smart_button
-from zend_django.templatetags.utils import (GenerateReadCRUDToolbar)
+from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 
 
 def template_base_path(file):

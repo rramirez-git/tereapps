@@ -7,8 +7,8 @@ Cargar con {% load parametros_helpers %}
 
 from django import template
 from django.utils.safestring import mark_safe
-from zend_django.parametros_models import (
-    ParametroSistema, ParametroUsuarioValor)
+from zend_django.parametros_models import ParametroSistema
+from zend_django.parametros_models import ParametroUsuarioValor
 from zend_django.parametros_models import parametro_upload_to
 
 register = template.Library()

@@ -77,7 +77,7 @@ class GenericList(View):
             'req_chart': False,
             'search_value': search_value,
             'data': data,
-            'tereapp':self.tereapp,
+            'tereapp': self.tereapp,
         })
 
     def get(self, request):
@@ -139,7 +139,7 @@ class GenericRead(View):
             'req_chart': False,
             'search_value': '',
             'forms': {'top': [{'form': form}]},
-            'tereapp':self.tereapp,
+            'tereapp': self.tereapp,
         })
 
 
@@ -180,7 +180,7 @@ class GenericCreate(View):
             'req_chart': False,
             'search_value': '',
             'forms': forms,
-            'tereapp':self.tereapp,
+            'tereapp': self.tereapp,
         })
 
     def get(self, request):
@@ -236,7 +236,7 @@ class GenericUpdate(View):
             'req_chart': False,
             'search_value': '',
             'forms': {'top': [{'form': form}]},
-            'tereapp':self.tereapp,
+            'tereapp': self.tereapp,
         })
 
     def get(self, request, pk):
@@ -414,7 +414,7 @@ class Migrate(View):
             'alertas': [],
             'req_chart': False,
             'migraciones': migraciones,
-            'tereapp':self.tereapp,
+            'tereapp': self.tereapp,
         })
 
 
@@ -451,7 +451,7 @@ class GenericTereAppRootView(View):
             'read_only': False,
             'alertas': [],
             'req_chart': False,
-            'tereapp':self.tereapp,
+            'tereapp': self.tereapp,
         })
 
     def get(self, request):

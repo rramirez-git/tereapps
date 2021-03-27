@@ -40,7 +40,7 @@ class List(View):
             'alertas': [],
             'req_chart': False,
             'data': data,
-            'tereapp':self.tereapp,
+            'tereapp': self.tereapp,
         })
 
     def get(self, request):

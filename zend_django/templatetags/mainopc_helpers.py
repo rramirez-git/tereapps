@@ -4,10 +4,11 @@ del menú principal y sus opciones
 
 Cargar con {% load mainopc_helpers %}
 """
+import json
+
 from django import template
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.auth.models import User
-import json
 
 from zend_django.menuopc_models import MenuOpc
 
@@ -45,14 +46,17 @@ def print_menu_opc_adm(context, perms, opcion, nivel=-1):
 def getMnuOpc4TereApp(tereapp):
     with open('managed/tereapps.json', 'r') as json_file:
         config = json.load(json_file)
-    return MenuOpc.objects.get(padre=None, posicion=config[tereapp]['mnuopc_position'])
+    opc = MenuOpc.objects.filter(
+        padre=None, posicion=config[tereapp]['mnuopc_position'])
+    return opc[0] if opc.exists() else None
 
 
 @register.simple_tag
 def get_tereapp_name(tereapp=None):
     if "" == tereapp or tereapp is None:
         return ""
-    return getMnuOpc4TereApp(tereapp).nombre
+    opc = getMnuOpc4TereApp(tereapp)
+    return opc.nombre if opc is not None else ''
 
 
 @register.inclusion_tag(
@@ -91,8 +95,12 @@ def main_menu(context, opciones=None, nivel=0, user_id=0, tereapp=None):
         else:
             with open('managed/tereapps.json', 'r') as json_file:
                 config = json.load(json_file)
-            mnuOpc = MenuOpc.objects.get(padre=None, posicion=config[tereapp]['mnuopc_position'])
-            opciones = list(MenuOpc.objects.filter(padre=mnuOpc))
+            mnuOpc = MenuOpc.objects.filter(
+                padre=None, posicion=config[tereapp]['mnuopc_position'])
+            if mnuOpc.exists():
+                opciones = list(MenuOpc.objects.filter(padre=mnuOpc[0]))
+            else:
+                opciones = []
         nivel = 1
     else:
         nivel += 1
@@ -101,7 +109,10 @@ def main_menu(context, opciones=None, nivel=0, user_id=0, tereapp=None):
         if opc.user_has_option(user):
             opcs.append(opc)
     return {
-        'nivel': nivel, 'opciones': opcs, 'user_id': user.pk, 'tereapp': tereapp
+        'nivel': nivel,
+        'opciones': opcs,
+        'user_id': user.pk,
+        'tereapp': tereapp
     }
 
 @register.inclusion_tag(
@@ -122,7 +133,8 @@ def get_tereapps(context, user_id=0):
     -------
     dict
         Diccionario con las claves
-            'tereapps': array_like MenuOpc de nivel 1 correspondientes a las TereApps
+            'tereapps': array_like MenuOpc de nivel 1 correspondientes
+                        a las TereApps
     """
     user = context.get('user')
     if user is None:
@@ -133,7 +145,7 @@ def get_tereapps(context, user_id=0):
     with open('managed/tereapps.json', 'r') as json_file:
         config = json.load(json_file)
     opciones = []
-    for key,configApp in config.items():
+    for key, configApp in config.items():
         print(configApp)
         if configApp['display_as_app'] != hid:
             opciones.append(MenuOpc.objects.get(
@@ -160,7 +172,8 @@ def get_tereapps(context, user_id=0):
     -------
     dict
         Diccionario con las claves
-            'tereapps': array_like MenuOpc de nivel 1 correspondientes a las TereApps
+            'tereapps': array_like MenuOpc de nivel 1 correspondientes
+                        a las TereApps
     """
     user = context.get('user')
     if user is None:
@@ -171,10 +184,12 @@ def get_tereapps(context, user_id=0):
     with open('managed/tereapps.json', 'r') as json_file:
         config = json.load(json_file)
     opciones = []
-    for key,configApp in config.items():
+    for key, configApp in config.items():
         if configApp['display_as_app']:
-            opciones.append(MenuOpc.objects.get(
-                padre=None, posicion=configApp['mnuopc_position']))
+            opc = MenuOpc.objects.filter(
+                padre=None, posicion=configApp['mnuopc_position'])
+            if opc.exists():
+                opciones.append(opc[0])
     return {
         'tereapps': [opc for opc in opciones if opc.user_has_option(user)],
     }
@@ -193,8 +208,10 @@ def get_hidden_tereapps(context, user_id=0):
     opciones = []
     for key, configApp in config.items():
         if not configApp['display_as_app']:
-            opciones.append(MenuOpc.objects.get(
-                padre=None, posicion=configApp['mnuopc_position']))
-    return  {
+            opc = MenuOpc.objects.filter(
+                padre=None, posicion=configApp['mnuopc_position'])
+            if opc.exists():
+                opciones.append(opc[0])
+    return {
         'tereapps': [opc for opc in opciones if opc.user_has_option(user)],
     }

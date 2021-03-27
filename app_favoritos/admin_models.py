@@ -6,8 +6,9 @@ Modelos
 - Favorito
 """
 from django.conf import settings
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
 
 class Favorito(models.Model):
     """
@@ -36,7 +37,8 @@ class Favorito(models.Model):
 
     @property
     def strAsExternal(self) -> str:
-        return f'<a  href="{self.url}" class="fav-lnk" target="_blank">{self.etiqueta}</a>'
+        att = f'href="{self.url}" class="fav-lnk" target="_blank"'
+        return f'<a {att}>{self.etiqueta}</a>'
 
     @property
     def isInternal(self) -> bool:

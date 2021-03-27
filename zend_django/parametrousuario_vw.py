@@ -9,10 +9,10 @@ Vistas
 - Update
 - Delete
 """
-from django.db.models import Q
-from django.views import View
-from django.http import JsonResponse
 from django.contrib.auth.models import User
+from django.db.models import Q
+from django.http import JsonResponse
+from django.views import View
 
 from .parametros_models import ParametroUsuario as main_model
 from .parametros_models import ParametroUsuarioValor
@@ -73,13 +73,16 @@ class Delete(GenericDelete):
     model_name = "parametrousuario"
     main_data_model = main_model
 
+
 class SetValue(View):
     main_data_model = main_model
+
     def get(self, request):
         return JsonResponse({
             'status': 'error',
             'msg': "Metodo no implementado",
         }, safe=False)
+
     def post(self, request):
         seccion = request.POST.get('seccion')
         param = request.POST.get('parametro')
@@ -92,7 +95,7 @@ class SetValue(View):
                 'extra': request.POST,
             }, safe=False)
         if not self.main_data_model.objects.filter(
-                seccion=seccion,nombre=param).exists():
+                seccion=seccion, nombre=param).exists():
             return JsonResponse({
                 'status': 'error',
                 'msg': "El parametros requerido no fue encontrado",
@@ -106,7 +109,7 @@ class SetValue(View):
             }, safe=False)
         user = User.objects.get(username=usr)
         parametro = self.main_data_model.objects.get(
-            seccion=seccion,nombre=param)
+            seccion=seccion, nombre=param)
         pv = ParametroUsuarioValor.objects.get_or_create(
             parametro=parametro, user=user)[0]
         pv.valor = valor
