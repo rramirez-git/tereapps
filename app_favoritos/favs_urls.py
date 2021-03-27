@@ -50,6 +50,8 @@ urlpatterns = [
         views.Get.as_view()), name=f"{obj}_get"),
     path('set/', login_required(
         views.Set.as_view()), name=f"{obj}_set"),
+    path('del/', login_required(
+        views.Del.as_view()), name=f"{obj}_del"),
     path('<pk>/', permission_required(
         f'{app_label}.view_mine_{obj}')(views.Read.as_view()),
         name=f"{obj}_read"),

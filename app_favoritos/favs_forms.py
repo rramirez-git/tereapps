@@ -26,12 +26,8 @@ class frmFavorito(forms.ModelForm):
     """
 
     class Meta:
-        model: Favorito
+        model = Favorito
         fields = [
-            'usuario',
             'etiqueta',
             'url',
         ]
-        widgets = {
-            'usuario': forms.HiddenInput()
-        }
