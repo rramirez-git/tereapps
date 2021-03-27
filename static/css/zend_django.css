@@ -188,7 +188,8 @@ form.form-signin label{
 }
 
 .btn.btn-outline-secondary,
-.btn.btn-outline-light {
+.btn.btn-outline-light,
+.btn.btn-outline-primary{
     border: none;
 }
 
@@ -198,4 +199,34 @@ form.form-signin label{
    -webkit-transition: all .4s ease-out;
    -moz-transition: all .4s ease-out;
    -ms-transition: all .4s ease-out;
+}
+
+#eff-arrow {
+    border: rgba(0, 0, 0, 0.15) 1px;
+    border-style: solid none none solid;
+    background-color: #ffffff;
+    transform: rotate(45deg);
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: -11px;
+    right: 10px;
+}
+#btn-extra-actions:after {
+    content: none;
+}
+#cntr-extra-actions {
+    margin-top: 20px;
+}
+
+#cntr-extra-actions .dropdown-submenu.dropleft ul.dropdown-menu {
+    left: unset;
+}
+
+.table {
+    color: inherit;
+}
+
+.table thead th {
+    color: #212529;
 }
