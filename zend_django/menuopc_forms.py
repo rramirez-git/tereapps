@@ -36,7 +36,7 @@ class frmMenuOpc(forms.ModelForm):
             'padre',
             'posicion',
             'vista',
-            'permisos_requeridos'
+            'permisos_requeridos',
         ]
         widgets = {
             'permisos_requeridos': forms.CheckboxSelectMultiple()

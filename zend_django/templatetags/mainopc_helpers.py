@@ -130,7 +130,71 @@ def get_tereapps(context, user_id=0):
             user_id, User) else User.objects.get(pk=user_id)
     if isinstance(user, AnonymousUser):
         return {}
-    opciones = list(MenuOpc.objects.filter(padre=None))
+    with open('managed/tereapps.json', 'r') as json_file:
+        config = json.load(json_file)
+    opciones = []
+    for key,configApp in config.items():
+        print(configApp)
+        if configApp['display_as_app'] != hid:
+            opciones.append(MenuOpc.objects.get(
+                padre=None, posicion=configApp['mnuopc_position']))
     return {
+        'tereapps': [opc for opc in opciones if opc.user_has_option(user)],
+    }
+
+@register.inclusion_tag(
+    'zend_django/menuopc/get_tereapps.html', takes_context=True)
+def get_tereapps(context, user_id=0):
+    """
+    Inclusion tag: {% get_tereapps %}
+    Genera las etiquetas para generar el menú de TereApps con base en las
+    opciones de permisos en el menú principal
+    Las opciones del menú en nivel 1 son las TereApps
+
+    Parameters
+    ----------
+    context : ContextRequest
+    user_id : int [0] User.pk
+
+    Returns
+    -------
+    dict
+        Diccionario con las claves
+            'tereapps': array_like MenuOpc de nivel 1 correspondientes a las TereApps
+    """
+    user = context.get('user')
+    if user is None:
+        user = user_id if isinstance(
+            user_id, User) else User.objects.get(pk=user_id)
+    if isinstance(user, AnonymousUser):
+        return {}
+    with open('managed/tereapps.json', 'r') as json_file:
+        config = json.load(json_file)
+    opciones = []
+    for key,configApp in config.items():
+        if configApp['display_as_app']:
+            opciones.append(MenuOpc.objects.get(
+                padre=None, posicion=configApp['mnuopc_position']))
+    return {
+        'tereapps': [opc for opc in opciones if opc.user_has_option(user)],
+    }
+
+@register.inclusion_tag(
+    'zend_django/menuopc/get_tereapps_hidden.html', takes_context=True)
+def get_hidden_tereapps(context, user_id=0):
+    user = context.get('user')
+    if user is None:
+        user = user_id if isinstance(
+            user_id, User) else User.objects.get(pk=user_id)
+    if isinstance(user, AnonymousUser):
+        return {}
+    with open('managed/tereapps.json', 'r') as json_file:
+        config = json.load(json_file)
+    opciones = []
+    for key, configApp in config.items():
+        if not configApp['display_as_app']:
+            opciones.append(MenuOpc.objects.get(
+                padre=None, posicion=configApp['mnuopc_position']))
+    return  {
         'tereapps': [opc for opc in opciones if opc.user_has_option(user)],
     }

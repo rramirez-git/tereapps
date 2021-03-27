@@ -1,6 +1,7 @@
 {% load static %}
 {% load mainopc_helpers %}
 {% load parametros_helpers %}
+{% load favorito_helpers %}
 <!-- main_menu.html (Open) -->
 {% if user.is_authenticated %}
 
@@ -26,13 +27,21 @@
                     </form>
                 </td>
                 <td>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="btn-extra-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-h"></i>
+                    <div class="btn-group" role="group" aria-label="User Toolbar">
+                        <button class="btn btn-outline-secondary fav-in d-none" type="button" title="Eliminar de Favoritos" onclick="MisFavs.delFav()">
+                            <i class="fas fa-star"></i>
                         </button>
-                        <ul id="cntr-extra-actions" class="dropdown-menu dropdown-menu-right" aria-labelledby="btn-extra-actions">
-                            <div id="eff-arrow"></div>
-                        </ul>
+                        <button class="btn btn-outline-secondary fav-out d-none" type="button" title="Agregar a Favoritos" onclick="MisFavs.add2()">
+                            <i class="far fa-star"></i>
+                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="btn-extra-actions" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-h"></i>
+                            </button>
+                            <ul id="cntr-extra-actions" class="dropdown-menu dropdown-menu-right" aria-labelledby="btn-extra-actions">
+                                <div id="eff-arrow"></div>
+                            </ul>
+                        </div>
                     </div>
                 </td>
             </tr>
@@ -61,9 +70,14 @@
     </div>
     <hr />
     <div id="vertical-left-favs-content">
-        <div class="p-3 h6"><i class="fas fa-star"></i> Favoritos</div>
+        <div class="p-3 h6">
+            <i class="fas fa-star"></i>
+            Favoritos
+        </div>
         <nav id="favs-menu" class="nav flex-column">
+            {% display_main_menu_fav_links 'nav-link text-light' %}
         </nav>
+        {% get_hidden_tereapps %}
     </div>
 </div>
 {% endif  %}
@@ -72,6 +86,10 @@
     let leftMenu_url = "{% url 'parametrousuario_setvalue' %}";
     let leftMenu_user = "{{ user }}";
     let leftMenu_display = "{% parametro_de_usuario seccion='general' nombre='open_left_menu' username=user %}";
+
+    let set_mis_favs_url = "{% url 'fav_set' %}";
+    let get_mis_favs_url = "{% url 'fav_get' %}";
+    let del_mis_favs_url = "{% url 'fav_del' %}";
 </script>
 <div id="csrf_token">
     {% csrf_token %}
