@@ -14,7 +14,11 @@ def esfera_card(user, context, include_title="no"):
     for esfera in Esfera.objects.all():
         if esfera.accesible_by(user):
             esferas.append(esfera)
-    return {'esferas': esferas, 'context': context, 'include_title': include_title}
+    return {
+        'esferas': esferas,
+        'context': context,
+        'include_title': include_title
+    }
 
 
 @register.filter

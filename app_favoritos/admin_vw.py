@@ -17,11 +17,13 @@ from zend_django.views import GenericList
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
 
-from .admin_models import Favorito as main_model
 from .admin_forms import frmFavorito as base_form
+from .admin_models import Favorito as main_model
+
 
 def template_base_path(file):
     return 'app_favoritos/admin/' + file + ".html"
+
 
 class List(GenericList):
     html_template = template_base_path("list")

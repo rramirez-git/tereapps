@@ -24,7 +24,7 @@ class TestSessionViews(ViewsTests):
         response = self.client.get(url, follow=True)
         self.assertTemplateUsed(
             response, 'zend_django/html/html_struct.html')
-        self.assertContains(response, "Bienvenido", status_code=200)
+        self.assertContains(response, "Aplicaciones", status_code=200)
         self.assertContains(
             response, self.username_for_session, status_code=200)
 
@@ -36,7 +36,7 @@ class TestSessionViews(ViewsTests):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(
             response, 'zend_django/html/html_struct.html')
-        self.assertContains(response, "Bienvenido", status_code=200)
+        self.assertContains(response, "Aplicaciones", status_code=200)
         self.assertContains(
             response, self.username_for_session, status_code=200)
 
@@ -94,7 +94,7 @@ class TestSessionViews(ViewsTests):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(
             response, 'zend_django/html/html_struct.html')
-        self.assertContains(response, "Bienvenido", status_code=200)
+        self.assertContains(response, "Aplicaciones", status_code=200)
         self.assertContains(
             response, self.username_for_session, status_code=200)
 
@@ -113,6 +113,6 @@ class TestSessionViews(ViewsTests):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(
             response, 'zend_django/html/html_struct.html')
-        self.assertContains(response, "Bienvenido", status_code=200)
+        self.assertContains(response, "Aplicaciones", status_code=200)
         self.assertContains(
             response, self.username_for_session, status_code=200)

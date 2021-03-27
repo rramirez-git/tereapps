@@ -9,14 +9,16 @@ Perm                   => View             => Path
 -                         item_no_encontrado    => item-no-encontrado/
 - auth.apply_migration => aplicar_migraciones_vw => migrar/
 """
-from django.contrib.auth.decorators import permission_required, login_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.urls import include
 from django.urls import path
 
 from .item_vw import ItemConRelaciones
 from .item_vw import ItemNoEncontrado
+from .tereapps_vw import AdministracionView
+from .tereapps_vw import ConfiguracionView
 from .views import Migrate
-from .tereapps_vw import ConfiguracionView, AdministracionView
 
 urlpatterns = [
      path('item-con-relaciones/', ItemConRelaciones.as_view(),

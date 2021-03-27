@@ -13,6 +13,7 @@ from django import forms
 
 from .admin_models import Favorito
 
+
 class frmFavorito(forms.ModelForm):
     """
     Formulario principal del modelo Favorito

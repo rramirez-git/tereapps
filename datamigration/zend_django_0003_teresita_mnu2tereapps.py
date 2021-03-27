@@ -1,7 +1,3 @@
-from django.contrib.auth.models import Permission
-from django.contrib.auth.models import User
-from django.contrib.contenttypes.models import ContentType
-
 from zend_django.models import *
 
 
@@ -17,4 +13,3 @@ def migration():
     mnuOpc.padre = None
     mnuOpc.posicion = 1001
     mnuOpc.save()
-

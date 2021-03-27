@@ -81,8 +81,12 @@ class FuncionalTest(StaticLiveServerTestCase):
             self.browser = webdriver.Chrome(
                 'zend_django/pruebas_funcionales/chromedriver.exe')
         else:
+            chromeOptions = webdriver.ChromeOptions()
+            chromeOptions.add_argument("--remote-debugging-port=9222")
+            chromeOptions.add_argument('--no-sandbox')
             self.browser = webdriver.Chrome(
-                'zend_django/pruebas_funcionales/chromedriver')
+                'zend_django/pruebas_funcionales/chromedriver',
+                chrome_options=chromeOptions)
         self.base_url = self.live_server_url
         self.browser.implicitly_wait(20)
         self.user_for_session = User.objects.get_or_create(

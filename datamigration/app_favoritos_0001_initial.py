@@ -1,8 +1,8 @@
 from django.contrib.auth.models import Permission
-from django.contrib.contenttypes.models import ContentType
 
-from zend_django.models import MenuOpc
 from .app_reports_0001_initial import update_permisos
+from zend_django.models import MenuOpc
+
 
 def migration():
     update_permisos()
