@@ -82,15 +82,15 @@ class Read(GenericRead):
             'right': frmReporteright(instance=obj),
         }
         toolbar = GenerateReadCRUDToolbar(
-            request, self.model_name, obj.pk, self.main_data_model)
+            request, self.model_name, obj, self.main_data_model)
         if request.user.has_perm("app_reports.view_camporeporte"):
-            label = ('<i class="fas fa-columns"></i>'
-                     '<span class="d-none d-sm-inline"> Campos</span>')
+            label = '<i class="fas fa-columns"></i>'
             toolbar.append({
                 'type': 'rlink',
                 'label': label,
                 'url': reverse(
                     'camporeporte_list', kwargs={'pk_reporte': obj.pk}),
+                'title': 'Campos',
             })
         return render(request, self.html_template, {
             'titulo': obj,

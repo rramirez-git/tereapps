@@ -17,6 +17,8 @@ Action:
  - call
  - send_whatsapp
  - reset_password
+ - next_item
+ - prev_item
 """
 
 CRUD_labels = {
@@ -36,4 +38,6 @@ Action_labels = {
     'call': 'Llamar',
     'send_whatsapp': "Enviar mensaje por What's App",
     'reset_password': 'Re-establecer contraseña',
+    'prev_item': 'Siguiente',
+    'next_item': 'Anterior',
 }

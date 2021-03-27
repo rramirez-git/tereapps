@@ -17,6 +17,8 @@ Action:
  - call
  - send_whatsapp
  - reset_password
+ - next_item
+ - prev_item
 """
 
 CRUD_icons = {
@@ -36,4 +38,6 @@ Action_icons = {
     'call': '<i class="fas fa-mobile-alt"></i>',
     'send_whatsapp': '<i class="fab fa-whatsapp"></i>',
     'reset_password': '<i class="fas fa-key"></i>',
+    'prev_item': '<i class="fas fa-chevron-left"></i>',
+    'next_item': '<i class="fas fa-chevron-right"></i>',
 }

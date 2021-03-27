@@ -128,7 +128,7 @@ class GenericRead(View):
         obj = self.main_data_model.objects.get(pk=pk)
         form = self.base_data_form(instance=obj)
         toolbar = GenerateReadCRUDToolbar(
-            request, self.model_name, pk, self.main_data_model)
+            request, self.model_name, obj, self.main_data_model)
         return render(request, self.html_template, {
             'titulo': obj,
             'titulo_descripcion': self.titulo_descripcion,
