@@ -48,5 +48,5 @@ let MisFavs = {
 
 $(document).ready(() => {
     MisFavs.current_in_favs();
-    $("#cntr-extra-actions").prepend($(".hidden-opc a"))
+    $("#cntr-extra-actions").prepend($(".hidden-opc a"));
 })

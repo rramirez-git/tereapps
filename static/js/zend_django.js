@@ -212,6 +212,8 @@ let setLeftMenuOpc = (valor) => {
 }
 
 $(document).ready( () => {
+    $("#cntr-extra-actions").append(`<a class="dropdown-item" href="${profile_url}">Mi perfil</a>`);
+
     if($("#data-grid-report").length) {
         $.getScript('/static/js/data-grid-results.js');
     }

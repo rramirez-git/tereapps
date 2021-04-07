@@ -23,7 +23,7 @@ from .user_forms import frmUserBottom
 from .user_forms import frmUserLeft
 from .user_forms import frmUserResetPassword
 from .user_forms import frmUserRight
-from .user_forms import frmUserTop
+from .user_forms import frmUserTop, frmUserTopMe
 from .user_forms import frmUserTopReadUpdate
 from .user_forms import frmUserUpdate
 from .user_models import UserProfile
@@ -277,4 +277,62 @@ class ResetPassword(View):
                     })
             else:
                 form.add_error('username', "No existe el usuario")
+        return self.base_render(request, form)
+
+
+class Me(GenericUpdate):
+    titulo = "Mi Perfil"
+    model_name = "user"
+    main_data_model = main_model
+
+    def base_render(self, request, form):
+        return render(request, self.html_template, {
+            'titulo': self.titulo,
+            'titulo_descripcion': None,
+            'toolbar': None,
+            'footer': False,
+            'read_only': False,
+            'alertas': [],
+            'req_chart': False,
+            'search_value': '',
+            'forms': {
+                'top': [{'title': "Mi acceso", 'form': form['top']}],
+                'bottom': [{'title': "Mis datos", 'form': form['bottom']}],
+            },
+            'tereapp': self.tereapp
+        })
+
+    def get(self, request):
+        obj = request.user
+        form = {
+            'bottom': frmUserLeft(instance=obj, initial={
+                'apellido_materno': obj.profile.apellido_materno,
+                'telefono': obj.profile.telefono,
+                'celular': obj.profile.celular,
+                'whatsapp': obj.profile.whatsapp,
+            }),
+            'top': frmUserTopMe(initial={
+                'username': obj.username,
+            }),
+        }
+        return self.base_render(request, form)
+
+    def post(self, request):
+        obj = request.user
+        form = {
+            'bottom': frmUserLeft(instance=obj, data=request.POST),
+            'top': frmUserTopMe(data=request.POST),
+        }
+        if form['bottom'].is_valid() and form['top'].is_valid():
+            obj = form['bottom'].save()
+            obj.username = form['top'].cleaned_data['username']
+            if form['top'].cleaned_data['password']:
+                obj.set_password(form['top'].cleaned_data['password'])
+            obj.save()
+            obj.profile.apellido_materno = form['bottom'].cleaned_data[
+                'apellido_materno']
+            obj.profile.telefono = form['bottom'].cleaned_data['telefono']
+            obj.profile.celular = form['bottom'].cleaned_data['celular']
+            obj.profile.whatsapp = form['bottom'].cleaned_data['whatsapp']
+            obj.profile.save()
         return self.base_render(request, form)

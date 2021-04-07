@@ -11,7 +11,7 @@
 
     <div class="card">
         <div class="card-body">
-            <a href="{% url 'esfera_reportes' pk_esfera=esfera.pk %}" role="button" class="btn btn-outline-primary btn-block btn-lg">
+            <a href="{% url 'esfera_reportes' pk_esfera=esfera.pk %}" role="button" class="btn btn-outline-secondary btn-block btn-lg">
                 <img src="{{ context|get_from_context:'MEDIA_URL' }}{{ esfera.icono }}" class="card-img-top" alt="..." />
                 {{ esfera.nombre }}
             </a>

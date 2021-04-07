@@ -245,6 +245,23 @@ class frmUserTop(forms.ModelForm):
     ]
 
 
+class frmUserTopMe(forms.Form):
+    """
+    Formulario para desplegado en la sección Top
+
+    Campos
+    ------
+    - username
+    - password
+    """
+    username = forms.CharField(
+        max_length=50, label="Usuario",
+        widget=forms.TextInput())
+    password = forms.CharField(
+        max_length=50, label="Contraseña", required=False,
+        widget=forms.PasswordInput(attrs={'placeholder': 'Nueva Contraseña'}))
+
+
 class frmUserTopReadUpdate(forms.ModelForm):
     """
     Formulario para desplegado en la sección Top (Read/Update)
