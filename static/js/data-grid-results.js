@@ -22,6 +22,15 @@ let dataGridResultsGlobals = {
             });
         });
         this.__table.find("tfoot").remove();
+        for(let opc of [
+            {id: 'opc-show-edit-controls', fn: 'show_edit_controls', label: 'Editar', extraClass: ''},
+            {id: 'opc-hide-edit-controls', fn: 'hide_edit_controls', label: 'Cerrar Edicion', extraClass: 'd-none'},
+            {id: 'opc-show-filter-controls', fn: 'show_filter_controls', label: 'Filtrar', extraClass: ''},
+            {id: 'opc-hide-filter-controls', fn: 'hide_filter_controls', label: 'Cerrar Filtrado', extraClass: 'd-none'},
+        ]) {
+            $("#cntr-extra-actions").append(
+                `<a id="${opc.id}" class="dropdown-item ${opc.extraClass}" href="#" onclick="dataGridResultsGlobals.${opc.fn}()">${opc.label}</a>`);
+        }
         if(updatingtable){
             this.set_sorteable();
             this.set_filterable();
@@ -166,6 +175,9 @@ let dataGridResultsGlobals = {
             this.__hidden_cols.length = 0;
             this.__table.find(`tr th, tr td`).removeClass('d-none');
             $(`#cntr-extra-actions input[type="checkbox"]`).bootstrapToggle('on', true);
+            if($(`.btn-group[aria-label="Filtrado-Filas"]`).hasClass('d-none') && $(`.btn-group[aria-label="Acciones"]`).hasClass('d-none')) {
+                this.__table.find('th:nth-child(1), td:nth-child(1)').addClass('d-none');
+            }
         }
     },
     __get_selected_record_id(){
@@ -200,6 +212,43 @@ let dataGridResultsGlobals = {
         } else {
             console.log(`Hola Mundo!!`);
         }
+    },
+    show_edit_controls() {
+        $(`.btn-group[aria-label="Acciones"]`).removeClass('d-none');
+        this.__table.find('th:nth-child(1), td:nth-child(1)').removeClass('d-none');
+        $("#opc-show-edit-controls").addClass('d-none');
+        $("#opc-hide-edit-controls").removeClass('d-none');
+    },
+    hide_edit_controls() {
+        $(`.btn-group[aria-label="Acciones"]`).addClass('d-none');
+        this.__table.find('th:nth-child(1), td:nth-child(1)').addClass('d-none');
+        $("#opc-show-edit-controls").removeClass('d-none');
+        $("#opc-hide-edit-controls").addClass('d-none');
+    },
+    show_filter_controls() {
+        $(`.btn-group[aria-label="Filtrado-Filas"]`).removeClass('d-none');
+        this.__table.find('th:nth-child(1), td:nth-child(1)').removeClass('d-none');
+        $("#opc-show-filter-controls").addClass('d-none');
+        $("#opc-hide-filter-controls").removeClass('d-none');
+    },
+    hide_filter_controls() {
+        $(`.btn-group[aria-label="Filtrado-Filas"]`).addClass('d-none');
+        this.__table.find('th:nth-child(1), td:nth-child(1)').addClass('d-none');
+        $("#opc-show-filter-controls").removeClass('d-none');
+        $("#opc-hide-filter-controls").addClass('d-none');
+    },
+    filtrar_filas() {
+        this.__body.find(`input[type="checkbox"]`).each((idx, input) => {
+            let fila = $(input).parent().parent();
+            if(input.checked) {
+                fila.removeClass('d-none');
+            } else {
+                fila.addClass('d-none');
+            }
+        });
+    },
+    restaurar_filtrado_filas() {
+        this.__body.find('tr').removeClass('d-none');
     }
 };
 

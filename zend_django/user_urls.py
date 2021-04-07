@@ -22,7 +22,7 @@ permiso_requerido = {app_label}.{Perm}_{obj}
 vista = {obj}_{View}
 
 """
-from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.decorators import permission_required, login_required
 from django.urls import path
 
 import zend_django.user_vw as views
@@ -49,6 +49,7 @@ urlpatterns = [
     path('reestablecer-contrasenia/<username>/', permission_required(
          f'{app_label}.reset_password')(views.ResetPassword.as_view()),
          name=f"{obj}_reset_password"),
+    path('mi-perfil/', login_required(views.Me.as_view()), name=f"{obj}_me"),
     path('<pk>/', permission_required(
         f'{app_label}.view_{obj}')(views.Read.as_view()),
         name=f"{obj}_read"),

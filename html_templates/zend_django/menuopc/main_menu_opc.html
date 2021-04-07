@@ -7,7 +7,7 @@
                 <button type="button" class="btn btn-outline-light float-right btn-sm">
                     <i class="fas fa-caret-down"></i>
                 </button>
-                <strong>{{ opc|safe }}</strong>
+                {{ opc|safe }}
             </a>
             <div id="submenu-{{ opc.pk }}" class="collapse">
                 {% main_menu opc.hijos.all nivel user_id tereapp %}
@@ -26,7 +26,7 @@
     {% else %}
         {% if nivel == 1 %}
             <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" href="{%if opc.get_vista_url %}{{ opc.get_vista_url }}{% else %}#{% endif %}#">
-                <strong>{{ opc|safe }}</strong>
+                {{ opc|safe }}
             </a>
         {% else %}
             <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" href="{%if opc.get_vista_url %}{{ opc.get_vista_url }}{% else %}#{% endif %}#">

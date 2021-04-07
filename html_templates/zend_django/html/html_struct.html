@@ -25,7 +25,8 @@
         {% requiere_ui_css %}
 
         <script type="text/javascript">
-			let BASE_URL = '//{{ request.get_host }}'
+			let BASE_URL = '//{{ request.get_host }}';
+			let profile_url = '{% url "user_me" %}';
         </script>
 
         <script type="text/javascript">
@@ -145,7 +146,7 @@
                 ¿Confirma que realmente desea eliminar {{pre_elemento}} {{elemento}}?
                 <div class="row">
                     <div class="col-sm-6 text-center" style="color: white">
-                        <a data-action="confirm-delete" href="{{url}}" class="btn btn-outline-primary" {% endverbatim %} title="{% action_label 'ok' %}">
+                        <a data-action="confirm-delete" href="{{url}}" class="btn btn-outline-secondary" {% endverbatim %} title="{% action_label 'ok' %}">
                             {% action_icon 'ok' %} {% action_label 'ok' %}
                         </a>
                     </div>
