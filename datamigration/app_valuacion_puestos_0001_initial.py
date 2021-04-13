@@ -22,7 +22,6 @@ def int2romman(num):
     roman = ''
     i = 0
     while num > 0:
-        print(f"\t\t\t\t{num =}")
         for _ in range(num // val[i]):
             roman += syb[i]
             num -= val[i]
@@ -30,7 +29,6 @@ def int2romman(num):
     return roman
 
 def migration():
-    print("Creando menu de opciones")
     vp = MenuOpc.objects.get_or_create(
         nombre="Valuacion de Puestos", posicion=1,
         padre=None, vista='idx_tereapp_valuacion_de_puestos')[0]
@@ -40,7 +38,6 @@ def migration():
     items['factor'] =  MenuOpc.objects.get_or_create(
         nombre="Factores", posicion=2, padre=vp, vista="factor_list")[0]
 
-    print("Adjuntando permisos")
     for obj, mnuOpc in items.items():
         ParametroUsuario.objects.get_or_create(
             seccion='basic_search', nombre=obj, valor_default='',
@@ -52,7 +49,6 @@ def migration():
             Permission.objects.get(codename=f"view_{obj}"),
         ])
 
-    print("Creando puestos")
     afanadora = Puesto.objects.get_or_create(
         puesto="Afanadora", posicion=1, estatus=True)[0]
     facturista = Puesto.objects.get_or_create(
@@ -128,7 +124,6 @@ def migration():
     controlador_bodega_clientes = Puesto.objects.get_or_create(
         puesto="Controlador bodega clientes", posicion=37, estatus=True)[0]
 
-    print("Creando puestos")
     escolaridad = Factor.objects.get_or_create(
         factor='Escolaridad', posicion=1,
         ponderacion_nivel_1=21, exponente=2.1)[0]
@@ -179,18 +174,14 @@ def migration():
         esfuerzo_físico,
     ]
 
-    print("Estableciendo niveles para factores de 5 niveles")
     for factor in fact5niveles:
         for nivel in range(1, 6):
-            print(f"\t{factor =}\t{nivel =}\t{int2romman(nivel) =}")
             Nivel.objects.get_or_create(
                 nivel_multiplicador=nivel,
                 nivel=int2romman(nivel),
                 factor=factor)
-    print("Estableciendo niveles para factores de 6 niveles")
     for factor in fact6niveles:
         for nivel in range(1, 7):
-            print(f"\t{factor =}\t{nivel =}\t{int2romman(nivel) =}")
             Nivel.objects.get_or_create(
                 nivel_multiplicador=nivel,
                 nivel=int2romman(nivel),
