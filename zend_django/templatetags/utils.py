@@ -81,7 +81,7 @@ def GenerateReadCRUDToolbar(
         toolbar.append({
             'type': 'link_pk',
             'label': '<i class="fas fa-chevron-right"></i>',
-            'title': 'Anterior',
+            'title': 'Siguiente',
             'view': f'{base_name}_read',
             'pk': next.pk})
     return toolbar
