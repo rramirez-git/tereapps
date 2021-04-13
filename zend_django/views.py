@@ -140,6 +140,7 @@ class GenericRead(View):
             'search_value': '',
             'forms': {'top': [{'form': form}]},
             'tereapp': self.tereapp,
+            'object': obj,
         })
 
 
