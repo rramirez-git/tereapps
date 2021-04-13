@@ -1,4 +1,8 @@
 {
+  "valuacion_de_puestos": {
+    "mnuopc_position": 1,
+    "display_as_app": true
+  },
   "configuracion": {
     "mnuopc_position": 1000,
     "display_as_app": true

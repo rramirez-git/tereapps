@@ -105,7 +105,7 @@
 
             <!-- html_struct/extraafter -->
 			{% block extraafter %}
-            {% endblock%}
+            {% endblock %}
             <!-- html_struct/extraafter end -->
 
         </div>
@@ -197,7 +197,7 @@
             let alerta = {{ alertas|safe }};
             if( alerta.length > 0 ) {
                 alerta = alerta.join('<br />');
-                alerta = `<span class="text-danger align-middle"><i class="fas fa-exclamation-triangle fa-3x"></i></span> ${alerta}`;
+                alerta = `<span class="align-middle"><i class="fas fa-exclamation-triangle fa-3x"></i></span> ${alerta}`;
                 App.openPanel(alerta, "Error:");
             }
         </script>
