@@ -363,7 +363,6 @@ class Reporte(models.Model):
         fields = []
         with connections[cnn_name].cursor() as cursor:
             cursor.execute(sql)
-            print(cursor.description)
             fields = [col[0] for col in cursor.description]
             rows = list(cursor.fetchall())
         return {'rows': rows, 'fields': fields}

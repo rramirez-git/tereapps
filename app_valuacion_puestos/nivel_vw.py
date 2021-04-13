@@ -45,7 +45,6 @@ class Read(GenericRead):
             instance=obj, initial={'ponderacion': obj.ponderacion})
         toolbar = GenerateReadCRUDToolbar(
             request, self.model_name, obj, self.main_data_model)
-        print(f"{toolbar[0] =}")
         toolbar[0].update({'type': 'link_pk', 'pk': obj.factor.pk})
         return render(request, self.html_template, {
             'titulo': obj,
