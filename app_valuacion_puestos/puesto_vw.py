@@ -10,9 +10,6 @@ Vistas
 - Delete
 """
 from django.db.models import Q
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.urls import reverse
 
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
@@ -20,7 +17,8 @@ from zend_django.views import GenericList
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
 
-from .puesto_forms import frmPuesto as base_form, frmPuestoRead
+from .puesto_forms import frmPuesto as base_form
+from .puesto_forms import frmPuestoRead
 from .puesto_models import Puesto as main_model
 
 
@@ -46,7 +44,7 @@ class List(GenericList):
 
 
 class Read(GenericRead):
-    #html_template = template_base_path('see')
+    # html_template = template_base_path('see')
     titulo_descripcion = "Puesto"
     model_name = "puesto"
     base_data_form = frmPuestoRead

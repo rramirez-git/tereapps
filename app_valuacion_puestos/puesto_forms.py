@@ -20,6 +20,7 @@ from django import forms
 
 from .puesto_models import Puesto
 
+
 class frmPuesto(forms.ModelForm):
     """
     Formulario principal del modelo Puesto
@@ -46,7 +47,7 @@ class frmPuesto(forms.ModelForm):
                 'data-onstyle': "secondary",
                 'data-style': "ios",
                 'data-on': " ",
-                'data-off': " ",})
+                'data-off': " ", })
         }
 
     field_order = ['puesto', 'estatus', 'posicion']
@@ -81,7 +82,7 @@ class frmPuestoRead(forms.ModelForm):
                 'data-onstyle': "secondary",
                 'data-style': "ios",
                 'data-on': " ",
-                'data-off': " ",})
+                'data-off': " ", })
         }
 
     field_order = ['puesto', 'estatus', 'posicion', 'ponderacion_total']

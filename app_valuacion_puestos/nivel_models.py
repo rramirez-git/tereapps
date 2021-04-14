@@ -1,13 +1,15 @@
 """
-Definición de modelos de Niveles, para valuacion con base en niveles de factores
+Definición de modelos de Niveles, para valuacion con base en
+niveles de factores
 
 Modelos
 -------
 - Nivel
 """
-from django.db import models
 from .factor_models import Factor
 from .puesto_models import Puesto
+from django.db import models
+
 
 class Nivel(models.Model):
     """
