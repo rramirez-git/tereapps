@@ -44,6 +44,7 @@ class frmFactor(forms.ModelForm):
             'exponente',
         ]
 
+
 class frmFactorRead(forms.ModelForm):
     """
     Formulario para mostrar el modelo Factor
@@ -72,4 +73,4 @@ class frmFactorRead(forms.ModelForm):
         'posicion',
         'ponderacion_nivel_1',
         'exponente',
-        'cantidad_de_niveles',]
+        'cantidad_de_niveles', ]

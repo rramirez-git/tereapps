@@ -18,6 +18,7 @@ from django import forms
 
 from .nivel_models import Nivel
 
+
 class frmNivel(forms.ModelForm):
     """
     Formulario principal del modelo Nivel
@@ -46,7 +47,8 @@ class frmNivelRead(forms.ModelForm):
     - nivel
     - ponderacion
     """
-    ponderacion = forms.DecimalField(max_digits=6, decimal_places=2, required=False)
+    ponderacion = forms.DecimalField(
+        max_digits=6, decimal_places=2, required=False)
 
     class Meta:
         model = Nivel

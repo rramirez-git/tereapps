@@ -8,29 +8,31 @@ Vistas
 - Update
 - Delete
 """
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.shortcuts import render
 from django.db import IntegrityError
 from django.db.models import ProtectedError
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
 
+from zend_django.templatetags.op_helpers import crud_label
+from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
-from zend_django.templatetags.op_helpers import crud_label
 
-from .nivel_forms import frmNivel as base_form, frmNivelRead
-from .nivel_models import Nivel as main_model
 from .models import Factor
+from .nivel_forms import frmNivel as base_form
+from .nivel_forms import frmNivelRead
+from .nivel_models import Nivel as main_model
 
 
 def template_base_path(file):
     return 'app_valuacion_puestos/nivel/' + file + ".html"
 
+
 class Read(GenericRead):
-    #html_template = template_base_path('see')
+    # html_template = template_base_path('see')
     titulo_descripcion = "Nivel"
     model_name = "nivel"
     base_data_form = frmNivelRead
@@ -96,7 +98,10 @@ class Create(GenericCreate):
                 return self.base_render(
                     request,
                     {'top': [{'form': form}]},
-                    ["No es posible agregar el mismo nombre de nivel para un mismo factor"])
+                    [
+                        "No es posible agregar el mismo nombre "
+                        "de nivel para un mismo factor"
+                    ])
             return HttpResponseRedirect(reverse(
                 f'{self.model_name}_read',
                 kwargs={'pk': obj.pk}))

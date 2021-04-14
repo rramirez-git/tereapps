@@ -7,6 +7,7 @@ Modelos
 """
 from django.db import models
 
+
 def get_next_posicion_puesto() -> int:
     max = Puesto.objects.aggregate(models.Max('posicion'))
     try:
@@ -14,12 +15,14 @@ def get_next_posicion_puesto() -> int:
     except TypeError:
         return 1
 
+
 class Puesto(models.Model):
     """
     Modelo de Puestos
     """
     puesto = models.CharField(max_length=200, unique=True)
-    posicion = models.PositiveSmallIntegerField(default=get_next_posicion_puesto)
+    posicion = models.PositiveSmallIntegerField(
+        default=get_next_posicion_puesto)
     estatus = models.BooleanField(default=True)
 
     class Meta:

@@ -5,9 +5,10 @@ Modelos
 -------
 - Ponderacion
 """
-from django.db import models
-from .puesto_models import Puesto
 from .nivel_models import Nivel
+from .puesto_models import Puesto
+from django.db import models
+
 
 class Ponderacion(models.Model):
     """

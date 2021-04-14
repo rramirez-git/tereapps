@@ -10,19 +10,20 @@ Vistas
 - Delete
 """
 from django.db.models import Q
-from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
 
+from zend_django.parametros_models import ParametroUsuario
+from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericList
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
-from zend_django.parametros_models import ParametroUsuario
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 
-from .factor_forms import frmFactor as base_form, frmFactorRead
+from .factor_forms import frmFactor as base_form
+from .factor_forms import frmFactorRead
 from .factor_models import Factor as main_model
 
 

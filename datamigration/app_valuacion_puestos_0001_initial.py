@@ -1,9 +1,11 @@
 from django.contrib.auth.models import Permission
-from django.contrib.contenttypes.models import ContentType
 
-from zend_django.models import MenuOpc, ParametroUsuario
+from app_valuacion_puestos.models import Factor
+from app_valuacion_puestos.models import Nivel
+from app_valuacion_puestos.models import Puesto
+from zend_django.models import MenuOpc
+from zend_django.models import ParametroUsuario
 from zend_django.parametros_models import PARAM_TYPES
-from app_valuacion_puestos.models import Puesto, Factor, Nivel
 
 
 def int2romman(num):
@@ -28,6 +30,7 @@ def int2romman(num):
         i += 1
     return roman
 
+
 def migration():
     vp = MenuOpc.objects.get_or_create(
         nombre="Valuacion de Puestos", posicion=1,
@@ -35,7 +38,7 @@ def migration():
     items = {}
     items['puesto'] = MenuOpc.objects.get_or_create(
         nombre="Puestos", posicion=1, padre=vp, vista="puesto_list")[0]
-    items['factor'] =  MenuOpc.objects.get_or_create(
+    items['factor'] = MenuOpc.objects.get_or_create(
         nombre="Factores", posicion=2, padre=vp, vista="factor_list")[0]
 
     for obj, mnuOpc in items.items():
@@ -78,7 +81,9 @@ def migration():
     auxiliar_de_cobranza = Puesto.objects.get_or_create(
         puesto="Auxiliar de Cobranza", posicion=14, estatus=True)[0]
     supervisor_de_crédito_y_cobranza = Puesto.objects.get_or_create(
-        puesto="Supervisor de Crédito y Cobranza", posicion=15, estatus=True)[0]
+        puesto="Supervisor de Crédito y Cobranza",
+        posicion=15,
+        estatus=True)[0]
     auxiliar_contable = Puesto.objects.get_or_create(
         puesto="Auxiliar Contable", posicion=16, estatus=True)[0]
     contador_et = Puesto.objects.get_or_create(
@@ -115,7 +120,7 @@ def migration():
         puesto="Encargado de Compras", posicion=32, estatus=True)[0]
     jefe_de_almacén_de_materia_p = Puesto.objects.get_or_create(
         puesto="Jefe de Almacén de Materia P.", posicion=33, estatus=True)[0]
-    encargado_de_exportaciones =  Puesto.objects.get_or_create(
+    encargado_de_exportaciones = Puesto.objects.get_or_create(
         puesto="Encargado de Exportaciones", posicion=34, estatus=True)[0]
     auxiliar_de_sistemas = Puesto.objects.get_or_create(
         puesto="Auxiliar de Sistemas", posicion=35, estatus=True)[0]
@@ -158,7 +163,7 @@ def migration():
         factor='Condiciones de Trbajo', posicion=11,
         ponderacion_nivel_1=4, exponente=2.1)[0]
 
-    fact5niveles =  [
+    fact5niveles = [
         escolaridad,
         iniciativa,
         resp_en_supervición,

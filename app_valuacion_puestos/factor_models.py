@@ -21,10 +21,12 @@ class Factor(models.Model):
     Modelo de Factores, para ponderar los puestos
     """
     factor = models.CharField(max_length=200, unique=True)
-    posicion = models.PositiveSmallIntegerField(default=get_next_posicion_factor)
+    posicion = models.PositiveSmallIntegerField(
+        default=get_next_posicion_factor)
     ponderacion_nivel_1 = models.DecimalField(
         max_digits=6, decimal_places=2, verbose_name="Ponderación")
-    exponente = models.DecimalField(max_digits=8, decimal_places=5, default=2.1)
+    exponente = models.DecimalField(
+        max_digits=8, decimal_places=5, default=2.1)
 
     class Meta:
         ordering = ['posicion', 'factor']

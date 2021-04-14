@@ -23,7 +23,8 @@ from .user_forms import frmUserBottom
 from .user_forms import frmUserLeft
 from .user_forms import frmUserResetPassword
 from .user_forms import frmUserRight
-from .user_forms import frmUserTop, frmUserTopMe
+from .user_forms import frmUserTop
+from .user_forms import frmUserTopMe
 from .user_forms import frmUserTopReadUpdate
 from .user_forms import frmUserUpdate
 from .user_models import UserProfile
