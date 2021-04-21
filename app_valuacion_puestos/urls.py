@@ -17,4 +17,6 @@ urlpatterns = [
     path('factor/', include('app_valuacion_puestos.factor_urls')),
     path('nivel/', include('app_valuacion_puestos.nivel_urls')),
     path('parametrovp/', include('app_valuacion_puestos.parametrovp_urls')),
+    path('tabulador/', include('app_valuacion_puestos.tabulador_urls')),
+    path('nivel-de-tabulador/', include('app_valuacion_puestos.tabuladornivel_urls')),
 ]
