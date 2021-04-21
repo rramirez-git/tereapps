@@ -1,6 +1,7 @@
 {% extends "zend_django/html/html_struct.html" %}
 {% load i18n %}
 {% load op_helpers %}
+{% load humanize %}
 
 {% block content %}
 
@@ -75,7 +76,7 @@
                     {{ reg.puesto }}
                 </td>
                 <td class="text-right" data-dgr-raw-sort-value="{{ reg.ponderacion_total }}" data-dgr-raw-filter-value="{{ reg.ponderacion_total }}">
-                    {{ reg.ponderacion_total }}
+                    {{ reg.ponderacion_total|floatformat:2|intcomma }}
                 </td>
                 <td class="text-center" data-dgr-raw-sort-value="{% if reg.estatus %}a{% else %}x{% endif %}" data-dgr-raw-filter-value="{% if reg.estatus %}a{% else %}x{% endif %}">
                     {% if reg.estatus %}A{% else %}X{% endif %}
