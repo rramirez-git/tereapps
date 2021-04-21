@@ -8,6 +8,7 @@ frmPuesto
     - puesto
     - posicion
     - estatus
+    - tabulador
 
 frmPuestoRead
     Formulario de Lectura
@@ -38,6 +39,7 @@ class frmPuesto(forms.ModelForm):
             'puesto',
             'posicion',
             'estatus',
+            'tabulador',
         ]
         widgets = {
             'estatus': forms.CheckboxInput(attrs={
@@ -50,7 +52,7 @@ class frmPuesto(forms.ModelForm):
                 'data-off': " ", })
         }
 
-    field_order = ['puesto', 'estatus', 'posicion']
+    field_order = ['puesto', 'estatus', 'posicion', 'tabulador', ]
 
 
 class frmPuestoRead(forms.ModelForm):
@@ -62,6 +64,7 @@ class frmPuestoRead(forms.ModelForm):
     - puesto
     - posicion
     - estatus
+    - tabulador
     - ponderacion_total
     """
     ponderacion_total = forms.DecimalField(
@@ -73,6 +76,7 @@ class frmPuestoRead(forms.ModelForm):
             'puesto',
             'posicion',
             'estatus',
+            'tabulador',
         ]
         widgets = {
             'estatus': forms.CheckboxInput(attrs={
@@ -85,4 +89,5 @@ class frmPuestoRead(forms.ModelForm):
                 'data-off': " ", })
         }
 
-    field_order = ['puesto', 'estatus', 'posicion', 'ponderacion_total']
+    field_order = [
+        'puesto', 'estatus', 'posicion', 'tabulador', 'ponderacion_total', ]

@@ -226,7 +226,7 @@ class GenericUpdate(View):
 
     __metaclass__ = ABCMeta
 
-    def base_render(self, request, form):
+    def base_render(self, request, form, obj):
         return render(request, self.html_template, {
             'titulo': self.titulo,
             'titulo_descripcion': crud_label('update'),
@@ -238,6 +238,7 @@ class GenericUpdate(View):
             'search_value': '',
             'forms': {'top': [{'form': form}]},
             'tereapp': self.tereapp,
+            'object': obj,
         })
 
     def get(self, request, pk):
@@ -245,7 +246,7 @@ class GenericUpdate(View):
             return HttpResponseRedirect(reverse('item_no_encontrado'))
         obj = self.main_data_model.objects.get(pk=pk)
         form = self.base_data_form(instance=obj)
-        return self.base_render(request, form)
+        return self.base_render(request, form, obj)
 
     def post(self, request, pk):
         if not self.main_data_model.objects.filter(pk=pk).exists():
@@ -258,7 +259,7 @@ class GenericUpdate(View):
             return HttpResponseRedirect(reverse(
                 f'{self.model_name}_read',
                 kwargs={'pk': obj.pk}))
-        return self.base_render(request, form)
+        return self.base_render(request, form, obj)
 
 
 class GenericDelete(View):

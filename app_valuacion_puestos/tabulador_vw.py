@@ -1,5 +1,5 @@
 """
-Vistas relacionadas con el modelo Factor
+Vistas relacionadas con el modelo Tabulador
 
 Vistas
 ------
@@ -22,21 +22,21 @@ from zend_django.views import GenericList
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
 
-from .factor_forms import frmFactor as base_form
-from .factor_forms import frmFactorRead
-from .factor_models import Factor as main_model
+from .tabulador_forms import frmTabulador as base_form
+from .tabulador_forms import frmTabuladorRead
+from .tabulador_models import Tabulador as main_model
 
 
 def template_base_path(file):
-    return 'app_valuacion_puestos/factor/' + file + ".html"
+    return 'app_valuacion_puestos/tabulador/' + file + ".html"
 
 
 class List(GenericList):
     html_template = template_base_path("list")
-    titulo = "Factor"
+    titulo = "Tabuladores"
     titulo_descripcion = ""
     main_data_model = main_model
-    model_name = "factor"
+    model_name = "tabulador"
     tereapp = 'valuacion_de_puestos'
 
     def get_data(self, search_value=''):
@@ -47,35 +47,12 @@ class List(GenericList):
             return list(self.main_data_model.objects.filter(
                 Q(factor__icontains=search_value)))
 
-    def base_render(self, request, data, search_value):
-        ParametroUsuario.set_valor(
-                request.user, 'basic_search', self.model_name, search_value)
-        suma = 0
-        for reg in data:
-            suma += reg.ponderacion_nivel_1
-        alertas = []
-        if suma < 99 or suma > 101:
-            alertas.append("La suma de ponderaciones No es 100%")
-        return render(request, self.html_template, {
-            'titulo': self.titulo,
-            'titulo_descripcion': self.titulo_descripcion,
-            'toolbar': [{'type': 'search'}],
-            'footer': False,
-            'read_only': False,
-            'alertas': alertas,
-            'req_chart': False,
-            'search_value': search_value,
-            'data': data,
-            'tereapp': self.tereapp,
-            'suma': suma
-        })
-
 
 class Read(GenericRead):
     html_template = template_base_path('see')
-    titulo_descripcion = "Factor"
-    model_name = "factor"
-    base_data_form = frmFactorRead
+    titulo_descripcion = "Tabulador"
+    model_name = "tabulador"
+    base_data_form = frmTabuladorRead
     main_data_model = main_model
     tereapp = 'valuacion_de_puestos'
 
@@ -85,10 +62,7 @@ class Read(GenericRead):
         obj = self.main_data_model.objects.get(pk=pk)
         form = self.base_data_form(
             instance=obj,
-            initial={
-                'cantidad_de_niveles': obj.cantidad_de_niveles,
-                'exponente': obj.exponente,
-            })
+            initial={'cantidad_de_niveles': obj.cantidad_de_niveles,})
         toolbar = GenerateReadCRUDToolbar(
             request, self.model_name, obj, self.main_data_model)
         return render(request, self.html_template, {
@@ -107,20 +81,20 @@ class Read(GenericRead):
 
 
 class Create(GenericCreate):
-    titulo = "Factor"
-    model_name = "factor"
+    titulo = "Tabulador"
+    model_name = "tabulador"
     base_data_form = base_form
     tereapp = 'valuacion_de_puestos'
 
 
 class Update(GenericUpdate):
-    titulo = "Factor"
-    model_name = "factor"
+    titulo = "Tabulador"
+    model_name = "tabulador"
     base_data_form = base_form
     main_data_model = main_model
     tereapp = 'valuacion_de_puestos'
 
 
 class Delete(GenericDelete):
-    model_name = "factor"
+    model_name = "tabulador"
     main_data_model = main_model

@@ -1,28 +1,27 @@
-{% extends "zend_django/html/html_struct.html" %}
 {% load i18n %}
 {% load op_helpers %}
 {% load humanize %}
 
-{% block content %}
+<h5>Niveles del tabulador</h5>
 
 <script type="text/javascript">
-    let url_update = "{% url 'puesto_update' pk='__recordid__' %}";
-    let url_delete = "{% url 'puesto_delete' pk='__recordid__' %}";
-    let url_read = "{% url 'puesto_read' pk='__recordid__' %}";
+    let url_update = "{% url 'tabuladornivel_update' pk='__recordid__' %}";
+    let url_delete = "{% url 'tabuladornivel_delete' pk='__recordid__' %}";
+    let url_read = "{% url 'tabuladornivel_read' pk='__recordid__' %}";
 </script>
 
 <div class="btn-group d-none" role="group" aria-label="Acciones">
-    {% if perms.app_valuacion_puestos.add_puesto %}
-    <a data-action="create" href="{% url 'puesto_create' %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
+    {% if perms.app_valuacion_puestos.add_tabuladornivel %}
+    <a data-action="create" href="{% url 'tabuladornivel_create' pk_padre=object.pk %}" class="btn btn-outline-secondary" role="button" title="{% crud_label 'create' %}">
         {% crud_icon 'create' %}
     </a>
     {% endif %}
-    {% if perms.app_valuacion_puestos.change_puesto %}
+    {% if perms.app_valuacion_puestos.change_tabuladornivel %}
     <button type="button" onclick="dataGridResultsGlobals.update_many()" data-action="update" class="btn btn-outline-secondary" role="button" title="{% crud_label 'update' %}">
             {% crud_icon 'update' %}
     </button>
     {% endif %}
-    {% if perms.app_valuacion_puestos.delete_puesto %}
+    {% if perms.app_valuacion_puestos.delete_tabuladornivel %}
     <button type="button" data-action="delete" onclick="dataGridResultsGlobals.delete_many()" class="btn btn-outline-secondary" role="button" title="{% crud_label 'delete' %}">
         {% crud_icon 'delete' %}
     </button>
@@ -45,18 +44,14 @@
         <tr>
             <th class="d-none"></th>
             <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="yes"
-                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
-                Puesto
+                    data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                Posición
             </th>
             <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
-                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
-                Puntos
+                    data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                Porcentaje
             </th>
-            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
-                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
-                Estatus
-            </th>
-            <th>
+            <th class="text-center">
                 <div class="d-inline-block" title="Filtros">
                     <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
                         <i class="fas fa-chevron-down"></i>
@@ -72,14 +67,11 @@
                     <!--<input type="checkbox" class="action-on-reg" data-recordid="{{ reg.pk }}" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" " />-->
                     <input type="checkbox" class="form-check-inline massive-operations" data-dgr-object-id="{{ reg.pk }}" />
                 </td>
-                <td data-dgr-raw-sort-value="{{ reg.puesto|lower }}" data-dgr-raw-filter-value="{{ reg.puesto|lower }}">
-                    {{ reg.puesto }}
+                <td class="text-right" data-dgr-raw-sort-value="{{ reg.posicion }}" data-dgr-raw-filter-value="{{ reg.posicion }}">
+                    {{ reg.posicion }}
                 </td>
-                <td class="text-right" data-dgr-raw-sort-value="{{ reg.ponderacion_total }}" data-dgr-raw-filter-value="{{ reg.ponderacion_total }}">
-                    {{ reg.ponderacion_total|floatformat:2|intcomma }}
-                </td>
-                <td class="text-center" data-dgr-raw-sort-value="{% if reg.estatus %}a{% else %}x{% endif %}" data-dgr-raw-filter-value="{% if reg.estatus %}a{% else %}x{% endif %}">
-                    {% if reg.estatus %}A{% else %}X{% endif %}
+                <td class="text-right" data-dgr-raw-sort-value="{{ reg.porcentaje }}" data-dgr-raw-filter-value="{{ reg.porcentaje }}">
+                    {{ reg.porcentaje|floatformat:2|intcomma }}
                 </td>
                 <td></td>
             </tr>
@@ -88,5 +80,3 @@
 </table>
 
 {% include 'zend_django/datagridresults/handlebars_tpls.html' %}
-
-{% endblock %}

@@ -5,8 +5,11 @@ Modelos
 -------
 - Puesto
 """
+import decimal
+
 from django.db import models
 
+from .tabulador_models import Tabulador
 
 def get_next_posicion_puesto() -> int:
     max = Puesto.objects.aggregate(models.Max('posicion'))
@@ -24,6 +27,8 @@ class Puesto(models.Model):
     posicion = models.PositiveSmallIntegerField(
         default=get_next_posicion_puesto)
     estatus = models.BooleanField(default=True)
+    tabulador = models.ForeignKey(
+        Tabulador, on_delete=models.PROTECT, related_name="+")
 
     class Meta:
         ordering = ['posicion', 'puesto']
@@ -33,7 +38,7 @@ class Puesto(models.Model):
 
     @property
     def ponderacion_total(self) -> float:
-        total = 0.0
+        total = decimal.Decimal(0.0)
         for factor in self.niveles_ponderacion.all():
             total += factor.ponderacion
         return total

@@ -41,7 +41,6 @@ class frmFactor(forms.ModelForm):
             'factor',
             'posicion',
             'ponderacion_nivel_1',
-            'exponente',
         ]
 
 
@@ -58,6 +57,8 @@ class frmFactorRead(forms.ModelForm):
     - cantidad_de_niveles
     """
     cantidad_de_niveles = forms.IntegerField(required=False, initial=0)
+    exponente = forms.DecimalField(
+        max_digits=8, decimal_places=5, required=False, initial=0)
 
     class Meta:
         model = Factor

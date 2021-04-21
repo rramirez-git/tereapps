@@ -1,0 +1,9 @@
+{% extends 'zend_django/html/form.html' %}
+
+{%  block extraafter %}
+
+    {% with data=object.niveles.all %}
+        {% include 'app_valuacion_puestos/tabuladornivel/list.html' %}
+    {% endwith %}
+
+{% endblock %}
