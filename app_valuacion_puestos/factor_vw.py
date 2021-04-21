@@ -85,7 +85,10 @@ class Read(GenericRead):
         obj = self.main_data_model.objects.get(pk=pk)
         form = self.base_data_form(
             instance=obj,
-            initial={'cantidad_de_niveles': obj.cantidad_de_niveles})
+            initial={
+                'cantidad_de_niveles': obj.cantidad_de_niveles,
+                'exponente': obj.exponente,
+            })
         toolbar = GenerateReadCRUDToolbar(
             request, self.model_name, obj, self.main_data_model)
         return render(request, self.html_template, {

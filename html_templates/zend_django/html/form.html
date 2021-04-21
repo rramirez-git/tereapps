@@ -19,7 +19,7 @@ forms = {
 
     {% if forms.top %}
     <div class="row">
-        <div class="col-sm-8  offset-md-2">
+        <div class="col-sm-8">
             <!-- forms.Top -->
             {% for form_obj in forms.top %}
                 {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
@@ -32,7 +32,7 @@ forms = {
     <div class="row">
 
         {% if forms.left %}
-        <div class="col-sm-4 offset-md-2">
+        <div class="col-sm-4">
             <!-- forms.left -->
             {% for form_obj in forms.left %}
                 {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
@@ -55,7 +55,7 @@ forms = {
 
     {% if forms.bottom %}
     <div class="row">
-        <div class="col-sm-8  offset-md-2">
+        <div class="col-sm-8">
             <!-- forms.bottom -->
             {% for form_obj in forms.bottom %}
                 {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
@@ -66,7 +66,7 @@ forms = {
     {% endif %}
 
     <div class="row">
-        <div class="col-sm-8 offset-md-2">
+        <div class="col-sm-8">
             <button type="submit" class="btn btn-outline-secondary" id="btn-save" title="{% action_label 'save' %}">
                 {% action_icon 'save' %}
             </button>

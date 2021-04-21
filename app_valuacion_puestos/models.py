@@ -9,3 +9,4 @@ from .nivel_models import Nivel
 from .ponderacion_models import Ponderacion
 from .puesto_models import Puesto
 from .puesto_models import get_next_posicion_puesto
+from .parametrovp_models import ParametroVP, ParametroVPHistoria

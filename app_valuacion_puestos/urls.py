@@ -16,4 +16,5 @@ urlpatterns = [
     path('puesto/', include('app_valuacion_puestos.puesto_urls')),
     path('factor/', include('app_valuacion_puestos.factor_urls')),
     path('nivel/', include('app_valuacion_puestos.nivel_urls')),
+    path('parametrovp/', include('app_valuacion_puestos.parametrovp_urls')),
 ]
