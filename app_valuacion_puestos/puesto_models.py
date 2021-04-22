@@ -47,5 +47,4 @@ class Puesto(models.Model):
     @property
     def ponderacion_total_en_pesos(self) -> float:
         vp = ParametroVP.objects.get(parametro='ValorPunto').valor
-        print(f"Puesto :: {vp =}")
         return self.ponderacion_total * vp

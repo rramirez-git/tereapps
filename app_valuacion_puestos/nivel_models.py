@@ -44,5 +44,4 @@ class Nivel(models.Model):
     @property
     def ponderacion_en_pesos(self) -> float:
         vp = ParametroVP.objects.get(parametro='ValorPunto').valor
-        print(f"Nivel :: {vp =}")
         return self.ponderacion * vp
