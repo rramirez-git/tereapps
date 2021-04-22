@@ -10,6 +10,7 @@ import decimal
 from django.db import models
 
 from .tabulador_models import Tabulador
+from .parametrovp_models import ParametroVP
 
 def get_next_posicion_puesto() -> int:
     max = Puesto.objects.aggregate(models.Max('posicion'))
@@ -39,6 +40,12 @@ class Puesto(models.Model):
     @property
     def ponderacion_total(self) -> float:
         total = decimal.Decimal(0.0)
-        for factor in self.niveles_ponderacion.all():
-            total += factor.ponderacion
+        for nivel in self.niveles_ponderacion.all():
+            total += nivel.ponderacion
         return total
+
+    @property
+    def ponderacion_total_en_pesos(self) -> float:
+        vp = ParametroVP.objects.get(parametro='ValorPunto').valor
+        print(f"Puesto :: {vp =}")
+        return self.ponderacion_total * vp

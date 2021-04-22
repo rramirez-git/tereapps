@@ -24,13 +24,9 @@ class Ponderacion(models.Model):
         return f"{self.ponderacion:0.2f}"
 
     @property
-    def ponderacion(self):
-        return self.get_en_nivel(self.nivel.nivel_multiplicador)
+    def ponderacion(self) -> float:
+        return self.nivel.ponderacion
 
-    def get_en_nivel(self, nivel):
-        if 0 >= nivel:
-            return 0
-        elif 1 == nivel:
-            return self.nivel.factor.ponderacion_nivel_1
-        else:
-            return self.get_en_nivel(nivel - 1) * self.nivel.factor.exponente
+    @property
+    def ponderacion_en_pesos(self) -> float:
+        return self.nivel.ponderacion_en_pesos
