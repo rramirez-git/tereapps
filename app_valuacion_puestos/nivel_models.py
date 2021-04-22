@@ -8,6 +8,7 @@ Modelos
 """
 from .factor_models import Factor
 from .puesto_models import Puesto
+from .parametrovp_models import ParametroVP
 from django.db import models
 
 
@@ -39,3 +40,9 @@ class Nivel(models.Model):
         else:
             return self.factor.ponderacion_nivel_1 * (
                     self.factor.exponente ** (self.nivel_multiplicador - 1))
+
+    @property
+    def ponderacion_en_pesos(self) -> float:
+        vp = ParametroVP.objects.get(parametro='ValorPunto').valor
+        print(f"Nivel :: {vp =}")
+        return self.ponderacion * vp

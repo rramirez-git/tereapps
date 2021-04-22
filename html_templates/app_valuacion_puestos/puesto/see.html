@@ -1,0 +1,121 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load crispy_forms_tags %}
+{% load op_helpers %}
+{% load humanize %}
+
+{% block content %}
+
+<!--
+forms = {
+    'top': [{'title':'XXXX', 'form': form_object}, ...],
+    'left': [...],
+    'right': [...],
+    'bottom': [...],
+}
+
+-->
+
+<form method="post" autocomplete="off" enctype="multipart/form-data" id="main-form" action="">
+    {% csrf_token %}
+
+    {% if forms.top %}
+    <div class="row">
+        <div class="col-sm-8">
+            <!-- forms.Top -->
+            {% for form_obj in forms.top %}
+                {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
+                {{ form_obj.form | crispy }}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+
+        {% if forms.left %}
+        <div class="col-sm-4">
+            <!-- forms.left -->
+            {% for form_obj in forms.left %}
+                {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
+                {{ form_obj.form | crispy }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if forms.right %}
+        <div class="col-sm-4">
+            <!-- forms.right -->
+            {% for form_obj in forms.right %}
+                {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
+                {{ form_obj.form | crispy }}
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+    {% if forms.bottom %}
+    <div class="row">
+        <div class="col-sm-8">
+            <!-- forms.bottom -->
+            {% for form_obj in forms.bottom %}
+                {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
+                {{ form_obj.form | crispy }}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <h5></h5>Factores</h5>
+
+    <table class="table table-striped table-sm table-responsive">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th class="text-right">{{ object.ponderacion_total|floatformat:2|intcomma }}</th>
+                <th class="text-right">$ {{ object.ponderacion_total_en_pesos|floatformat:2|intcomma }}</th>
+            </tr>
+            <tr>
+                <th>Factor</th>
+                <th>Nivel</th>
+                <th>Puntos</th>
+                <th>Pesos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for factor in factores %}
+                <tr>
+                    <td>
+                        {{ factor }}
+                    </td>
+                    {% for nivel in factor.niveles.all %}
+                        {% for pond in object.niveles_ponderacion.all %}
+                            {% if factor.pk == pond.nivel.factor.pk and pond.nivel.pk == nivel.pk %}
+                                <td>
+                                    {{ nivel }}
+                                </td>
+                                <td class="text-right">
+                                    {{ pond }}
+                                </td>
+                                <td class="text-right">
+                                    $ {{ pond.ponderacion_en_pesos|floatformat:2|intcomma }}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <div class="col-sm-8">
+            <button type="submit" class="btn btn-outline-secondary" id="btn-save" title="{% action_label 'save' %}">
+                {% action_icon 'save' %}
+            </button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

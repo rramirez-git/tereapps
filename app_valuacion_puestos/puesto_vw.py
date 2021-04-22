@@ -25,7 +25,7 @@ from zend_django.views import GenericUpdate
 from .puesto_forms import frmPuesto as base_form
 from .puesto_forms import frmPuestoRead
 from .puesto_models import Puesto as main_model
-from .models import Factor, Nivel, Ponderacion
+from .models import Factor, Nivel, Ponderacion, ParametroVP
 
 
 def template_base_path(file):
@@ -50,7 +50,7 @@ class List(GenericList):
 
 
 class Read(GenericRead):
-    html_template = template_base_path('form')
+    html_template = template_base_path('see')
     titulo_descripcion = "Puesto"
     model_name = "puesto"
     base_data_form = frmPuestoRead
@@ -61,7 +61,8 @@ class Read(GenericRead):
         if not self.main_data_model.objects.filter(pk=pk).exists():
             return HttpResponseRedirect(reverse('item_no_encontrado'))
         obj = self.main_data_model.objects.get(pk=pk)
-        form = self.base_data_form(instance=obj)
+        form = self.base_data_form(
+            instance=obj, initial={'ponderacion_total': obj.ponderacion_total})
         toolbar = GenerateReadCRUDToolbar(
             request, self.model_name, obj, self.main_data_model)
         return render(request, self.html_template, {
