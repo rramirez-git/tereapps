@@ -48,3 +48,16 @@ class Puesto(models.Model):
     def ponderacion_total_en_pesos(self) -> float:
         vp = ParametroVP.objects.get(parametro='ValorPunto').valor
         return self.ponderacion_total * vp
+
+    @property
+    def tabuladores(self) -> list:
+        tabs = []
+        for nivel in self.tabulador.niveles.all():
+            tab = {
+                'nivel': nivel,
+                'puntos': self.ponderacion_total * nivel.porcentaje / 100,
+                'pesos': self.ponderacion_total_en_pesos * nivel.porcentaje / 100,
+            }
+            tabs.append(tab)
+        print(tabs)
+        return tabs
