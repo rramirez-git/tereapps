@@ -13,6 +13,7 @@ from django.db.models import Q
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import json
 
 from zend_django.templatetags.op_helpers import crud_label
 from zend_django.templatetags.utils import GenerateReadCRUDToolbar
@@ -24,7 +25,7 @@ from zend_django.views import GenericUpdate
 
 from .puesto_forms import frmPuesto as base_form
 from .puesto_forms import frmPuestoRead
-from .puesto_models import Puesto as main_model
+from .puesto_models import Puesto as main_model, PuestoEvaluacion
 from .models import Factor, Nivel, Ponderacion, ParametroVP
 
 
@@ -65,6 +66,9 @@ class Read(GenericRead):
             instance=obj, initial={'ponderacion_total': obj.ponderacion_total})
         toolbar = GenerateReadCRUDToolbar(
             request, self.model_name, obj, self.main_data_model)
+        autosaved = None
+        if obj.evaluaciones.all().count() > 0:
+            autosaved = obj.evaluaciones.filter(nombre="autosave").first()
         return render(request, self.html_template, {
             'titulo': obj,
             'titulo_descripcion': self.titulo_descripcion,
@@ -78,7 +82,42 @@ class Read(GenericRead):
             'tereapp': self.tereapp,
             'object': obj,
             'factores': list(Factor.objects.all()),
+            'last_ev': autosaved,
         })
+
+    def post(self, request, pk):
+        califaction = request.POST.get('califaction', '')
+        if "autosave" == califaction:
+            obj = self.main_data_model.objects.get(pk=pk)
+            data = {
+                'puesto': {
+                    'pk': obj.pk,
+                    'puesto': obj.puesto,
+                },
+                'factores': [{
+                    'pk': factor.pk,
+                    'factor': factor.factor,
+                    'exponente': float(factor.exponente),
+                    'pond_lvl1': float(factor.ponderacion_nivel_1),
+                    'nivel_selected': request.POST.get(f'factor_{factor.pk}', ''),
+                    'niveles': [{
+                        'pk': nivel.pk,
+                        'nivel': nivel.nivel,
+                        'multiplicador': nivel.nivel_multiplicador,
+                        'ponderacion': float(nivel.ponderacion),
+                        'ponderacion_en_pesos': float(nivel.ponderacion_en_pesos),
+                        'selected': str(nivel.pk) == request.POST.get(
+                            f'factor_{factor.pk}', ''),
+                    } for nivel in factor.niveles.all()],
+                } for factor in Factor.objects.all()],
+            }
+            evaluacion = PuestoEvaluacion.objects.get_or_create(
+                puesto=obj,
+                nombre='autosave'
+            )[0]
+            evaluacion.data = json.dumps(data)
+            evaluacion.save()
+        return self.get(request, pk)
 
 
 class Create(GenericCreate):

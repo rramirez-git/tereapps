@@ -44,4 +44,5 @@ class Nivel(models.Model):
     @property
     def ponderacion_en_pesos(self) -> float:
         vp = ParametroVP.objects.get(parametro='ValorPunto').valor
-        return self.ponderacion * vp
+        dias = ParametroVP.objects.get(parametro='DiasPorMes').valor
+        return self.ponderacion * vp * dias

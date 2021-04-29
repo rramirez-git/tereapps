@@ -39,6 +39,10 @@ Number.prototype.asMoney = function() {
     asString += "00";
     return asString.substr( 0, asString.indexOf( "." ) + 3 );
 }
+Number.prototype.asMoneyWComma = function() {
+    let asString = this.asMoney();
+    return asString.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+}
 
 class clsApp {
     checkInputIn( idcontainer ) {

@@ -4,9 +4,9 @@ Definición de modelos de Puesto
 Modelos
 -------
 - Puesto
+- PuestoEvaluacion
 """
 import decimal
-
 from django.db import models
 
 from .tabulador_models import Tabulador
@@ -33,12 +33,24 @@ class Puesto(models.Model):
 
     class Meta:
         ordering = ['posicion', 'puesto']
+        permissions = [
+            ('view_fp_puntos', 'Reporte Factores por Puesto - Puntos'),
+            ('view_fp_niveles', 'Reporte Factores por Puesto - Niveles'),
+            ('view_vp', 'Reporte Valor por Puesto'),
+            ('view_gp', 'Grafica de Puestos')
+        ]
 
     def __str__(self):
         return self.puesto
 
+    __ponderacion_total__ = None
+    __ponderacion_total_en_pesos__ = None
+    __tabuladores__ = None
+
     @property
     def ponderacion_total(self) -> float:
+        if self.__ponderacion_total__:
+            return self.__ponderacion_total__
         total = decimal.Decimal(0.0)
         for nivel in self.niveles_ponderacion.all():
             total += nivel.ponderacion
@@ -46,18 +58,41 @@ class Puesto(models.Model):
 
     @property
     def ponderacion_total_en_pesos(self) -> float:
+        if self.__ponderacion_total_en_pesos__:
+            return self.__ponderacion_total_en_pesos__
         vp = ParametroVP.objects.get(parametro='ValorPunto').valor
-        return self.ponderacion_total * vp
+        dias = ParametroVP.objects.get(parametro='DiasPorMes').valor
+        return self.ponderacion_total * vp * dias
 
     @property
     def tabuladores(self) -> list:
+        if self.__tabuladores__:
+            return self.__tabuladores__
         tabs = []
+        print(f"Calculando tabuladores para {self}")
         for nivel in self.tabulador.niveles.all():
-            tab = {
+            tabs.append({
                 'nivel': nivel,
                 'puntos': self.ponderacion_total * nivel.porcentaje / 100,
                 'pesos': self.ponderacion_total_en_pesos * nivel.porcentaje / 100,
-            }
-            tabs.append(tab)
-        print(tabs)
+            })
         return tabs
+
+
+
+class PuestoEvaluacion(models.Model):
+    """
+    Modelo para salvar evaluaciones del puesto
+    """
+    puesto = models.ForeignKey(
+        Puesto, on_delete=models.CASCADE, related_name='evaluaciones')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    data = models.TextField()
+    nombre = models.CharField(max_length=200)
+
+    class Meta:
+        ordering = ['puesto', '-updated', ]
+
+    def __str__(self):
+        return f"{self.puesto} ({self.updated:%Y-%m-%d %H:%M})"

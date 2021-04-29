@@ -25,11 +25,11 @@
         {% endif %}
     {% else %}
         {% if nivel == 1 %}
-            <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" href="{%if opc.get_vista_url %}{{ opc.get_vista_url }}{% else %}#{% endif %}#">
+            <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" href="{%if opc.get_vista_url %}{{ opc.get_vista_url }}{% else %}#{% endif %}">
                 {{ opc|safe }}
             </a>
         {% else %}
-            <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" href="{%if opc.get_vista_url %}{{ opc.get_vista_url }}{% else %}#{% endif %}#">
+            <a style="padding: 0.05rem 1rem 0.05rem {{ nivel }}rem;" class="nav-link text-light" href="{%if opc.get_vista_url %}{{ opc.get_vista_url }}{% else %}#{% endif %}">
                 {{ opc|safe }}
             </a>
         {% endif %}
