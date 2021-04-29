@@ -31,18 +31,25 @@ class Nivel(models.Model):
     def __str__(self):
         return self.nivel
 
+    __ponderacion__ = None
+    __ponderacion_en_pesos__ = None
+
     @property
     def ponderacion(self) -> float:
-        if 0 >= self.nivel_multiplicador:
-            return 0
-        elif 1 == self.nivel_multiplicador:
-            return self.factor.ponderacion_nivel_1
-        else:
-            return self.factor.ponderacion_nivel_1 * (
-                    self.factor.exponente ** (self.nivel_multiplicador - 1))
+        if not self.__ponderacion__:
+            if 0 >= self.nivel_multiplicador:
+                self.__ponderacion__ = 0
+            elif 1 == self.nivel_multiplicador:
+                self.__ponderacion__ = self.factor.ponderacion_nivel_1
+            else:
+                self.__ponderacion__ = self.factor.ponderacion_nivel_1 * (
+                        self.factor.exponente ** (self.nivel_multiplicador - 1))
+        return self.__ponderacion__
 
     @property
     def ponderacion_en_pesos(self) -> float:
-        vp = ParametroVP.objects.get(parametro='ValorPunto').valor
-        dias = ParametroVP.objects.get(parametro='DiasPorMes').valor
-        return self.ponderacion * vp * dias
+        if not self.__ponderacion_en_pesos__:
+            vp = ParametroVP.objects.get(parametro='ValorPunto').valor
+            dias = ParametroVP.objects.get(parametro='DiasPorMes').valor
+            self.__ponderacion_en_pesos__ = self.ponderacion * vp * dias
+        return self.__ponderacion_en_pesos__

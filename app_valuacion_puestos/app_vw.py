@@ -1,3 +1,5 @@
+import json
+
 from django.db.models import Q
 from django.shortcuts import render
 
@@ -135,27 +137,6 @@ class ReporteValorPPuesto(GenericList):
     def base_render(self, request, data, search_value):
         ParametroUsuario.set_valor(
                 request.user, 'basic_search', 'vp_rep_v_psto', search_value)
-        tmp_data = []
-        for reg in data:
-            tabs = reg.tabuladores
-            new_data = {
-                'ponderacion_total': reg.ponderacion_total,
-                'puesto': reg.puesto,
-                'tabulador': reg.tabulador.tabulador,
-            }
-            for lvl in range(1,6):
-                try:
-                    new_data[f'lvl{lvl}'] = {
-                        'raw': tabs[lvl - 1]['pesos'],
-                        'display': f'$ {tabs[lvl - 1]["pesos"]:0,.2f}',
-                    }
-                except IndexError:
-                    new_data[f'lvl{lvl}'] = {
-                        'raw': 0,
-                        'display': '',
-                    }
-            tmp_data.append(new_data)
-        data = tmp_data
         return render(request, self.html_template, {
             'titulo': self.titulo,
             'titulo_descripcion': self.titulo_descripcion,
@@ -204,6 +185,11 @@ class ReporteGraficaDPuesto(GenericList):
     def base_render(self, request, data, search_value):
         ParametroUsuario.set_valor(
                 request.user, 'basic_search', 'vp_rep_gr_psto', search_value)
+        data = [{
+            'puesto': reg.puesto,
+            'puntos': float(f'{reg.ponderacion_total:0.2f}'),
+            'pesos': float(f'{reg.ponderacion_total_en_pesos:0.2f}'),
+        } for reg in data]
         return render(request, self.html_template, {
             'titulo': self.titulo,
             'titulo_descripcion': self.titulo_descripcion,
@@ -211,9 +197,9 @@ class ReporteGraficaDPuesto(GenericList):
             'footer': False,
             'read_only': False,
             'alertas': [],
-            'req_chart': False,
+            'req_chart': True,
             'search_value': search_value,
-            'data': data,
+            'data': json.dumps(data),
             'tereapp': self.tereapp,
         })
 

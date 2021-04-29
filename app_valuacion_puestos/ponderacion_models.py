@@ -23,10 +23,17 @@ class Ponderacion(models.Model):
     def __str__(self):
         return f"{self.ponderacion:0.2f}"
 
+    __ponderacion__ = None
+    __ponderacion_en_pesos__ = None
+
     @property
     def ponderacion(self) -> float:
-        return self.nivel.ponderacion
+        if not self.__ponderacion__:
+            self.__ponderacion__ = self.nivel.ponderacion
+        return self.__ponderacion__
 
     @property
     def ponderacion_en_pesos(self) -> float:
-        return self.nivel.ponderacion_en_pesos
+        if not self.__ponderacion_en_pesos__:
+            self.__ponderacion_en_pesos__ = self.nivel.ponderacion_en_pesos
+        return self.__ponderacion_en_pesos__

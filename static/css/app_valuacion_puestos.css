@@ -12,3 +12,7 @@ app_valuacion_puestos styles
     padding-left: 15px;
     padding-right: 15px;
 }
+
+canvas#data-graph {
+    width: 95%;
+}

@@ -79,20 +79,20 @@
                 <td data-dgr-raw-sort-value="{{ reg.tabulador|lower }}" data-dgr-raw-filter-value="{{ reg.tabulador|lower }}">
                     {{ reg.tabulador }}
                 </td>
-                <td data-dgr-raw-sort-value="{{ reg.lvl1.raw }}" data-dgr-raw-filter-value="{{ reg.lvl1.raw }}" class="text-right cell-add-padd">
-                    {{ reg.lvl1.display }}
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.0.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.0.pesos }}">
+                    {% if reg.tabuladores.0 %}$ {{ reg.tabuladores.0.pesos|floatformat:2|intcomma }}{% endif %}
                 </td>
-                <td data-dgr-raw-sort-value="{{ reg.lvl2.raw }}" data-dgr-raw-filter-value="{{ reg.lvl2.raw }}" class="text-right cell-add-padd">
-                    {{ reg.lvl2.display }}
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.1.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.1.pesos }}">
+                    {% if reg.tabuladores.1 %}$ {{ reg.tabuladores.1.pesos|floatformat:2|intcomma }}{% endif %}
                 </td>
-                <td data-dgr-raw-sort-value="{{ reg.lvl3.raw }}" data-dgr-raw-filter-value="{{ reg.lvl3.raw }}" class="text-right cell-add-padd">
-                    {{ reg.lvl3.display }}
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.2.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.2.pesos }}">
+                    {% if reg.tabuladores.2 %}$ {{ reg.tabuladores.2.pesos|floatformat:2|intcomma }}{% endif %}
                 </td>
-                <td data-dgr-raw-sort-value="{{ reg.lvl4.raw }}" data-dgr-raw-filter-value="{{ reg.lvl4.raw }}" class="text-right cell-add-padd">
-                    {{ reg.lvl4.display }}
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.3.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.3.pesos }}">
+                    {% if reg.tabuladores.3 %}$ {{ reg.tabuladores.3.pesos|floatformat:2|intcomma }}{% endif %}
                 </td>
-                <td data-dgr-raw-sort-value="{{ reg.lvl5.raw }}" data-dgr-raw-filter-value="{{ reg.lvl5.raw }}" class="text-right cell-add-padd">
-                    {{ reg.lvl5.display }}
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.4.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.4.pesos }}">
+                    {% if reg.tabuladores.4 %}$ {{ reg.tabuladores.4.pesos|floatformat:2|intcomma }}{% endif %}
                 </td>
                 <td></td>
             </tr>

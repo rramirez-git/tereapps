@@ -5,67 +5,10 @@
 
 {% block content %}
 
-<div class="btn-group d-none" role="group" aria-label="Acciones">
-    <button type="button" data-action="toggle-cols" onclick="dataGridResultsGlobals.show_toggler_cols()" class="btn btn-outline-secondary" role="button" title="Mostrar/Ocultar Columnas">
-        {% crud_icon 'read' %}
-    </button>
-</div>
-<div class="btn-group d-none" role="group" aria-label="Filtrado-Filas">
-    <button type="button" onclick="dataGridResultsGlobals.filtrar_filas()" class="btn btn-outline-secondary" role="button" title="Filtrar Filas">
-        <i class="fas fa-filter"></i>
-    </button>
-    <button type="button" onclick="dataGridResultsGlobals.restaurar_filtrado_filas()" class="btn btn-outline-secondary" role="button" title="Borrar Filtro en Filas">
-        <i class="fas fa-trash-restore"></i>
-    </button>
-</div>
-<!--
-<table id="data-grid-report" class="table table-striped table-sm table-responsive">
-    <thead>
-        <tr>
-            <th class="d-none"></th>
-            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="yes"
-                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
-                Puesto
-            </th>
-            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
-                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
-                Puntos
-            </th>
-            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
-                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
-                Estatus
-            </th>
-            <th>
-                <div class="d-inline-block" title="Filtros">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                </div>
-            </th>
-        </tr>
-    </thead>
-    <tbody id="data-tbl">
-        {% for reg in data %}
-            <tr data-dgr-object-id="{{ reg.pk }}">
-                <td class="text-center d-none">
-                    <input type="checkbox" class="form-check-inline massive-operations" data-dgr-object-id="{{ reg.pk }}" />
-                </td>
-                <td data-dgr-raw-sort-value="{{ reg.puesto|lower }}" data-dgr-raw-filter-value="{{ reg.puesto|lower }}">
-                    {{ reg.puesto }}
-                </td>
-                <td class="text-right" data-dgr-raw-sort-value="{{ reg.ponderacion_total }}" data-dgr-raw-filter-value="{{ reg.ponderacion_total }}">
-                    {{ reg.ponderacion_total|floatformat:2|intcomma }}
-                </td>
-                <td class="text-center" data-dgr-raw-sort-value="{% if reg.estatus %}a{% else %}x{% endif %}" data-dgr-raw-filter-value="{% if reg.estatus %}a{% else %}x{% endif %}">
-                    {% if reg.estatus %}A{% else %}X{% endif %}
-                </td>
-                <td></td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
--->
+    <canvas id="data-graph"></canvas>
 
-{% include 'zend_django/datagridresults/handlebars_tpls.html' %}
+    <script type="text/javascript">
 
+    let data = {{ data|safe }};
+    </script>
 {% endblock %}

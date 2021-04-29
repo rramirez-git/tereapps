@@ -49,34 +49,33 @@ class Puesto(models.Model):
 
     @property
     def ponderacion_total(self) -> float:
-        if self.__ponderacion_total__:
-            return self.__ponderacion_total__
-        total = decimal.Decimal(0.0)
-        for nivel in self.niveles_ponderacion.all():
-            total += nivel.ponderacion
-        return total
+        if not self.__ponderacion_total__:
+            total = decimal.Decimal(0.0)
+            for nivel in self.niveles_ponderacion.all():
+                total += nivel.ponderacion
+            self.__ponderacion_total__ = total
+        return self.__ponderacion_total__
 
     @property
     def ponderacion_total_en_pesos(self) -> float:
-        if self.__ponderacion_total_en_pesos__:
-            return self.__ponderacion_total_en_pesos__
-        vp = ParametroVP.objects.get(parametro='ValorPunto').valor
-        dias = ParametroVP.objects.get(parametro='DiasPorMes').valor
-        return self.ponderacion_total * vp * dias
+        if not self.__ponderacion_total_en_pesos__:
+            vp = ParametroVP.objects.get(parametro='ValorPunto').valor
+            dias = ParametroVP.objects.get(parametro='DiasPorMes').valor
+            self.__ponderacion_total_en_pesos__ = self.ponderacion_total * vp * dias
+        return self.__ponderacion_total_en_pesos__
 
     @property
     def tabuladores(self) -> list:
-        if self.__tabuladores__:
-            return self.__tabuladores__
-        tabs = []
-        print(f"Calculando tabuladores para {self}")
-        for nivel in self.tabulador.niveles.all():
-            tabs.append({
-                'nivel': nivel,
-                'puntos': self.ponderacion_total * nivel.porcentaje / 100,
-                'pesos': self.ponderacion_total_en_pesos * nivel.porcentaje / 100,
-            })
-        return tabs
+        if not self.__tabuladores__:
+            tabs = []
+            for nivel in self.tabulador.niveles.all():
+                tabs.append({
+                    'nivel': nivel,
+                    'puntos': self.ponderacion_total * nivel.porcentaje / 100,
+                    'pesos': self.ponderacion_total_en_pesos * nivel.porcentaje / 100,
+                })
+            self.__tabuladores__ = tabs
+        return self.__tabuladores__
 
 
 
