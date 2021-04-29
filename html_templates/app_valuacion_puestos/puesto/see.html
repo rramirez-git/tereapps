@@ -66,19 +66,28 @@ forms = {
     </div>
     {% endif %}
 
-    <h5>Factores</h5>
+</form>
 
+<h5>Factores</h5>
+
+<form method="post" autocomplete="off" enctype="multipart/form-data" id="grading-frm" action="">
+    {% csrf_token %}
+    <input type="hidden" id="califaction" name="califaction" value="" />
     <table class="table table-striped table-sm table-responsive">
         <thead>
             <tr>
                 <th></th>
                 <th></th>
-                <th class="text-right">{{ object.ponderacion_total|floatformat:2|intcomma }}</th>
-                <th class="text-right">$ {{ object.ponderacion_total_en_pesos|floatformat:2|intcomma }}</th>
+                <th id="cell_ponderacion_total" class="text-right">
+                    {{ object.ponderacion_total|floatformat:2|intcomma }}
+                </th>
+                <th id="cell_ponderacion_en_pesos" class="text-right">
+                    $ {{ object.ponderacion_total_en_pesos|floatformat:2|intcomma }}
+                </th>
             </tr>
             <tr>
                 <th>Factor</th>
-                <th>Nivel</th>
+                <th>Calificación</th>
                 <th>Puntos</th>
                 <th>Pesos</th>
             </tr>
@@ -89,16 +98,30 @@ forms = {
                     <td>
                         {{ factor }}
                     </td>
+                    <td>
+                        <select onchange="autoUpdateCalificacion()" id="factor_{{ factor.pk }}" name="factor_{{ factor.pk }}" class="form-control">
+                            {% if object.niveles_ponderacion.all %}
+                                {% for nivel in factor.niveles.all %}
+                                    {% for p in object.niveles_ponderacion.all %}
+                                        {% if factor.pk == p.nivel.factor.pk %}
+                                            <option value="{{ nivel.pk }}" {% if p.nivel.pk == nivel.pk %}selected="selected"{% endif %}>{{ nivel }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            {% else %}
+                                {% for nivel in factor.niveles.all %}
+                                    <option value="{{ nivel.pk }}">{{ nivel }}</option>
+                                {% endfor %}
+                            {% endif %}
+                        </select>
+                    </td>
                     {% for nivel in factor.niveles.all %}
                         {% for pond in object.niveles_ponderacion.all %}
                             {% if factor.pk == pond.nivel.factor.pk and pond.nivel.pk == nivel.pk %}
-                                <td>
-                                    {{ nivel }}
-                                </td>
-                                <td class="text-right">
+                                <td id="cell_pond_{{ factor.pk }}" class="text-right">
                                     {{ pond }}
                                 </td>
-                                <td class="text-right">
+                                <td id="cell_pond_en_pesos_{{ factor.pk }}" class="text-right">
                                     $ {{ pond.ponderacion_en_pesos|floatformat:2|intcomma }}
                                 </td>
                             {% endif %}
@@ -109,34 +132,59 @@ forms = {
         </tbody>
     </table>
 
-    <h5>Tabulador: {{ object.tabulador }}</h5>
-
-    <table class="table table-striped table-sm table-responsive">
-        <thead>
-            <tr>
-                <th>Nivel</th>
-                <th>Puntos</th>
-                <th>Pesos</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for nivel in object.tabuladores %}
-                <tr>
-                    <td class="text-center">{{ nivel.nivel.posicion }}</td>
-                    <td class="text-right">{{ nivel.puntos|floatformat:2|intcomma }}</td>
-                    <td class="text-right">$ {{ nivel.pesos|floatformat:2|intcomma }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <div class="row">
-        <div class="col-sm-8">
-            <button type="submit" class="btn btn-outline-secondary" id="btn-save" title="{% action_label 'save' %}">
-                {% action_icon 'save' %}
-            </button>
-        </div>
-    </div>
 </form>
+
+<h5>Tabulador: {{ object.tabulador }}</h5>
+
+<table class="table table-striped table-sm table-responsive">
+    <thead>
+        <tr>
+            <th>Nivel</th>
+            <th>Puntos</th>
+            <th>Pesos</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for nivel in object.tabuladores %}
+            <tr>
+                <td class="text-center">{{ nivel.nivel.posicion }}</td>
+                <td class="text-right">{{ nivel.puntos|floatformat:2|intcomma }}</td>
+                <td class="text-right">$ {{ nivel.pesos|floatformat:2|intcomma }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+
+    let autoUpdateCalificacion = () => {
+        $('#califaction').val('autosave');
+        $('#grading-frm').submit();
+    }
+
+    {% if last_ev %}
+
+    let dataJob = {{ last_ev.data|safe }};
+
+    let calculateVals = () => { me = [];
+        let sum_ptos = 0;
+        let sum_mny = 0;
+        for(let factor of dataJob.factores) {
+            $(`#factor_${factor.pk}`).val(factor.nivel_selected);
+            let nivel = factor.niveles.filter(elem => elem.selected)[0];
+            $(`#cell_pond_${factor.pk}`).html(`${nivel.ponderacion.asMoneyWComma()}`);
+            $(`#cell_pond_en_pesos_${factor.pk}`).html(`\$ ${nivel.ponderacion_en_pesos.asMoneyWComma()}`);
+            sum_ptos += nivel.ponderacion;
+            sum_mny += nivel.ponderacion_en_pesos;
+        }
+        $(`#cell_ponderacion_total`).html(sum_ptos.asMoneyWComma());
+        $(`#cell_ponderacion_en_pesos`).html('$ ' + sum_mny.asMoneyWComma());
+    }
+
+    {% endif %}
+
+</script>
+
+
 
 {% endblock %}

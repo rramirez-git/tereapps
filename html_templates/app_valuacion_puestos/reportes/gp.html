@@ -1,0 +1,14 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+{% load humanize %}
+
+{% block content %}
+
+    <canvas id="data-graph"></canvas>
+
+    <script type="text/javascript">
+
+    let data = {{ data|safe }};
+    </script>
+{% endblock %}

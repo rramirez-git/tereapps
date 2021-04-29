@@ -1,3 +1,18 @@
 /*****
 app_valuacion_puestos styles
  */
+
+.header-rotate {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    margin-left: 20px;
+}
+
+#data-tbl .cell-add-padd {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+canvas#data-graph {
+    width: 95%;
+}

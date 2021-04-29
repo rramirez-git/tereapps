@@ -34,11 +34,18 @@ class Factor(models.Model):
     def __str__(self):
         return f"{self.posicion} - {self.factor}"
 
+    __cantidad_de_niveles__ = None
+    __exponente__ = None
+
     @property
     def cantidad_de_niveles(self) -> int:
-        return self.niveles.all().count()
+        if not self.__cantidad_de_niveles__:
+            self.__cantidad_de_niveles__ = self.niveles.all().count()
+        return self.__cantidad_de_niveles__
 
     @property
     def exponente(self):
-        return ParametroVP.objects.get(
-            parametro=f"Exponente{self.cantidad_de_niveles}N").valor
+        if not self.__exponente__:
+            self.__exponente__ = ParametroVP.objects.get(
+                parametro=f"Exponente{self.cantidad_de_niveles}N").valor
+        return self.__exponente__

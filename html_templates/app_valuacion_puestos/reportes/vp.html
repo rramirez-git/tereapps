@@ -1,0 +1,105 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="btn-group d-none" role="group" aria-label="Acciones">
+    <button type="button" data-action="toggle-cols" onclick="dataGridResultsGlobals.show_toggler_cols()" class="btn btn-outline-secondary" role="button" title="Mostrar/Ocultar Columnas">
+        {% crud_icon 'read' %}
+    </button>
+</div>
+<div class="btn-group d-none" role="group" aria-label="Filtrado-Filas">
+    <button type="button" onclick="dataGridResultsGlobals.filtrar_filas()" class="btn btn-outline-secondary" role="button" title="Filtrar Filas">
+        <i class="fas fa-filter"></i>
+    </button>
+    <button type="button" onclick="dataGridResultsGlobals.restaurar_filtrado_filas()" class="btn btn-outline-secondary" role="button" title="Borrar Filtro en Filas">
+        <i class="fas fa-trash-restore"></i>
+    </button>
+</div>
+
+<table id="data-grid-report" class="table table-striped table-sm table-responsive">
+    <thead>
+        <tr>
+            <th class="d-none"></th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                Puntos
+            </th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
+                Puesto
+            </th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
+                Tabulador
+            </th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                Nivel 1
+            </th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                Nivel 2
+            </th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                Nivel 3
+            </th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                Nivel 4
+            </th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                Nivel 5
+            </th>
+            <th>
+                <div class="d-inline-block" title="Filtros">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="data-tbl">
+        {% for reg in data %}
+            <tr data-dgr-object-id="{{ reg.pk }}">
+                <td class="text-center d-none">
+                    <input type="checkbox" class="form-check-inline massive-operations" data-dgr-object-id="{{ reg.pk }}" />
+                </td>
+                <td class="text-right" data-dgr-raw-sort-value="{{ reg.ponderacion_total }}" data-dgr-raw-filter-value="{{ reg.ponderacion_total }}">
+                    {{ reg.ponderacion_total|floatformat:2|intcomma }}
+                </td>
+                <td data-dgr-raw-sort-value="{{ reg.puesto|lower }}" data-dgr-raw-filter-value="{{ reg.puesto|lower }}">
+                    {{ reg.puesto }}
+                </td>
+                <td data-dgr-raw-sort-value="{{ reg.tabulador|lower }}" data-dgr-raw-filter-value="{{ reg.tabulador|lower }}">
+                    {{ reg.tabulador }}
+                </td>
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.0.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.0.pesos }}">
+                    {% if reg.tabuladores.0 %}$ {{ reg.tabuladores.0.pesos|floatformat:2|intcomma }}{% endif %}
+                </td>
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.1.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.1.pesos }}">
+                    {% if reg.tabuladores.1 %}$ {{ reg.tabuladores.1.pesos|floatformat:2|intcomma }}{% endif %}
+                </td>
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.2.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.2.pesos }}">
+                    {% if reg.tabuladores.2 %}$ {{ reg.tabuladores.2.pesos|floatformat:2|intcomma }}{% endif %}
+                </td>
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.3.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.3.pesos }}">
+                    {% if reg.tabuladores.3 %}$ {{ reg.tabuladores.3.pesos|floatformat:2|intcomma }}{% endif %}
+                </td>
+                <td data-dgr-raw-sort-value="{{ reg.tabuladores.4.pesos }}" data-dgr-raw-filter-value="{{ reg.tabuladores.4.pesos }}">
+                    {% if reg.tabuladores.4 %}$ {{ reg.tabuladores.4.pesos|floatformat:2|intcomma }}{% endif %}
+                </td>
+                <td></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% include 'zend_django/datagridresults/handlebars_tpls.html' %}
+
+{% endblock %}

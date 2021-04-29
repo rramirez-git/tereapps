@@ -20,6 +20,10 @@ class Tabulador(models.Model):
     def __str__(self):
         return self.tabulador
 
+    __cantidad_de_niveles__ = None
+
     @property
     def cantidad_de_niveles(self) -> int:
-        return self.niveles.all().count()
+        if not self.__cantidad_de_niveles__:
+            self.__cantidad_de_niveles__ = self.niveles.all().count()
+        return self.__cantidad_de_niveles__
