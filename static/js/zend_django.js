@@ -145,7 +145,7 @@ $(document).ready(function($) {
     bsMain = $('.bs-offset-main'),
     bsOverlay = $('.bs-canvas-overlay');
 
-    $('[data-toggle="canvas"][aria-expanded="false"]').on('click', function() {
+    $('#btn-opener[data-toggle="canvas"]').on('click', function() {
         var canvas = $(this).data('target'),
         opts = $.extend({}, bsDefaults, $(canvas).data()),
         prop = $(canvas).hasClass('bs-canvas-right') ? 'margin-right' : 'margin-left';
@@ -193,9 +193,6 @@ $(document).ready(function($) {
       return false;
    });
 
-   if("True" === leftMenu_display) {
-       $('[data-toggle="canvas"][aria-expanded="false"]').trigger( "click" );
-   }
 });
 
 let setLeftMenuOpc = (valor) => {
