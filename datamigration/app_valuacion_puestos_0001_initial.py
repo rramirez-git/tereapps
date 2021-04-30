@@ -134,37 +134,37 @@ def migration():
 
     escolaridad = Factor.objects.get_or_create(
         factor='Escolaridad', posicion=1,
-        ponderacion_nivel_1=21, exponente=2.1)[0]
+        ponderacion_nivel_1=21)[0]
     experiencia = Factor.objects.get_or_create(
         factor='Experiencia', posicion=2,
-        ponderacion_nivel_1=13, exponente=1.8104)[0]
+        ponderacion_nivel_1=13)[0]
     criterio = Factor.objects.get_or_create(
         factor='Criterio', posicion=3,
-        ponderacion_nivel_1=13, exponente=1.8104)[0]
+        ponderacion_nivel_1=13)[0]
     iniciativa = Factor.objects.get_or_create(
         factor='Iniciativa', posicion=4,
-        ponderacion_nivel_1=6, exponente=2.1)[0]
+        ponderacion_nivel_1=6)[0]
     complejidad_e_importancia = Factor.objects.get_or_create(
         factor='Complejidad e Importancia', posicion=5,
-        ponderacion_nivel_1=13, exponente=1.8104)[0]
+        ponderacion_nivel_1=13)[0]
     resp_en_supervición = Factor.objects.get_or_create(
         factor='Resp. en Supervición', posicion=6,
-        ponderacion_nivel_1=12, exponente=2.1)[0]
+        ponderacion_nivel_1=12)[0]
     resp_en_documentos = Factor.objects.get_or_create(
         factor='Resp. en Documentos', posicion=7,
-        ponderacion_nivel_1=7, exponente=1.8104)[0]
+        ponderacion_nivel_1=7)[0]
     resp_en_mat_mob_y_equipo = Factor.objects.get_or_create(
         factor='Resp. en Mat. Mob. y Equipo', posicion=8,
-        ponderacion_nivel_1=5, exponente=2.1)[0]
+        ponderacion_nivel_1=5)[0]
     grado_de_atención = Factor.objects.get_or_create(
         factor='Grado de Atención', posicion=9,
-        ponderacion_nivel_1=4, exponente=2.1)[0]
+        ponderacion_nivel_1=4)[0]
     esfuerzo_físico = Factor.objects.get_or_create(
         factor='Esfuerzo Físico', posicion=10,
-        ponderacion_nivel_1=2, exponente=1.8104)[0]
+        ponderacion_nivel_1=2)[0]
     condiciones_de_trbajo = Factor.objects.get_or_create(
         factor='Condiciones de Trbajo', posicion=11,
-        ponderacion_nivel_1=4, exponente=2.1)[0]
+        ponderacion_nivel_1=4)[0]
 
     fact5niveles = [
         escolaridad,
