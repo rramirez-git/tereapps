@@ -8,7 +8,8 @@ let dataGridResultsGlobals = {
         this.__table = table;
         this.__header = this.__table.find("thead");
         this.__body = this.__table.find("tbody");
-        this.__header.find("tr:first-child th").each((index, element) => {
+        let real_header_finder = (this.__header.find("tr:first-child th").length > 0 ) ? "tr:first-child th" : "tr:nth-child(2) th";
+        this.__header.find(real_header_finder).each((index, element) => {
             element = $(element);
             this.__columns.push({
                 idx: index,

@@ -217,3 +217,55 @@ class ReporteGraficaDPuesto(GenericList):
                 request.user, 'basic_search', 'vp_rep_gr_psto')
         return self.base_render(
             request, self.get_data(search_value), search_value)
+
+class ReporteGraficaDPuestoPesos(GenericList):
+    html_template = template_base_path("gp_pesos")
+    titulo = "Gráfica de Puesto"
+    titulo_descripcion = ""
+    main_data_model = main_model
+    model_name = "puesto"
+    tereapp = 'valuacion_de_puestos'
+
+    def get_data(self, search_value=''):
+        if '' == search_value:
+            return list(
+                self.main_data_model.objects.all())
+        else:
+            return list(self.main_data_model.objects.filter(
+                Q(puesto__icontains=search_value)))
+
+    def base_render(self, request, data, search_value):
+        ParametroUsuario.set_valor(
+                request.user, 'basic_search', 'vp_rep_gr_psto', search_value)
+        data = [{
+            'puesto': reg.puesto,
+            'puntos': float(f'{reg.ponderacion_total:0.2f}'),
+            'pesos': float(f'{reg.ponderacion_total_en_pesos:0.2f}'),
+        } for reg in data]
+        return render(request, self.html_template, {
+            'titulo': self.titulo,
+            'titulo_descripcion': self.titulo_descripcion,
+            'toolbar': [{'type': 'search'}],
+            'footer': False,
+            'read_only': False,
+            'alertas': [],
+            'req_chart': True,
+            'search_value': search_value,
+            'data': json.dumps(data),
+            'tereapp': self.tereapp,
+        })
+
+    def get(self, request):
+        search_value = ParametroUsuario.get_valor(
+            request.user, 'basic_search', 'vp_rep_gr_psto')
+        return self.base_render(
+            request, self.get_data(search_value), search_value)
+
+    def post(self, request):
+        if "search" == request.POST.get('action', ''):
+            search_value = request.POST.get('valor', '')
+        else:
+            search_value = ParametroUsuario.get_valor(
+                request.user, 'basic_search', 'vp_rep_gr_psto')
+        return self.base_render(
+            request, self.get_data(search_value), search_value)
