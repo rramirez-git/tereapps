@@ -37,7 +37,8 @@ class Puesto(models.Model):
             ('view_fp_puntos', 'Reporte Factores por Puesto - Puntos'),
             ('view_fp_niveles', 'Reporte Factores por Puesto - Niveles'),
             ('view_vp', 'Reporte Valor por Puesto'),
-            ('view_gp', 'Grafica de Puestos')
+            ('view_gp', 'Grafica de Puestos'),
+            ('view_gp_pesos', 'Grafica de Puestos en pesos'),
         ]
 
     def __str__(self):

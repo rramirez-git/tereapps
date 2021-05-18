@@ -64,14 +64,14 @@ class frmFactorRead(forms.ModelForm):
         model = Factor
         fields = [
             'factor',
-            'posicion',
+            # 'posicion',
             'ponderacion_nivel_1',
             'exponente',
         ]
 
     field_order = [
         'factor',
-        'posicion',
+        # 'posicion',
         'ponderacion_nivel_1',
         'exponente',
         'cantidad_de_niveles', ]

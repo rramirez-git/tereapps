@@ -40,4 +40,8 @@ urlpatterns = [
          permission_required(f'{app_label}.view_gp')(
              views.ReporteGraficaDPuesto.as_view()),
          name='app_vp_rep_gp'),
+    path('grafica-de-puestos-pesos/',
+         permission_required(f'{app_label}.view_gp_pesos')(
+             views.ReporteGraficaDPuestoPesos.as_view()),
+         name='app_vp_rep_gp_pesos'),
 ]

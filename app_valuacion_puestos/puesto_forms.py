@@ -37,13 +37,13 @@ class frmPuesto(forms.ModelForm):
         model = Puesto
         fields = [
             'puesto',
-            'posicion',
+            # 'posicion',
             'estatus',
             'tabulador',
         ]
         widgets = {
             'estatus': forms.CheckboxInput(attrs={
-                'class': 'action-on-reg',
+                'class': 'action-on-reg input-reorder',
                 'data-toggle': "toggle",
                 'data-size': "xs",
                 'data-onstyle': "secondary",
@@ -52,7 +52,11 @@ class frmPuesto(forms.ModelForm):
                 'data-off': " ", })
         }
 
-    field_order = ['puesto', 'estatus', 'posicion', 'tabulador', ]
+    field_order = [
+        'puesto',
+        'estatus',
+        # 'posicion',
+        'tabulador', ]
 
 
 class frmPuestoRead(forms.ModelForm):
@@ -80,7 +84,7 @@ class frmPuestoRead(forms.ModelForm):
         ]
         widgets = {
             'estatus': forms.CheckboxInput(attrs={
-                'class': 'action-on-reg',
+                'class': 'action-on-reg input-reorder',
                 'data-toggle': "toggle",
                 'data-size': "xs",
                 'data-onstyle': "secondary",

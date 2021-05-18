@@ -5,9 +5,12 @@
 <!-- main_menu.html (Open) -->
 
 {% parametro_de_usuario seccion='general' nombre='open_left_menu' username=user as menu_abierto %}
+{% parametro_de_sistema seccion='SitioGeneral' nombre='left_bar_width' as ancho_barra_menu %}
 {% if user.is_authenticated %}
 
-
+<script type="text/javascript">
+let ancho_barra_menu = {{ ancho_barra_menu }};
+</script>
 
 {% if menu_abierto == "True" %}
 
@@ -17,7 +20,7 @@
                 <i class="fas fa-bars"></i>
                 <i class="fas fa-angle-right"></i>
             </button>
-            <div id="main-navbar-title" class="navbar-brand" style="margin-left: 300px;">
+            <div id="main-navbar-title" class="navbar-brand" style="margin-left: {{ ancho_barra_menu }}px;">
             </div>
         </div>
         <!--<a class="navbar-brand" href="{% url 'session_imin' %}">
@@ -54,7 +57,7 @@
             </table>
         </div>
     </nav>
-    <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-dark text-light h-100" data-offset="true" data-overlay="false" style="width: 300px;">
+    <div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-dark text-light h-100" data-offset="true" data-overlay="false" style="width: {{ ancho_barra_menu }}px;">
         <header class="p-3 h6">
             <button onclick="setLeftMenuOpc('False')" type="button" class="bs-canvas-close close btn-sm" aria-label="Close" aria-expanded="true">
                 <span aria-hidden="true" class="text-light">

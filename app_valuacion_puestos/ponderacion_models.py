@@ -21,7 +21,7 @@ class Ponderacion(models.Model):
         Nivel, on_delete=models.CASCADE, related_name='puestos_ponderacion')
 
     def __str__(self):
-        return f"{self.ponderacion:0.2f}"
+        return f"{self.ponderacion:0.0f}"
 
     __ponderacion__ = None
     __ponderacion_en_pesos__ = None

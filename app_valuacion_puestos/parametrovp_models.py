@@ -27,12 +27,12 @@ class ParametroVP(models.Model):
         return self.parametro
 
     def save(self, *args, **kwargs):
+        self.fecha = date.today()
         super(ParametroVP, self).save(*args, **kwargs)
         ParametroVPHistoria.objects.create(
             raiz=self,
             parametro=self.parametro,
-            valor=self.valor,
-            fecha=self.fecha
+            valor=self.valor
         )
 
 

@@ -32,7 +32,7 @@
     </button>
 </div>
 
-<table id="data-grid-report" class="table table-striped table-sm table-responsive">
+<table id="data-grid-report" class="table_zd table-sm table-responsive">
     <thead>
         <tr>
             <th class="d-none"></th>
@@ -48,6 +48,12 @@
                     </div>
                 </th>
             {% endfor %}
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="no"
+                data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
+                <div class="header-rotate">
+                    Total
+                </div>
+            </th>
             <th>
                 <div class="d-inline-block" title="Filtros">
                     <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
@@ -80,6 +86,7 @@
                         {{ reg.ponderacion_total|floatformat:2|intcomma }}
                     </strong>
                 </td>
+                <td></td>
             </tr>
         {% endfor %}
     </tbody>

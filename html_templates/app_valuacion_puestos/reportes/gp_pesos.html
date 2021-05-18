@@ -8,12 +8,12 @@
 <ul class="nav nav-tabs">
     {% if perms.app_valuacion_puestos.view_gp %}
     <li class="nav-item">
-        <a class="nav-link active" href="{% url 'app_vp_rep_gp' %}">Puntos</a>
+        <a class="nav-link" href="{% url 'app_vp_rep_gp' %}">Puntos</a>
     </li>
     {% endif %}
     {% if perms.app_valuacion_puestos.view_gp_pesos %}
     <li class="nav-item">
-        <a class="nav-link" href="{% url 'app_vp_rep_gp_pesos' %}">Pesos</a>
+        <a class="nav-link active" href="{% url 'app_vp_rep_gp_pesos' %}">Pesos</a>
     </li>
     {% endif %}
 </ul>
@@ -23,6 +23,6 @@
     <script type="text/javascript">
 
     let data = {{ data|safe }};
-    let grafico_typ = "PuestoPtos";
+    let grafico_typ = "PuestoPesos";
     </script>
 {% endblock %}

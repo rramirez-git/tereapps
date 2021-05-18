@@ -223,10 +223,13 @@ form.form-signin label{
     left: unset;
 }
 
-.table {
+.table_zd {
     color: inherit;
+    border-collapse: separate;
+    border-spacing: 5px;
 }
 
-.table thead th {
+.table_zd thead th {
     color: #212529;
+    background-color: #e8ebf4;
 }

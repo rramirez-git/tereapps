@@ -140,7 +140,7 @@ $(document).ready(function($) {
     var bsDefaults = {
          offset: true,
          overlay: false,
-         width: '300px'
+         width: `${ancho_barra_menu}px`
       },
     bsMain = $('.bs-offset-main'),
     bsOverlay = $('.bs-canvas-overlay');
