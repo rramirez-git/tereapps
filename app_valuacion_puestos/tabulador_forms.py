@@ -10,7 +10,6 @@ frmTabulador
 frmTabuladorRead
     Formulario de Lectura
     - tabulador
-    - cantidad_de_niveles
 """
 from django import forms
 
@@ -40,9 +39,7 @@ class frmTabuladorRead(forms.ModelForm):
     Campos
     ------
     - tabulador
-    - cantidad_de_niveles
     """
-    cantidad_de_niveles = forms.IntegerField(required=False, initial=0)
 
     class Meta:
         model = Tabulador
@@ -52,5 +49,4 @@ class frmTabuladorRead(forms.ModelForm):
 
     field_order = [
         'tabulador',
-        'cantidad_de_niveles',
     ]

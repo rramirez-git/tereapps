@@ -23,7 +23,7 @@ forms = {
             <!-- forms.Top -->
             {% for form_obj in forms.top %}
                 {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
-                {{ form_obj.form | crispy }}
+                {% crispy form_obj.form %}
             {% endfor %}
         </div>
     </div>
@@ -36,7 +36,7 @@ forms = {
             <!-- forms.left -->
             {% for form_obj in forms.left %}
                 {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
-                {{ form_obj.form | crispy }}
+                {% crispy form_obj.form %}
             {% endfor %}
         </div>
         {% endif %}
@@ -46,7 +46,7 @@ forms = {
             <!-- forms.right -->
             {% for form_obj in forms.right %}
                 {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
-                {{ form_obj.form | crispy }}
+                {% crispy form_obj.form %}
             {% endfor %}
         </div>
         {% endif %}
@@ -59,7 +59,7 @@ forms = {
             <!-- forms.bottom -->
             {% for form_obj in forms.bottom %}
                 {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
-                {{ form_obj.form | crispy }}
+                {% crispy form_obj.form %}
             {% endfor %}
         </div>
     </div>

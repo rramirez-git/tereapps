@@ -2,7 +2,14 @@
 {% load op_helpers %}
 {% load humanize %}
 
-<h5>Niveles del tabulador</h5>
+<table>
+    <tr>
+        <td class="align-middle"><h5>Niveles del tabulador</h5></td>
+        <td>
+            <input type="text" class="form-control text-center" value="{{ object.cantidad_de_niveles }}" disabled="disabled" />
+        </td>
+    </tr>
+</table>
 
 <script type="text/javascript">
     let url_update = "{% url 'tabuladornivel_update' pk='__recordid__' %}";
@@ -71,7 +78,7 @@
                     {{ reg.posicion }}
                 </td>
                 <td class="text-right" data-dgr-raw-sort-value="{{ reg.porcentaje }}" data-dgr-raw-filter-value="{{ reg.porcentaje }}">
-                    {{ reg.porcentaje|floatformat:2|intcomma }}
+                    {{ reg.porcentaje|floatformat:2|intcomma }} %
                 </td>
                 <td></td>
             </tr>

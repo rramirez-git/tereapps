@@ -26,7 +26,7 @@ from zend_django.views import GenericUpdate
 from .puesto_forms import frmPuesto as base_form
 from .puesto_forms import frmPuestoRead
 from .puesto_models import Puesto as main_model, PuestoEvaluacion
-from .models import Factor, Nivel, Ponderacion, ParametroVP
+from .models import Factor, Nivel, Ponderacion, Tabulador
 
 
 def template_base_path(file):
@@ -83,12 +83,15 @@ class Read(GenericRead):
             'object': obj,
             'factores': list(Factor.objects.all()),
             'last_ev': autosaved,
+            'tabuladores': list(Tabulador.objects.all()),
+            'factores_json': json.dumps([
+                factor.as_dict() for factor in list(Factor.objects.all())]),
         })
 
     def post(self, request, pk):
         califaction = request.POST.get('califaction', '')
+        obj = self.main_data_model.objects.get(pk=pk)
         if "autosave" == califaction:
-            obj = self.main_data_model.objects.get(pk=pk)
             data = {
                 'puesto': {
                     'pk': obj.pk,
@@ -99,15 +102,18 @@ class Read(GenericRead):
                     'factor': factor.factor,
                     'exponente': float(factor.exponente),
                     'pond_lvl1': float(factor.ponderacion_nivel_1),
-                    'nivel_selected': request.POST.get(f'factor_{factor.pk}', ''),
+                    'nivel_selected': factor.niveles.get(
+                        nivel_multiplicador=int(
+                            request.POST.get(
+                                f'txt_factor_{factor.pk}', ''))).pk,
                     'niveles': [{
                         'pk': nivel.pk,
                         'nivel': nivel.nivel,
                         'multiplicador': nivel.nivel_multiplicador,
                         'ponderacion': float(nivel.ponderacion),
                         'ponderacion_en_pesos': float(nivel.ponderacion_en_pesos),
-                        'selected': str(nivel.pk) == request.POST.get(
-                            f'factor_{factor.pk}', ''),
+                        'selected': str(nivel.nivel_multiplicador) == request.POST.get(
+                            f'txt_factor_{factor.pk}', ''),
                     } for nivel in factor.niveles.all()],
                 } for factor in Factor.objects.all()],
             }
@@ -117,6 +123,10 @@ class Read(GenericRead):
             )[0]
             evaluacion.data = json.dumps(data)
             evaluacion.save()
+        elif "change-tab" == califaction:
+            obj.tabulador = Tabulador.objects.get(
+                pk=int("0" + request.POST.get('tabulador')))
+            obj.save()
         return self.get(request, pk)
 
 
