@@ -5,8 +5,6 @@
 {% load op_helpers %}
 {% load humanize %}
 
-<h5>Detalle histórico</h5>
-
 <div class="btn-group d-none" role="group" aria-label="Acciones">
     <button type="button" data-action="toggle-cols" onclick="dataGridResultsGlobals.show_toggler_cols()" class="btn btn-outline-secondary" role="button" title="Mostrar/Ocultar Columnas">
         {% crud_icon 'read' %}
@@ -25,17 +23,13 @@
     <thead>
         <tr>
             <th class="d-none"></th>
-            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
-                    data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
-                Parámetro
-            </th>
-            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="yes"
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="no"
                     data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Valor
             </th>
-            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="yes"
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="no"
                     data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
-                Cambio Porcentual
+                % Cambio
             </th>
             <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
                     data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
@@ -56,9 +50,6 @@
                 <td class="text-center d-none">
                     <!--<input type="checkbox" class="action-on-reg" data-recordid="{{ reg.pk }}" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" " />-->
                     <input type="checkbox" class="form-check-inline massive-operations" data-dgr-object-id="{{ reg.pk }}" />
-                </td>
-                <td data-dgr-raw-sort-value="{{ reg.parametro|lower }}" data-dgr-raw-filter-value="{{ reg.parametro|lower }}">
-                    {{ reg.parametro }}
                 </td>
                 <td class="text-right" data-dgr-raw-sort-value="{{ reg.valor }}" data-dgr-raw-filter-value="{{ reg.valor }}">
                     {{ reg.valor }}

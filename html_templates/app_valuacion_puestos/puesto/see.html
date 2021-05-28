@@ -5,6 +5,16 @@
 
 {% block content %}
 
+<style type="text/css">
+    /*div#div_id_estatus label {
+        position: absolute;
+        left: 0px;
+    }*/
+    div#div_id_estatus {
+        /* border: red solid 1px;*/
+    }
+</style>
+
 <!--
 forms = {
     'top': [{'title':'XXXX', 'form': form_object}, ...],
@@ -68,21 +78,20 @@ forms = {
 
 </form>
 
-<h5>Factores</h5>
-
+<!-- Factores -->
 <form method="post" autocomplete="off" enctype="multipart/form-data" id="grading-frm" action="">
     {% csrf_token %}
     <input type="hidden" id="califaction" name="califaction" value="" />
-    <table class="table_zd table-sm table-responsive">
+    <table class="table_zd table-sm table-responsive" style="margin-bottom: 25px;">
         <thead>
             <tr>
                 <td></td>
                 <td></td>
                 <td id="cell_ponderacion_total" class="text-right">
-                    <strong>{{ object.ponderacion_total|floatformat:0|intcomma }}</strong>
+                    <strong>{{ object.ponderacion_total|floatformat:0 }}</strong>
                 </td>
                 <td id="cell_ponderacion_en_pesos" class="text-right">
-                    <strong>$ {{ object.ponderacion_total_en_pesos|floatformat:0|intcomma }}</strong>
+                    <strong>$ {{ object.ponderacion_total_en_pesos|floatformat:0 }}</strong>
                 </td>
             </tr>
             <tr>
@@ -99,21 +108,15 @@ forms = {
                         {{ factor }}
                     </td>
                     <td>
-                        <select onchange="autoUpdateCalificacion()" id="factor_{{ factor.pk }}" name="factor_{{ factor.pk }}" class="form-control">
-                            {% if object.niveles_ponderacion.all %}
-                                {% for nivel in factor.niveles.all %}
-                                    {% for p in object.niveles_ponderacion.all %}
-                                        {% if factor.pk == p.nivel.factor.pk %}
-                                            <option value="{{ nivel.pk }}" {% if p.nivel.pk == nivel.pk %}selected="selected"{% endif %}>{{ nivel }}</option>
-                                        {% endif %}
-                                    {% endfor %}
-                                {% endfor %}
-                            {% else %}
-                                {% for nivel in factor.niveles.all %}
-                                    <option value="{{ nivel.pk }}">{{ nivel }}</option>
-                                {% endfor %}
-                            {% endif %}
-                        </select>
+                        {% if object.niveles_ponderacion.all %}
+                            {% for p in object.niveles_ponderacion.all %}
+                                {% if factor.pk == p.nivel.factor.pk %}
+                                    <input data-factorid="{{ factor.pk }}" name="txt_factor_{{ factor.pk }}" id="txt_factor_{{ factor.pk }}" type="number" class="form-control" value="{{ p.nivel.nivel_multiplicador }}" min="{{ factor.min_nivel.nivel_multiplicador }}" max="{{ factor.max_nivel.nivel_multiplicador }}" onkeypress="updateCalificacion(event, $(this))" />
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <input data-factorid="{{ factor.pk }}" name="txt_factor_{{ factor.pk }}" id="txt_factor_{{ factor.pk }}" type="number" class="form-control" value="{{ factor.min_nivel.nivel_multiplicador }}" min="{{ factor.min_nivel.nivel_multiplicador }}" max="{{ factor.max_nivel.nivel_multiplicador }}" onkeypress="updateCalificacion(event, $(this))" />
+                        {% endif %}
                     </td>
                     {% for nivel in factor.niveles.all %}
                         {% for pond in object.niveles_ponderacion.all %}
@@ -134,8 +137,24 @@ forms = {
 
 </form>
 
-<h5>Tabulador: {{ object.tabulador }}</h5>
+<table>
+    <tr>
+        <td class="align-middle"><h5>Tabulador</h5></td>
+        <td>
+            <form method="post" autocomplete="off" enctype="multipart/form-data" id="tab-frm" action="">
+                {% csrf_token %}
+                <input type="hidden" id="califaction" name="califaction" value="change-tab" />
+                <select id="tabulador" name="tabulador" class="form-control" onchange="$(`#tab-frm`).submit()">
+                    {% for tabulador in tabuladores %}
+                        <option value="{{ tabulador.pk }}" {% if tabulador.pk == object.tabulador.pk %}selected="selected"{% endif %}>{{ tabulador }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </td>
+    </tr>
+</table>
 
+<!-- Tabuladores -->
 <table class="table_zd table-sm table-responsive">
     <thead>
         <tr>
@@ -170,21 +189,63 @@ forms = {
         let sum_ptos = 0;
         let sum_mny = 0;
         for(let factor of dataJob.factores) {
-            $(`#factor_${factor.pk}`).val(factor.nivel_selected);
             let nivel = factor.niveles.filter(elem => elem.selected)[0];
-            $(`#cell_pond_${factor.pk}`).html(`${nivel.ponderacion.asMoneyWComma()}`);
-            $(`#cell_pond_en_pesos_${factor.pk}`).html(`\$ ${nivel.ponderacion_en_pesos.asMoneyWComma()}`);
+            $(`#cell_pond_${factor.pk}`).html(`${parseInt(nivel.ponderacion)}`);
+            $(`#cell_pond_en_pesos_${factor.pk}`).html(`${parseInt(nivel.ponderacion_en_pesos)}`);
             sum_ptos += nivel.ponderacion;
             sum_mny += nivel.ponderacion_en_pesos;
+            $(`#txt_factor_${factor.pk}`).val(nivel.multiplicador);
         }
-        $(`#cell_ponderacion_total`).html(sum_ptos.asMoneyWComma());
-        $(`#cell_ponderacion_en_pesos`).html('$ ' + sum_mny.asMoneyWComma());
+        $(`#cell_ponderacion_total`).html('<strong>' + parseInt(sum_ptos) + '</strong>');
+        $(`#cell_ponderacion_en_pesos`).html('<strong>$ ' + parseInt(sum_mny)+ '</strong>');
     }
 
     {% endif %}
 
+    let updateCalificacion = (event, txtbox) => {
+        if([13].indexOf(event.keyCode) == -1) {
+            return false;
+        }
+        let vmin = parseInt(txtbox.attr('min'));
+        let vmax = parseInt(txtbox.attr('max'));
+        let valor = parseInt(txtbox.val());
+        let current_row = null;
+        let current_factorid = parseInt(parseInt(txtbox.data('factorid')));
+        let sum_ptos = 0;
+        let sum_mny = 0;
+        if(!(vmin <= valor && valor <= vmax)) {
+            alert(`El valor debe ser entre ${vmin} y ${vmax}`);
+            txtbox.select();
+            return false;
+        }
+        $('#califaction').val('autosave');
+        $.post(window.location.href, $("#grading-frm").serialize()).fail(function(result){console.log(result.responseText)});
+        let txtinputs = $('#grading-frm td input.form-control');
+        for(let x=0; x < txtinputs.length; x++) {
+            let txtfactor = $(txtinputs[x]);
+            let factorid = parseInt(txtfactor.data('factorid'));
+            if( factorid == current_factorid) {
+                current_row = x + 1;
+            }
+            let factor = factores.filter(elem => elem.id == factorid)[0];
+            let nivel = factor.niveles.filter(elem => elem.nivel_multiplicador == parseInt(txtfactor.val()))[0];
+            $(`#cell_pond_${factorid}`).html(`${parseInt(nivel.ponderacion)}`);
+            $(`#cell_pond_en_pesos_${factorid}`).html(`${parseInt(nivel.ponderacion_en_pesos)}`);
+            sum_ptos += nivel.ponderacion;
+            sum_mny += nivel.ponderacion_en_pesos;
+        }
+        $(`#cell_ponderacion_total`).html('<strong>' + parseInt(sum_ptos) + '</strong>');
+        $(`#cell_ponderacion_en_pesos`).html('<strong>$ ' + parseInt(sum_mny) + '</strong>');
+        let tr = $(`#grading-frm table tbody tr:nth-child(${current_row + 1})`);
+        if(tr.length > 0) {
+            tr.find(`td input.form-control`).select();
+        } else {
+            $(`#grading-frm table tbody tr:nth-child(1)`).find(`td input.form-control`).select();
+        }
+    }
+
+    let factores = {{ factores_json|safe }};
+
 </script>
-
-
 
 {% endblock %}

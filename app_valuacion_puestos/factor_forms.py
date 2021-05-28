@@ -22,6 +22,11 @@ from django import forms
 
 from .factor_models import Factor
 
+from crispy_forms.helper import FormHelper
+from crispy_forms import layout, bootstrap
+from crispy_forms.bootstrap import InlineField, FormActions, StrictButton, Div
+from crispy_forms.layout import Layout
+from crispy_forms import bootstrap, layout
 
 class frmFactor(forms.ModelForm):
     """
@@ -56,22 +61,14 @@ class frmFactorRead(forms.ModelForm):
     - exponente
     - cantidad_de_niveles
     """
-    cantidad_de_niveles = forms.IntegerField(required=False, initial=0)
-    exponente = forms.DecimalField(
-        max_digits=8, decimal_places=5, required=False, initial=0)
 
     class Meta:
         model = Factor
         fields = [
             'factor',
-            # 'posicion',
             'ponderacion_nivel_1',
-            'exponente',
         ]
 
     field_order = [
         'factor',
-        # 'posicion',
-        'ponderacion_nivel_1',
-        'exponente',
-        'cantidad_de_niveles', ]
+        'ponderacion_nivel_1',]

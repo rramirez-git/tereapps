@@ -2,7 +2,15 @@
 {% load op_helpers %}
 {% load humanize %}
 
-<h5>Niveles</h5>
+<table>
+    <tr>
+        <td class="align-middle"><h5>Niveles</h5></td>
+        <td>
+            <input type="text" class="form-control text-center" value="{{ object.cantidad_de_niveles }}" disabled="disabled" />
+        </td>
+        <td>{{ object.exponente }}</td>
+    </tr>
+</table>
 
 <script type="text/javascript">
     let url_update = "{% url 'nivel_update' pk='__recordid__' %}";
@@ -51,10 +59,6 @@
                     data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
                 Nivel
             </th>
-            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
-                    data-dgr-col-filterable="yes" data-dgr-col-datatype="number">
-                Ponderación
-            </th>
             <th class="text-center">
                 <div class="d-inline-block" title="Filtros">
                     <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
@@ -76,9 +80,6 @@
                 </td>
                 <td data-dgr-raw-sort-value="{{ reg.nivel|lower }}" data-dgr-raw-filter-value="{{ reg.nivel|lower }}">
                     {{ reg.nivel }}
-                </td>
-                <td class="text-right" data-dgr-raw-sort-value="{{ reg.ponderacion }}" data-dgr-raw-filter-value="{{ reg.ponderacion }}">
-                    {{ reg.ponderacion|floatformat:4|intcomma }}
                 </td>
                 <td></td>
             </tr>

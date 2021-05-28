@@ -24,6 +24,8 @@ let dataGridResultsGlobals = {
         });
         this.__table.find("tfoot").remove();
         for(let opc of [
+            {id: 'opc-print', fn: 'to_printer', label: 'Imprimir', extraClass: ''},
+            {id: 'opc-to-excel', fn: 'to_excel', label: 'Excel', extraClass: ''},
             {id: 'opc-show-edit-controls', fn: 'show_edit_controls', label: 'Editar', extraClass: ''},
             {id: 'opc-hide-edit-controls', fn: 'hide_edit_controls', label: 'Cerrar Edicion', extraClass: 'd-none'},
             {id: 'opc-show-filter-controls', fn: 'show_filter_controls', label: 'Filtrar', extraClass: ''},
@@ -250,6 +252,33 @@ let dataGridResultsGlobals = {
     },
     restaurar_filtrado_filas() {
         this.__body.find('tr').removeClass('d-none');
+    },
+    to_excel() {
+        let hoja = $("#main-navbar-title").text().trim().replaceAll(
+            regex_nl, " ").replaceAll(regex_spaces, " ");
+        let uri = 'data:application/vnd.ms-excel;base64,';
+        let base64 = s => window.btoa(unescape(encodeURIComponent(s)));
+        let tpl_wbook = Handlebars.compile($("#tpl-to-excel").html());
+        let tpl_header = Handlebars.compile($("#tpl-to-excel-header").html());
+        let tpl_row = Handlebars.compile($("#tpl-to-excel-row").html());
+        let rows = [tpl_header({colums: this.__columns.filter(elem => !elem.cell.hasClass('d-none'))}).trim()];
+        this.__body.find('tr').each((idx, tr) => {
+            let celdas = $(tr).find('td').filter((idx, cell) => !$(cell).hasClass('d-none'));
+            let cells = [];
+            celdas.each((idx, celda) => cells.push(celda.innerText));
+            rows.push(tpl_row({cells}).trim());
+        });
+        let html_wbook = tpl_wbook({hoja, rows});
+        uri += base64(html_wbook);
+        let link = document.createElement('a');
+        document.body.appendChild(link);
+        link.download = hoja + ".xlsx";
+        link.href = uri;
+        link.click();
+        document.body.removeChild(link);
+    },
+    to_printer() {
+        window.print();
     }
 };
 

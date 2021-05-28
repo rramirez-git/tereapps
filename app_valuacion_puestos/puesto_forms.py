@@ -13,9 +13,7 @@ frmPuesto
 frmPuestoRead
     Formulario de Lectura
     - puesto
-    - posicion
     - estatus
-    - ponderacion_total
 """
 from django import forms
 
@@ -71,16 +69,12 @@ class frmPuestoRead(forms.ModelForm):
     - tabulador
     - ponderacion_total
     """
-    ponderacion_total = forms.DecimalField(
-        max_digits=6, decimal_places=2, required=False, initial=0.0)
 
     class Meta:
         model = Puesto
         fields = [
             'puesto',
-            'posicion',
             'estatus',
-            'tabulador',
         ]
         widgets = {
             'estatus': forms.CheckboxInput(attrs={
@@ -94,4 +88,4 @@ class frmPuestoRead(forms.ModelForm):
         }
 
     field_order = [
-        'puesto', 'estatus', 'posicion', 'tabulador', 'ponderacion_total', ]
+        'puesto', 'estatus',]

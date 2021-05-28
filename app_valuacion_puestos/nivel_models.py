@@ -53,3 +53,12 @@ class Nivel(models.Model):
             dias = ParametroVP.objects.get(parametro='DiasPorMes').valor
             self.__ponderacion_en_pesos__ = self.ponderacion * vp * dias
         return self.__ponderacion_en_pesos__
+
+    def as_dict(self):
+        return {
+            'id': self.pk,
+            'nivel_multiplicador': self.nivel_multiplicador,
+            'nivel': self.nivel,
+            'ponderacion': float(self.ponderacion),
+            'ponderacion_en_pesos': float(self.ponderacion_en_pesos),
+        }
