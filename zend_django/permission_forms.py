@@ -12,9 +12,10 @@ frmPermission
 from django import forms
 
 from django.contrib.auth.models import Permission
+from .hiperforms import HorizontalModelForm
 
 
-class frmPermission(forms.ModelForm):
+class frmPermission(HorizontalModelForm):
     """
     Formulario principal del modelo Permission
 

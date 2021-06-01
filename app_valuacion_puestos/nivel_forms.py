@@ -17,9 +17,10 @@ frmNivelRead
 from django import forms
 
 from .nivel_models import Nivel
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmNivel(forms.ModelForm):
+class frmNivel(HorizontalModelForm):
     """
     Formulario principal del modelo Nivel
 
@@ -37,7 +38,7 @@ class frmNivel(forms.ModelForm):
         ]
 
 
-class frmNivelRead(forms.ModelForm):
+class frmNivelRead(HorizontalModelForm):
     """
     Formulario para mostrar el modelo Nivel
 

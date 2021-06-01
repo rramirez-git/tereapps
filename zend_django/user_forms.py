@@ -71,11 +71,12 @@ frmUserResetPassword
     - password
 """
 from django import forms
+from .hiperforms import HorizontalModelForm, HorizontalForm
 
 from django.contrib.auth.models import User
 
 
-class frmUser(forms.ModelForm):
+class frmUser(HorizontalModelForm):
     """
     Formulario principal del modelo User
 
@@ -150,7 +151,7 @@ class frmUser(forms.ModelForm):
     ]
 
 
-class frmUserUpdate(forms.ModelForm):
+class frmUserUpdate(HorizontalModelForm):
     """
     Formulario para actualizacion de usuarios
 
@@ -216,7 +217,7 @@ class frmUserUpdate(forms.ModelForm):
     ]
 
 
-class frmUserTop(forms.ModelForm):
+class frmUserTop(HorizontalModelForm):
     """
     Formulario para desplegado en la sección Top
 
@@ -262,7 +263,7 @@ class frmUserTopMe(forms.Form):
         widget=forms.PasswordInput(attrs={'placeholder': 'Nueva Contraseña'}))
 
 
-class frmUserTopReadUpdate(forms.ModelForm):
+class frmUserTopReadUpdate(HorizontalModelForm):
     """
     Formulario para desplegado en la sección Top (Read/Update)
 
@@ -287,7 +288,7 @@ class frmUserTopReadUpdate(forms.ModelForm):
     ]
 
 
-class frmUserLeft(forms.ModelForm):
+class frmUserLeft(HorizontalModelForm):
     """
     Formulario para desplegado en la sección Left
 
@@ -329,7 +330,7 @@ class frmUserLeft(forms.ModelForm):
     ]
 
 
-class frmUserRight(forms.ModelForm):
+class frmUserRight(HorizontalModelForm):
     """
     Formulario para desplegado en la sección Right
 
@@ -366,7 +367,7 @@ class frmUserRight(forms.ModelForm):
     ]
 
 
-class frmUserBottom(forms.ModelForm):
+class frmUserBottom(HorizontalModelForm):
     """
     Formulario para desplegado en la sección Bottom
 
@@ -391,7 +392,7 @@ class frmUserBottom(forms.ModelForm):
     ]
 
 
-class frmUserResetPassword(forms.Form):
+class frmUserResetPassword(HorizontalForm):
     """
     Formulario para actualización/reseteo de contraseñas
 

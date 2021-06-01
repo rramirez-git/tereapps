@@ -14,9 +14,10 @@ frmMenuOpc
 from django import forms
 
 from .menuopc_models import MenuOpc
+from .hiperforms import HorizontalModelForm
 
 
-class frmMenuOpc(forms.ModelForm):
+class frmMenuOpc(HorizontalModelForm):
     """
     Formulario principal del modelo MenuOpc
 

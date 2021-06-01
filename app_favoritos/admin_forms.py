@@ -12,9 +12,10 @@ frmFavorito
 from django import forms
 
 from .admin_models import Favorito
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmFavorito(forms.ModelForm):
+class frmFavorito(HorizontalModelForm):
     """
     Formulario principal del modelo Favorito
 

@@ -17,9 +17,10 @@ frmParametroVP_Read
 from django import forms
 
 from .parametrovp_models import ParametroVP
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmParametroVP(forms.ModelForm):
+class frmParametroVP(HorizontalModelForm):
     """
     Formulario principal del modelo ParametroVP
 
@@ -36,7 +37,7 @@ class frmParametroVP(forms.ModelForm):
             'valor',
         ]
 
-class frmParametroVP_Read(forms.ModelForm):
+class frmParametroVP_Read(HorizontalModelForm):
     """
     Formulario principal del modelo ParametroVP
 

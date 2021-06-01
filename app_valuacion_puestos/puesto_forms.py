@@ -18,9 +18,10 @@ frmPuestoRead
 from django import forms
 
 from .puesto_models import Puesto
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmPuesto(forms.ModelForm):
+class frmPuesto(HorizontalModelForm):
     """
     Formulario principal del modelo Puesto
 
@@ -57,7 +58,7 @@ class frmPuesto(forms.ModelForm):
         'tabulador', ]
 
 
-class frmPuestoRead(forms.ModelForm):
+class frmPuestoRead(HorizontalModelForm):
     """
     Formulario para mostrar el modelo Puesto
 

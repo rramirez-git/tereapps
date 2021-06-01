@@ -41,9 +41,10 @@ frmReporteright
 from django import forms
 
 from .reporte_models import Reporte
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmReporte(forms.ModelForm):
+class frmReporte(HorizontalModelForm):
     """
     Formulario principal del modelo Reporte
 
@@ -83,7 +84,7 @@ class frmReporte(forms.ModelForm):
         ]
 
 
-class frmReporteLeft(forms.ModelForm):
+class frmReporteLeft(HorizontalModelForm):
     """
     Formulario izquierdo para el modelo Reporte
 
@@ -105,7 +106,7 @@ class frmReporteLeft(forms.ModelForm):
         ]
 
 
-class frmReporteright(forms.ModelForm):
+class frmReporteright(HorizontalModelForm):
     """
     Formulario derecho para el modelo Reporte
 

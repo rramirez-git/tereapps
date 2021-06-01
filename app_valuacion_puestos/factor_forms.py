@@ -22,18 +22,9 @@ from django import forms
 
 from .factor_models import Factor
 
-from crispy_forms import bootstrap
-from crispy_forms import bootstrap
-from crispy_forms import layout
-from crispy_forms import layout
-from crispy_forms.bootstrap import Div
-from crispy_forms.bootstrap import FormActions
-from crispy_forms.bootstrap import InlineField
-from crispy_forms.bootstrap import StrictButton
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout
+from zend_django.hiperforms import HorizontalModelForm
 
-class frmFactor(forms.ModelForm):
+class frmFactor(HorizontalModelForm):
     """
     Formulario principal del modelo Factor
 
@@ -54,7 +45,7 @@ class frmFactor(forms.ModelForm):
         ]
 
 
-class frmFactorRead(forms.ModelForm):
+class frmFactorRead(HorizontalModelForm):
     """
     Formulario para mostrar el modelo Factor
 
