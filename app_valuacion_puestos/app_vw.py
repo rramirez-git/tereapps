@@ -3,11 +3,11 @@ import json
 from django.db.models import Q
 from django.shortcuts import render
 
-from zend_django.views import GenericTereAppRootView
-from zend_django.views import GenericList
+from .models import Factor
 from .puesto_models import Puesto as main_model
 from zend_django.parametros_models import ParametroUsuario
-from .models import Factor
+from zend_django.views import GenericList
+from zend_django.views import GenericTereAppRootView
 
 
 def template_base_path(file):

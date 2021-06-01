@@ -11,17 +11,18 @@ Vistas
 """
 from django.db.models import Q
 from django.http import HttpResponseRedirect
-from django.urls import reverse
 from django.shortcuts import render
+from django.urls import reverse
 
+from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericList
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 
-from .parametrovp_forms import frmParametroVP as base_form, frmParametroVP_Read
+from .parametrovp_forms import frmParametroVP as base_form
+from .parametrovp_forms import frmParametroVP_Read
 from .parametrovp_models import ParametroVP as main_model
 
 

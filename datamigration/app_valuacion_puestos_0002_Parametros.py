@@ -1,9 +1,11 @@
-from django.contrib.auth.models import Permission
 from datetime import date
+from django.contrib.auth.models import Permission
 
 from app_valuacion_puestos.models import Factor
 from app_valuacion_puestos.models import Nivel
-from app_valuacion_puestos.models import Puesto, ParametroVP, ParametroVPHistoria
+from app_valuacion_puestos.models import ParametroVP
+from app_valuacion_puestos.models import ParametroVPHistoria
+from app_valuacion_puestos.models import Puesto
 from zend_django.models import MenuOpc
 from zend_django.models import ParametroUsuario
 from zend_django.parametros_models import PARAM_TYPES

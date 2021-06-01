@@ -1,5 +1,5 @@
-from django.contrib.auth.models import Permission
 from datetime import date
+from django.contrib.auth.models import Permission
 
 from app_valuacion_puestos.models import Tabulador
 from app_valuacion_puestos.models import TabuladorNivel

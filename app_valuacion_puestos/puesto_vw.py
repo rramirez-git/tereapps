@@ -9,11 +9,12 @@ Vistas
 - Update
 - Delete
 """
-from django.db.models import Q
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.urls import reverse
 import json
+
+from django.db.models import Q
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
 
 from zend_django.templatetags.op_helpers import crud_label
 from zend_django.templatetags.utils import GenerateReadCRUDToolbar
@@ -23,10 +24,14 @@ from zend_django.views import GenericList
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
 
+from .models import Factor
+from .models import Nivel
+from .models import Ponderacion
+from .models import Tabulador
 from .puesto_forms import frmPuesto as base_form
 from .puesto_forms import frmPuestoRead
-from .puesto_models import Puesto as main_model, PuestoEvaluacion
-from .models import Factor, Nivel, Ponderacion, Tabulador
+from .puesto_models import Puesto as main_model
+from .puesto_models import PuestoEvaluacion
 
 
 def template_base_path(file):

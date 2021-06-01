@@ -7,10 +7,11 @@ Modelos
 - PuestoEvaluacion
 """
 import decimal
+
 from django.db import models
 
-from .tabulador_models import Tabulador
 from .parametrovp_models import ParametroVP
+from .tabulador_models import Tabulador
 
 def get_next_posicion_puesto() -> int:
     max = Puesto.objects.aggregate(models.Max('posicion'))
