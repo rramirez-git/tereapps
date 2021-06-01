@@ -1,5 +1,7 @@
 from app_valuacion_puestos.models import Factor
-from app_valuacion_puestos.models import Puesto, Tabulador, Ponderacion
+from app_valuacion_puestos.models import Ponderacion
+from app_valuacion_puestos.models import Puesto
+from app_valuacion_puestos.models import Tabulador
 
 
 def migration():

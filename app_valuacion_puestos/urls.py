@@ -3,7 +3,8 @@ URL's para acceso a vista de la aplicacion app_valuacion_puestos
 
 base_path =>
 """
-from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.urls import include
 from django.urls import path
 

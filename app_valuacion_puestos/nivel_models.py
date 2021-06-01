@@ -7,8 +7,8 @@ Modelos
 - Nivel
 """
 from .factor_models import Factor
-from .puesto_models import Puesto
 from .parametrovp_models import ParametroVP
+from .puesto_models import Puesto
 from django.db import models
 
 
