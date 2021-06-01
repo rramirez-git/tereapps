@@ -141,6 +141,7 @@ class GenericRead(View):
             'forms': {'top': [{'form': form}]},
             'tereapp': self.tereapp,
             'object': obj,
+            'withoutBtnSave': True,
         })
 
 

@@ -103,6 +103,7 @@ class Read(GenericRead):
             'forms': {'top': [{'form': form}]},
             'tereapp': self.tereapp,
             'object': obj,
+            'withoutBtnSave': True,
         })
 
 

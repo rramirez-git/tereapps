@@ -2,15 +2,19 @@
 {% load op_helpers %}
 {% load humanize %}
 
-<table>
-    <tr>
-        <td class="align-middle"><h5>Niveles</h5></td>
-        <td>
-            <input type="text" class="form-control text-center" value="{{ object.cantidad_de_niveles }}" disabled="disabled" />
-        </td>
-        <td>{{ object.exponente }}</td>
-    </tr>
-</table>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="form-group row">
+            <div class="col-sm-2">Niveles</div>
+            <div class="col-sm-6">
+                <input type="text" class="form-control text-center" value="{{ object.cantidad_de_niveles }}" disabled="disabled" />
+            </div>
+            <div class="col-sm-2">
+                {{ object.exponente }}
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     let url_update = "{% url 'nivel_update' pk='__recordid__' %}";
