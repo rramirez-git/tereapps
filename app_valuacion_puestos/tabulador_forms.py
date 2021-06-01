@@ -14,9 +14,10 @@ frmTabuladorRead
 from django import forms
 
 from .tabulador_models import Tabulador
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmTabulador(forms.ModelForm):
+class frmTabulador(HorizontalModelForm):
     """
     Formulario principal del modelo Tabulador
 
@@ -32,7 +33,7 @@ class frmTabulador(forms.ModelForm):
         ]
 
 
-class frmTabuladorRead(forms.ModelForm):
+class frmTabuladorRead(HorizontalModelForm):
     """
     Formulario para mostrar el modelo Tabulador
 

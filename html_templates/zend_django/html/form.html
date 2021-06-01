@@ -65,6 +65,7 @@ forms = {
     </div>
     {% endif %}
 
+    {% if not withoutBtnSave %}
     <div class="row">
         <div class="col-sm-8">
             <button type="submit" class="btn btn-outline-secondary" id="btn-save" title="{% action_label 'save' %}">
@@ -72,6 +73,7 @@ forms = {
             </button>
         </div>
     </div>
+    {% endif %}
 </form>
 
 {% endblock %}

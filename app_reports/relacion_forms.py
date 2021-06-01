@@ -12,9 +12,10 @@ frmRelacion
 from django import forms
 
 from .reporte_models import Relacion
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmRelacion(forms.ModelForm):
+class frmRelacion(HorizontalModelForm):
     """
     Formulario principal de Relación
 

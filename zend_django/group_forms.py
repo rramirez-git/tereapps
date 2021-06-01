@@ -12,9 +12,10 @@ from django import forms
 
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmGroup(forms.ModelForm):
+class frmGroup(HorizontalModelForm):
     """
     Formulario principal del grupo
 

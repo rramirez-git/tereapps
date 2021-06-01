@@ -15,9 +15,10 @@ frmCampoReporte
 from django import forms
 
 from .reporte_models import CampoReporte
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmCampoReporte(forms.ModelForm):
+class frmCampoReporte(HorizontalModelForm):
     """
     Formulario para el modelo CampoReporte
 

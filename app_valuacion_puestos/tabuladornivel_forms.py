@@ -11,9 +11,10 @@ frmTabuladorNivel
 from django import forms
 
 from .tabuladornivel_models import TabuladorNivel
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmTabuladorNivel(forms.ModelForm):
+class frmTabuladorNivel(HorizontalModelForm):
     """
     Formulario principal del modelo TabuladorNivel
 

@@ -14,9 +14,10 @@ from django import forms
 from .dimension_models import DimensionReporte
 from .dimension_models import ValidationError
 from .dimension_models import validate_cstr_esfera_padre
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmDimensionReporte(forms.ModelForm):
+class frmDimensionReporte(HorizontalModelForm):
     """
     Formulario principal del modelo DimensionReporte
 

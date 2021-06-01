@@ -11,11 +11,12 @@ frmParametroSistema
     - tipo
 """
 from django import forms
+from .hiperforms import HorizontalModelForm
 
 from .parametros_models import ParametroSistema
 
 
-class frmParametroSistema(forms.ModelForm):
+class frmParametroSistema(HorizontalModelForm):
     """
     Formulario principal del modelo ParametroSistema
 

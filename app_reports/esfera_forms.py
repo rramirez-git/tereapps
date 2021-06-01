@@ -12,9 +12,10 @@ frmEsfera
 from django import forms
 
 from .esfera_models import Esfera
+from zend_django.hiperforms import HorizontalModelForm
 
 
-class frmEsfera(forms.ModelForm):
+class frmEsfera(HorizontalModelForm):
     """
     Formulario principal del modelo Esfera
 

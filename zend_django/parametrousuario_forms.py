@@ -13,9 +13,10 @@ frmParametroUsuario
 from django import forms
 
 from .parametros_models import ParametroUsuario
+from .hiperforms import HorizontalModelForm
 
 
-class frmParametroUsuario(forms.ModelForm):
+class frmParametroUsuario(HorizontalModelForm):
     """
     Formulario principal del modelo ParametroUsuario
 
