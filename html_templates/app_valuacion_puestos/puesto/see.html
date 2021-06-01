@@ -28,53 +28,30 @@ forms = {
 <form method="post" autocomplete="off" enctype="multipart/form-data" id="main-form" action="">
     {% csrf_token %}
 
-    {% if forms.top %}
     <div class="row">
         <div class="col-sm-8">
-            <!-- forms.Top -->
-            {% for form_obj in forms.top %}
-                {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
-                {{ form_obj.form | crispy }}
-            {% endfor %}
+            <div id="div_id_puesto" class="form-group row">
+                <label for="id_puesto" class="col-form-label col-sm-2 requiredField">
+                    Puesto <span class="asteriskField">*</span>
+                </label>
+                <div class="col-sm-8">
+                    <input type="text" name="puesto" value="{{ object.puesto }}" maxlength="200" class="textinput textInput form-control" required="" id="id_puesto" disabled="disabled" readonly="readonly" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-2 col-sm-8">
+                    <div id="div_id_estatus" class="custom-control custom-checkbox">
+                        <label for="id_estatus">
+                            Estatus
+                        </label>
+                        <input type="checkbox" name="estatus" class="action-on-reg input-reorder" id="id_estatus"
+                            data-toggle= "toggle" data-size= "xs" data-onstyle= "secondary" data-style= "ios"
+                            data-on= " " data-off= " " {% if object.estatus %}checked="checked"{% endif %} />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    {% endif %}
-
-    <div class="row">
-
-        {% if forms.left %}
-        <div class="col-sm-4">
-            <!-- forms.left -->
-            {% for form_obj in forms.left %}
-                {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
-                {{ form_obj.form | crispy }}
-            {% endfor %}
-        </div>
-        {% endif %}
-
-        {% if forms.right %}
-        <div class="col-sm-4">
-            <!-- forms.right -->
-            {% for form_obj in forms.right %}
-                {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
-                {{ form_obj.form | crispy }}
-            {% endfor %}
-        </div>
-        {% endif %}
-
-    </div>
-
-    {% if forms.bottom %}
-    <div class="row">
-        <div class="col-sm-8">
-            <!-- forms.bottom -->
-            {% for form_obj in forms.bottom %}
-                {% if form_obj.title %}<h5>{{ form_obj.title }}</h5>{% endif %}
-                {{ form_obj.form | crispy }}
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
 
 </form>
 
