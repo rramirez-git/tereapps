@@ -111,11 +111,11 @@ forms = {
                         {% if object.niveles_ponderacion.all %}
                             {% for p in object.niveles_ponderacion.all %}
                                 {% if factor.pk == p.nivel.factor.pk %}
-                                    <input data-factorid="{{ factor.pk }}" name="txt_factor_{{ factor.pk }}" id="txt_factor_{{ factor.pk }}" type="number" class="form-control" value="{{ p.nivel.nivel_multiplicador }}" min="{{ factor.min_nivel.nivel_multiplicador }}" max="{{ factor.max_nivel.nivel_multiplicador }}" onkeypress="updateCalificacion(event, $(this))" />
+                                    <input data-factorid="{{ factor.pk }}" name="txt_factor_{{ factor.pk }}" id="txt_factor_{{ factor.pk }}" type="text" class="form-control" value="{{ p.nivel.nivel_multiplicador }}" min="{{ factor.min_nivel.nivel_multiplicador }}" max="{{ factor.max_nivel.nivel_multiplicador }}" onkeypress="updateCalificacion(event, $(this))" />
                                 {% endif %}
                             {% endfor %}
                         {% else %}
-                            <input data-factorid="{{ factor.pk }}" name="txt_factor_{{ factor.pk }}" id="txt_factor_{{ factor.pk }}" type="number" class="form-control" value="{{ factor.min_nivel.nivel_multiplicador }}" min="{{ factor.min_nivel.nivel_multiplicador }}" max="{{ factor.max_nivel.nivel_multiplicador }}" onkeypress="updateCalificacion(event, $(this))" />
+                            <input data-factorid="{{ factor.pk }}" name="txt_factor_{{ factor.pk }}" id="txt_factor_{{ factor.pk }}" type="text" class="form-control" value="{{ factor.min_nivel.nivel_multiplicador }}" min="{{ factor.min_nivel.nivel_multiplicador }}" max="{{ factor.max_nivel.nivel_multiplicador }}" onkeypress="updateCalificacion(event, $(this))" />
                         {% endif %}
                     </td>
                     {% for nivel in factor.niveles.all %}
