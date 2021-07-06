@@ -8,6 +8,7 @@ Modelos
 from django.db import models
 
 from .parametrovp_models import ParametroVP
+from zend_django.models import ParametroSistema
 
 
 def get_next_posicion_factor() -> int:
@@ -48,8 +49,8 @@ class Factor(models.Model):
     @property
     def exponente(self):
         if not self.__exponente__:
-            self.__exponente__ = ParametroVP.objects.get(
-                parametro=f"Exponente{self.cantidad_de_niveles}N").valor
+            self.__exponente__ = float(ParametroSistema.get(
+                'AppValuacionPuestos', f"Exponente{self.cantidad_de_niveles}N"))
         return self.__exponente__
 
     @property

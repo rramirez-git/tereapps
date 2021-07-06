@@ -9,6 +9,7 @@ Modelos
 from .factor_models import Factor
 from .parametrovp_models import ParametroVP
 from .puesto_models import Puesto
+from zend_django.models import ParametroSistema
 from django.db import models
 
 
@@ -40,17 +41,17 @@ class Nivel(models.Model):
             if 0 >= self.nivel_multiplicador:
                 self.__ponderacion__ = 0
             elif 1 == self.nivel_multiplicador:
-                self.__ponderacion__ = self.factor.ponderacion_nivel_1
+                self.__ponderacion__ = float(self.factor.ponderacion_nivel_1)
             else:
-                self.__ponderacion__ = self.factor.ponderacion_nivel_1 * (
+                self.__ponderacion__ = float(self.factor.ponderacion_nivel_1) * (
                         self.factor.exponente ** (self.nivel_multiplicador - 1))
         return self.__ponderacion__
 
     @property
     def ponderacion_en_pesos(self) -> float:
         if not self.__ponderacion_en_pesos__:
-            vp = ParametroVP.objects.get(parametro='ValorPunto').valor
-            dias = ParametroVP.objects.get(parametro='DiasPorMes').valor
+            dias = float(ParametroSistema.get('AppValuacionPuestos', 'DiasPorMes'))
+            vp = float(ParametroVP.objects.get(parametro='ValorPunto').valor)
             self.__ponderacion_en_pesos__ = self.ponderacion * vp * dias
         return self.__ponderacion_en_pesos__
 
