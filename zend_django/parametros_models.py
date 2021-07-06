@@ -26,6 +26,7 @@ PARAM_TYPES = {
     'TEXTO_LARGO': 'TEXT',
     'IMAGEN': 'PICTURE',
     'ARCHIVO': 'FILE',
+    'DECIMAL': 'DECIMAL',
 }
 
 PARAM_TYPES_Tuples = (
@@ -34,6 +35,7 @@ PARAM_TYPES_Tuples = (
         (PARAM_TYPES['TEXTO_LARGO'], 'Texto Largo'),
         (PARAM_TYPES['IMAGEN'], 'Imagen'),
         (PARAM_TYPES['ARCHIVO'], 'Archivo'),
+        (PARAM_TYPES['DECIMAL'], 'Decimal'),
     )
 
 
