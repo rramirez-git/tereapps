@@ -121,6 +121,7 @@ class Set(View):
             for parametro in parametros:
                 if("INTEGER" == parametro.tipo
                         or "STRING" == parametro.tipo
+                        or "DECIMAL" == parametro.tipo
                         or "TEXT" == parametro.tipo):
                     valor = request.POST.get(
                         f'{parametro.seccion}_{parametro.nombre}')
