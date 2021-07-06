@@ -81,11 +81,24 @@
 
                                 {% else %}
 
-                                    <div class="form-row">
-                                        <div class="col">
-                                            {{ parametro }}: {{ parametro.tipo }}
+                                    {% if "DECIMAL" == parametro.tipo %}
+
+                                        <div class="form-row">
+                                            <div class="col form-group">
+                                                <label for="{{ parametro.seccion }}_{{ parametro.nombre }}">{{ parametro.nombre_para_mostrar }}</label>
+                                                <input type="text" class="form-control" id="{{ parametro.seccion }}_{{ parametro.nombre }}" name="{{ parametro.seccion }}_{{ parametro.nombre }}" value="{{ parametro.valor }}" />
+                                            </div>
                                         </div>
-                                    </div>
+
+                                    {% else %}
+
+                                        <div class="form-row">
+                                            <div class="col">
+                                                {{ parametro }}: {{ parametro.tipo }}
+                                            </div>
+                                        </div>
+
+                                    {% endif %}
 
                                 {% endif%}
 
