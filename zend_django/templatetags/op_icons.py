@@ -27,7 +27,8 @@ CRUD_icons = {
     'read': '<i class="far fa-eye"></i>',
     'update': '<i class="far fa-edit"></i>',
     'delete': '<i class="far fa-trash-alt"></i>',
-    'list': '<i class="fas fa-list-ul"></i>',
+    # 'list': '<i class="fas fa-list-ul"></i>',
+    'list': '<i class="fas fa-arrow-left"></i>',
 }
 
 Action_icons = {
