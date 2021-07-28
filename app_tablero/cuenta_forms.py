@@ -3,7 +3,7 @@ Formularios para modelo Cuenta
 
 Formularios
 -----------
-frmComentario
+frmCuenta
 """
 from zend_django.hiperforms import HorizontalModelForm
 
@@ -16,7 +16,7 @@ class frmCuenta(HorizontalModelForm):
     class Meta:
         model = Cuenta
         fields = [
-            'tablero',
+            # 'tablero',
             'pre_cve',
             'pre_posicion',
             'pre_cve_2',

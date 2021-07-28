@@ -1,0 +1,9 @@
+{% extends 'zend_django/html/form.html' %}
+
+{%  block extraafter %}
+
+    {% with data=object.detalle.all %}
+        {% include 'app_tablero/estadistico/list.html' %}
+    {% endwith %}
+
+{% endblock %}

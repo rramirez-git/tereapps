@@ -21,10 +21,14 @@ class Estadistico(models.Model):
     cuenta = models.ForeignKey(
         Cuenta,
         related_name='detalle',
-        on_delete=models.PROTECT)
+        on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['cuenta', '-periodo']
 
     def __str__(self):
         return f"{self.cantidad}"
+
+    def check_n_update_period(self):
+        self.periodo = get_4_month(self.periodo);
+        self.save()

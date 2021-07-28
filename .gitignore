@@ -163,3 +163,5 @@ logs
 logs/*
 passenger_wsgi.py
 tmp/*
+ftp
+ftp/*

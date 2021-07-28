@@ -218,6 +218,7 @@ class ReporteGraficaDPuesto(GenericList):
         return self.base_render(
             request, self.get_data(search_value), search_value)
 
+
 class ReporteGraficaDPuestoPesos(GenericList):
     html_template = template_base_path("gp_pesos")
     titulo = "Gráfica de Puesto"

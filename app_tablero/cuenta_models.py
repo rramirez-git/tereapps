@@ -14,7 +14,7 @@ class Cuenta(models.Model):
 
     tablero = models.ForeignKey(
         Tablero,
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
         related_name='cuentas')
 
     pre_cve = models.CharField(max_length=30)

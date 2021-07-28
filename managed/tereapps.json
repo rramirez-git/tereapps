@@ -14,5 +14,9 @@
   "mis_favoritos": {
     "mnuopc_position": 1002,
     "display_as_app": false
+  },
+  "tableros": {
+    "mnuopc_position": 2,
+    "display_as_app": true
   }
 }
