@@ -10,4 +10,5 @@ class frmTablero(HorizontalModelForm):
         fields = [
             'nombre',
             'nombre_de_archivo',
+            'cuentas_base',
         ]

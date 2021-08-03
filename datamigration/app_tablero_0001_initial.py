@@ -41,7 +41,9 @@ def migration():
 
     Tablero.objects.get_or_create(
         nombre='Elasticintas Teresita',
-        nombre_de_archivo='ET-Tablero-Contabilidad.xlsm')
+        nombre_de_archivo='ET-Tablero-Contabilidad.xlsm',
+        cuentas_base='41100,41200,40000,,50000,59000,,61100,62100,63100,64100,66100,60000,,80000')
     Tablero.objects.get_or_create(
         nombre='Genyka',
-        nombre_de_archivo='Genyka-Tablero-Contabilidad.xlsm')
+        nombre_de_archivo='Genyka-Tablero-Contabilidad.xlsm',
+        cuentas_base='40000,51100,,63000,61100,62100,63300,63400,63500,63600,63700,64100,65100')

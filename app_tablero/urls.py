@@ -29,4 +29,5 @@ urlpatterns = [
     path('tablero/', include('app_tablero.tablero_urls')),
     path('cuenta/', include('app_tablero.cuenta_urls')),
     path('estadistico/', include('app_tablero.estadistico_urls')),
+    path('estadistico-anual/', include('app_tablero.estad_anual_urls')),
 ]
