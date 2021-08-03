@@ -1,0 +1,49 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+{% load humanize %}
+
+{% block content %}
+
+    <style type="text/css">
+    tr.space {
+        height: 20px;
+    }
+    </style>
+
+    <table class="table_zd table-sm table-responsive small">
+        <thead>
+            <tr>
+                <th>Cuenta</th>
+                <th>Descripción</th>
+                {% for anio in object.anios %}
+                    <th>{{ anio }}<br/>Monto</th>
+                    {% if anio != object.primer_anio and anio != object.ultimo_anio %}
+                        <th>% Año<br />Ant</th>
+                        <th>% Venta</th>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody id="tbl_ctas">
+            {% for cta in object.cuentas_raiz %}
+                {% if cta %}
+                    <tr id="cta-{{ cta.pk }}">
+                        <td>{{ cta.cuenta }}</td>
+                        <td>{{ cta.descripcion }}</td>
+                        {% for per_anual in cta.detalle_anual.all %}
+                            <td class="text-right">{{ per_anual.cantidad|floatformat:0|intcomma }}</td>
+                            {% if per_anual.anio != object.primer_anio and per_anual.anio != object.ultimo_anio %}
+                                <td class="text-right">{{ per_anual.porc_ant}} %</td>
+                                <td class="text-right">{{ per_anual.porc_vta }} %</td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                {% else %}
+                    <tr class="space"></tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

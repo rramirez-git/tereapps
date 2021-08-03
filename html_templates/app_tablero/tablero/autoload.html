@@ -1,0 +1,77 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+{% load humanize %}
+
+{% block content %}
+
+<script type="text/javascript">
+    let url_update = "";
+    let url_delete = "";
+    let url_read = "";
+</script>
+
+<div class="btn-group d-none" role="group" aria-label="Acciones">
+    <button type="button" data-action="toggle-cols" onclick="dataGridResultsGlobals.show_toggler_cols()" class="btn btn-outline-secondary" role="button" title="Mostrar/Ocultar Columnas">
+        {% crud_icon 'read' %}
+    </button>
+</div>
+<div class="btn-group d-none" role="group" aria-label="Filtrado-Filas">
+    <button type="button" onclick="dataGridResultsGlobals.filtrar_filas()" class="btn btn-outline-secondary" role="button" title="Filtrar Filas">
+        <i class="fas fa-filter"></i>
+    </button>
+    <button type="button" onclick="dataGridResultsGlobals.restaurar_filtrado_filas()" class="btn btn-outline-secondary" role="button" title="Borrar Filtro en Filas">
+        <i class="fas fa-trash-restore"></i>
+    </button>
+</div>
+
+<table id="data-grid-report" class="table_zd table-sm table-responsive">
+    <thead>
+        <tr>
+            <th class="d-none"></th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="no" data-dgr-col-link-detail="no"
+                    data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
+                Tablero
+            </th>
+            <th data-dgr-col-sorteable="yes" data-dgr-col-hiddenable="yes" data-dgr-col-link-detail="no"
+                    data-dgr-col-filterable="yes" data-dgr-col-datatype="string">
+                Archivo Encontrado en FTP
+            </th>
+            <th class="text-center">
+                <div class="d-inline-block" title="Filtros">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" role="button" data-toggle="collapse" data-target="#filter-row" aria-expanded="false" aria-controls="filter-row">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </th>
+        </tr>
+    </thead>
+    <tbody id="data-tbl">
+        {% for reg in data %}
+            <tr data-dgr-object-id="{{ reg.pk }}">
+                <td class="text-center d-none">
+                    <!--<input type="checkbox" class="action-on-reg" data-recordid="{{ reg.pk }}" data-toggle="toggle" data-size="xs" data-onstyle="secondary" data-style="ios" data-on=" " data-off=" " />-->
+                    <input type="checkbox" class="form-check-inline massive-operations" data-dgr-object-id="{{ reg.pk }}" />
+                </td>
+                <td data-dgr-raw-sort-value="{{ reg.nombre|lower }}" data-dgr-raw-filter-value="{{ reg.nombre|lower }}">
+                    {{ reg.nombre }}
+                </td>
+                {% if reg.existe %}
+                    <td data-dgr-raw-sort-value="si" data-dgr-raw-filter-value="si">
+                        Sí
+                    </td>
+                {% else %}
+                    <td data-dgr-raw-sort-value="no" data-dgr-raw-filter-value="no">
+                        No
+                    </td>
+                {% endif %}
+                <td></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% include 'zend_django/datagridresults/handlebars_tpls.html' %}
+
+{% endblock %}
