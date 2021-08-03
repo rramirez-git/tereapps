@@ -1,4 +1,4 @@
-from os import path
+from os import path, remove
 import pandas as pd
 import re
 from datetime import datetime
@@ -69,6 +69,7 @@ class TableroProc():
             EstadisticoAnual.objects.bulk_create(
                 EstadisticoAnual(**vals) for vals in df2sgbd.to_dict('records')
             )
+        remove(self.path_arch)
         return True
 
     def get_period_cols(self, df):
