@@ -24,7 +24,6 @@ class TablerosAutoLoadView(View):
 
     def get_data(self):
         data = []
-        threads = []
         for tablero in Tablero.objects.all():
             tbl = TableroProc(tablero)
             existe = tbl.checkInFTP()
@@ -34,15 +33,7 @@ class TablerosAutoLoadView(View):
                 'nombre': tablero.nombre,
                 'existe': existe,
             })
-            pso = threading.Thread(target=psa_tablero_thr, args=(tbl,))
-            threads.append(pso)
-            pso.start()
-        wait = True
-        while wait:
-            sleep(10)
-            wait = False
-            for pso in threads:
-                wait = wait or pso.is_alive()
+            tbl.process()
         return data
 
     def get(self, request):
@@ -59,11 +50,6 @@ class TablerosAutoLoadView(View):
             'data': self.get_data(),
         })
 
-
-def psa_tablero_thr(tablero):
-    print(f"Iniciando para {tablero.tabl}")
-    tablero.process()
-    print(f"Terminando para {tablero.tabl}")
 
 class VerTablero(View):
     html_template = "app_tablero/tablero/view.html"
