@@ -8,6 +8,8 @@ from MySQLdb._exceptions import ProgrammingError
 from zend_django.models import ParametroSistema
 from .models import Tablero, Cuenta, Estadistico, EstadisticoAnual
 
+pd.options.mode.chained_assignment = None
+
 class TableroProc():
     tabl = None
     path_arch = ''
@@ -46,8 +48,8 @@ class TableroProc():
         anios = self.get_year_cols(df)
         with connection.cursor() as cursor:
             for query in [
-                    f"""DELETE FROM app_tablero_estadistico WHERE cuenta_id IN (SELECT cuenta_id FROM app_tablero_cuenta WHERE tablero_id = {self.tabl.pk});""",
-                    f"""DELETE FROM app_tablero_estadisticoanual WHERE cuenta_id IN (SELECT cuenta_id FROM app_tablero_cuenta WHERE tablero_id = {self.tabl.pk});"""]:
+                    f"""DELETE FROM app_tablero_estadistico WHERE cuenta_id IN (SELECT id FROM app_tablero_cuenta WHERE tablero_id = {self.tabl.pk});""",
+                    f"""DELETE FROM app_tablero_estadisticoanual WHERE cuenta_id IN (SELECT id FROM app_tablero_cuenta WHERE tablero_id = {self.tabl.pk});"""]:
                 cursor.execute(query);
         df = df[df[['Cuenta', 'Nivel']].notnull().all(1)]
         df = df[df['Nivel'] > 0]
