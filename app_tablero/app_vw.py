@@ -60,7 +60,6 @@ class VerTablero(View):
 
     def get(self, request, pk):
         tbl = Tablero.objects.get(pk=pk)
-        print(f'{tbl.anios}')
         return render(request, self.html_template, {
             'titulo': tbl,
             'titulo_descripcion': self.titulo_descripcion,
@@ -71,6 +70,7 @@ class VerTablero(View):
             'req_chart': False,
             'tereapp': self.tereapp,
             'object': tbl,
+            'req_chart': True,
         })
 
 

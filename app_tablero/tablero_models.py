@@ -4,6 +4,7 @@ Definición de modelos para Tableros
 from django.db import models
 from django.contrib.auth.models import Permission, ContentType
 from zend_django.models import MenuOpc
+import json
 
 
 class Tablero(models.Model):
@@ -15,6 +16,7 @@ class Tablero(models.Model):
     __root_acc_nmb = []
     __root_acc = []
     __anios = []
+    __periodos_mensuales = list()
 
     class Meta:
         ordering = ['nombre']
@@ -78,3 +80,12 @@ class Tablero(models.Model):
             if cta.cuenta == self.cuenta_ventas_netas:
                 return cta
 
+    @property
+    def periodos_mensuales(self):
+        if len(self.__periodos_mensuales) == 0:
+            self.__periodos_mensuales = [reg['periodo'].strftime('%Y-%m') for reg in self.cta_vta_neta.detalle.all().values('periodo')]
+        return self.__periodos_mensuales
+
+    @property
+    def periodos_mensuales_json(self):
+        return json.dumps(self.periodos_mensuales)
