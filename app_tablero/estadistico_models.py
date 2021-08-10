@@ -24,7 +24,7 @@ class Estadistico(models.Model):
         on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ['cuenta', '-periodo']
+        ordering = ['cuenta', 'periodo']
 
     def __str__(self):
         return f"{self.cantidad}"

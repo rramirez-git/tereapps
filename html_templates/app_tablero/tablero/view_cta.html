@@ -1,0 +1,39 @@
+{% load i18n %}
+{% load op_helpers %}
+{% load humanize %}
+{% load tablero_helpers %}
+
+<tr id="cta-{{ cta.pk }}" data-ctapadre="{{ cta_padre }}" {% if not show_cta %}class="d-none" {% endif %}
+    data-per-total="{{ cta.periodos_total_json }}" data-per-prom="{{ cta.periodos_promedio_json }}">
+    <td>
+        {% if cta.tiene_hijos %}
+            <button id="open4cta-{{ cta_padre }}-{{ cta.pk }}" onclick="open4cta({{ cta.pk }}, '{{ cta_padre }}')" data-btn-type="open" type="button" class="btn btn-outline-secondary btn-sm">
+                <i class="fas fa-angle-down"></i>
+            </button>
+            <button id="close4cta-{{ cta_padre }}-{{ cta.pk }}" onclick="close4cta({{ cta.pk }}, '{{ cta_padre }}')" data-btn-type="close" type="button" class="btn btn-outline-secondary btn-sm d-none">
+                <i class="fas fa-angle-up"></i>
+            </button>
+        {% endif %}
+    </td>
+    <td style="padding-left: {{ ancho }}px;">
+        {{ cta.cuenta }}
+    </td>
+    <td>{{ cta.descripcion }}</td>
+    {% for per_anual in cta.detalle_anual.all %}
+        <td class="text-right">{{ per_anual.cantidad|floatformat:0|intcomma }}</td>
+        {% if per_anual.anio != object.primer_anio and per_anual.anio != object.ultimo_anio %}
+            <td class="text-right">{{ per_anual.porc_ant}} %</td>
+            <td class="text-right">{{ per_anual.porc_vta }} %</td>
+        {% endif %}
+    {% endfor %}
+    <td>
+        <button onclick="graficar({{ cta.pk }},'{{ cta_padre }}')" type="button" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-chart-line"></i>
+        </button>
+    </td>
+</tr>
+{% if cta.tiene_hijos %}
+    {% for hijo in cta.cuentas_hijo %}
+        {% tablero_tr_cta cta=hijo cta_padre=new_cta_padre nivel=nivel%}
+    {% endfor %}
+{% endif %}

@@ -2,48 +2,91 @@
 {% load i18n %}
 {% load op_helpers %}
 {% load humanize %}
+{% load tablero_helpers %}
 
 {% block content %}
 
-    <style type="text/css">
-    tr.space {
-        height: 20px;
-    }
-    </style>
+<style type="text/css">
+tr.space {
+    height: 20px;
+}
+</style>
 
-    <table class="table_zd table-sm table-responsive small">
-        <thead>
-            <tr>
-                <th>Cuenta</th>
-                <th>Descripción</th>
-                {% for anio in object.anios %}
-                    <th>{{ anio }}<br/>Monto</th>
-                    {% if anio != object.primer_anio and anio != object.ultimo_anio %}
-                        <th>% Año<br />Ant</th>
-                        <th>% Venta</th>
-                    {% endif %}
-                {% endfor %}
-            </tr>
-        </thead>
-        <tbody id="tbl_ctas">
-            {% for cta in object.cuentas_raiz %}
-                {% if cta %}
-                    <tr id="cta-{{ cta.pk }}">
-                        <td>{{ cta.cuenta }}</td>
-                        <td>{{ cta.descripcion }}</td>
-                        {% for per_anual in cta.detalle_anual.all %}
-                            <td class="text-right">{{ per_anual.cantidad|floatformat:0|intcomma }}</td>
-                            {% if per_anual.anio != object.primer_anio and per_anual.anio != object.ultimo_anio %}
-                                <td class="text-right">{{ per_anual.porc_ant}} %</td>
-                                <td class="text-right">{{ per_anual.porc_vta }} %</td>
-                            {% endif %}
-                        {% endfor %}
-                    </tr>
-                {% else %}
-                    <tr class="space"></tr>
+<table class="table_zd table-sm table-responsive small">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Cuenta</th>
+            <th>Descripción</th>
+            {% for anio in object.anios %}
+                <th>{{ anio }}<br/>Monto</th>
+                {% if anio != object.primer_anio and anio != object.ultimo_anio %}
+                    <th>% Año<br />Ant</th>
+                    <th>% Venta</th>
                 {% endif %}
             {% endfor %}
-        </tbody>
-    </table>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="tbl_ctas">
+        {% for cta in object.cuentas_raiz %}
+            {% if cta %}
+                {% tablero_tr_cta cta=cta %}
+            {% else %}
+                <tr data-ctapadre="0" class="space"></tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    let open4cta = (ctaid, cta_padre) => {
+        $(`#tbl_ctas tr[data-ctapadre="${cta_padre + "-" + ctaid}"]`).removeClass('d-none');
+        $(`#open4cta-${cta_padre + "-" + ctaid}`).addClass('d-none');
+        $(`#close4cta-${cta_padre + "-" + ctaid}`).removeClass('d-none');
+    }
+    let close4cta = (ctaid, cta_padre) => {
+        $(`#tbl_ctas tr[data-ctapadre="${cta_padre + "-" + ctaid}"]`).addClass('d-none');
+        $(`#open4cta-${cta_padre + "-" + ctaid}`).removeClass('d-none');
+        $(`#close4cta-${cta_padre + "-" + ctaid}`).addClass('d-none');
+        $(`#tbl_ctas tr[data-ctapadre="${cta_padre + "-" + ctaid}"]`).each((idx, fila)=>{
+            let ctaid = fila.id.replace('cta-','')
+            close4cta(ctaid, $(fila).data('ctapadre'));
+        });
+    }
+    let periodos = {{ object.periodos_mensuales_json|safe }};
+    let graph_object = null;
+    let graficar = (ctaid, cta_padre) => {
+        let tr = $(`#cta-${ctaid}[data-ctapadre="${cta_padre}"]`);
+        let totales = tr.data('per-total').map(dato => parseInt(dato));
+        let promedios = tr.data('per-prom').map(dato => parseInt(dato));
+        if(graph_object) {
+            graph_object.destroy();
+            $("#tr_canvas").remove();
+        }
+        $(`<tr id="tr_canvas"><td colspan="3"></td><td colspan="${tr.find('td').length - 3}"><canvas id="data-graph-cta"></canvas></td>`).insertAfter(tr);
+        let context = document.getElementById('data-graph-cta').getContext('2d');
+        graph_object = new Chart(context, {
+            "type": "line",
+            "data": {
+                "options": {"scales": {"yAxes": [{"ticks": {"beginAtZero": true}}]}},
+                "labels": periodos,
+                "datasets": [{
+                    "label": "Promedio",
+                    "data": promedios,
+                    "fill": false,
+                    "borderColor": 'rgb(255, 99, 132)',
+                    "backgroundColor": 'rgb(255, 99, 132)'
+                }, {
+                    "label": "Real",
+                    "data": totales,
+                    "fill": false,
+                    "borderColor": 'rgb(75, 192, 192)',
+                    "backgroundColor": 'rgb(75, 192, 192)'
+                }]
+            }
+        });
+    }
+</script>
 
 {% endblock %}
