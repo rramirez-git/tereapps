@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
     'crispy_forms',
     'django.contrib.humanize',
+    'django_extensions',
 
     'zend_django',
     'app_reports',
@@ -152,8 +153,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 if DEBUG is False:
     STATIC_ROOT = os.path.join('/home/#USER#/public_html/', 'static/')
     MEDIA_ROOT = os.path.join('/home/#USER#/public_html/', 'media/')
@@ -161,3 +160,9 @@ if DEBUG is False:
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'files/static')
     MEDIA_ROOT = os.path.join(BASE_DIR, 'files/media')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
+DATABASE_NAME = 'tereapps'
