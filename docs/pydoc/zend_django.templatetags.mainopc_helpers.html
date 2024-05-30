@@ -8,7 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="zend_django.html"><font color="#ffffff">zend_django</font></a>.<a href="zend_django.templatetags.html"><font color="#ffffff">templatetags</font></a>.mainopc_helpers</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cdjango_apps%5Cdjango_main_apps%5Czend_django%5Ctemplatetags%5Cmainopc_helpers.py">c:\django_apps\django_main_apps\zend_django\templatetags\mainopc_helpers.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/rramirez/imgx/tereapps/zend_django/templatetags/mainopc_helpers.py">/home/rramirez/imgx/tereapps/zend_django/templatetags/mainopc_helpers.py</a></font></td></tr></table>
     <p><tt>Funciones&nbsp;de&nbsp;ayuda&nbsp;para&nbsp;la&nbsp;generación,&nbsp;automaticación&nbsp;y&nbsp;correcta&nbsp;ejecución<br>
 del&nbsp;menú&nbsp;principal&nbsp;y&nbsp;sus&nbsp;opciones<br>
 &nbsp;<br>
@@ -20,15 +20,35 @@ Cargar&nbsp;con&nbsp;{%&nbsp;load&nbsp;mainopc_helpers&nbsp;%}</tt></p>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
     
 <tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="django.template.html">django.template</a><br>
-</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="django.template.html">django.template</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#eeaa77">
 <td colspan=3 valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
     
 <tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
-<td width="100%"><dl><dt><a name="-main_menu"><strong>main_menu</strong></a>(context, opciones=None, nivel=0, user_id=0)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;main_menu&nbsp;opciones&nbsp;nivel&nbsp;user_id&nbsp;%}<br>
+<td width="100%"><dl><dt><a name="-getMnuOpc4TereApp"><strong>getMnuOpc4TereApp</strong></a>(tereapp)</dt></dl>
+ <dl><dt><a name="-get_hidden_tereapps"><strong>get_hidden_tereapps</strong></a>(context, user_id=0)</dt></dl>
+ <dl><dt><a name="-get_tereapp_name"><strong>get_tereapp_name</strong></a>(tereapp=None)</dt></dl>
+ <dl><dt><a name="-get_tereapps"><strong>get_tereapps</strong></a>(context, user_id=0)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;get_tereapps&nbsp;%}<br>
+Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;generar&nbsp;el&nbsp;menú&nbsp;de&nbsp;TereApps&nbsp;con&nbsp;base&nbsp;en&nbsp;las<br>
+opciones&nbsp;de&nbsp;permisos&nbsp;en&nbsp;el&nbsp;menú&nbsp;principal<br>
+Las&nbsp;opciones&nbsp;del&nbsp;menú&nbsp;en&nbsp;nivel&nbsp;1&nbsp;son&nbsp;las&nbsp;TereApps<br>
+&nbsp;<br>
+Parameters<br>
+----------<br>
+context&nbsp;:&nbsp;ContextRequest<br>
+user_id&nbsp;:&nbsp;int&nbsp;[0]&nbsp;User.pk<br>
+&nbsp;<br>
+Returns<br>
+-------<br>
+dict<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tereapps':&nbsp;array_like&nbsp;MenuOpc&nbsp;de&nbsp;nivel&nbsp;1&nbsp;correspondientes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;las&nbsp;TereApps</tt></dd></dl>
+ <dl><dt><a name="-main_menu"><strong>main_menu</strong></a>(context, opciones=None, nivel=0, user_id=0, tereapp=None)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;main_menu&nbsp;opciones&nbsp;nivel&nbsp;user_id&nbsp;%}<br>
 Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;generar&nbsp;el&nbsp;menú&nbsp;principal&nbsp;en&nbsp;la&nbsp;barra&nbsp;superior<br>
 &nbsp;<br>
 Parameters<br>
@@ -37,6 +57,7 @@ context&nbsp;:&nbsp;ContextRequest<br>
 opciones&nbsp;:&nbsp;array_like&nbsp;MenuOpc<br>
 nivel&nbsp;:&nbsp;int&nbsp;[0]<br>
 user_id&nbsp;:&nbsp;int&nbsp;[0]&nbsp;User.pk<br>
+tereapp:&nbsp;string<br>
 &nbsp;<br>
 Returns<br>
 -------<br>
@@ -44,7 +65,8 @@ dict<br>
 &nbsp;&nbsp;&nbsp;&nbsp;Diccionario&nbsp;con&nbsp;las&nbsp;claves<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'nivel':&nbsp;int<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'opciones':&nbsp;array_like&nbsp;MenuOpc<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'user_id':&nbsp;int</tt></dd></dl>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'user_id':&nbsp;int<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'tereapp'</tt></dd></dl>
  <dl><dt><a name="-print_menu_opc_adm"><strong>print_menu_opc_adm</strong></a>(context, perms, opcion, nivel=-1)</dt><dd><tt>Inclusion&nbsp;tag:&nbsp;{%&nbsp;print_menu_opc_adm&nbsp;perms&nbsp;opcion&nbsp;nivel&nbsp;%}<br>
 Genera&nbsp;las&nbsp;etiquetas&nbsp;para&nbsp;generar&nbsp;el&nbsp;árbol&nbsp;de&nbsp;permisos&nbsp;con&nbsp;sangrias<br>
 &nbsp;<br>
