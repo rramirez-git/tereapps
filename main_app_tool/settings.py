@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'app_favoritos',
     'app_valuacion_puestos',
     'app_tablero',
+    'app_catalogo_lista_imagenes',
 ]
 
 MIDDLEWARE = [
