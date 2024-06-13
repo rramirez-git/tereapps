@@ -1,0 +1,41 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block content %}
+
+<div class="btn-group dropleft float-right mb-3">
+    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <i class="far fa-list-alt"></i> Mis Listas
+    </button>
+    <div class="dropdown-menu">
+        {% for lista in user.listas_catalogo.all %}
+            <a class="dropdown-item" href="{% url 'listacatalogo_display_detail' pk=lista.pk %}">{{ lista }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row row-cols-sm-4">
+    {% for catalogo in object.catalogos.all %}
+    <div class="col mb-4">
+        <div class="card h-100">
+            {% if 'image' in catalogo.items.all.0.mimetype %}
+                <img src="{{ catalogo.items.all.0.url_thumbnail }}" class="card-img-top" alt="{{ catalogo }}" />
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">
+                    <a href="{% url 'catalogoremotoconfiguracion_display_detail' pk=catalogo.pk %}" class="btn btn-outline-secondary float-right">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    {{ catalogo }}
+                </h5>
+                <p class="card-text">{{ catalogo.items.all|length }} elementos.</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

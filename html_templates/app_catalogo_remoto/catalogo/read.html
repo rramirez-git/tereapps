@@ -1,0 +1,38 @@
+{% extends "zend_django/html/form.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block extrabefore %}
+{% endblock %}
+
+{% block extraafter %}
+
+<h1>Catalogos sincronizados</h1>
+
+<div class="row">
+    {% for catalogo in object.catalogos.all %}
+    <div class="col-sm-4 p-1">
+        <div class="d-flex justify-content-between align-items-center p-1 rounded border border-secondary">
+            {{ catalogo }}
+            <span class="badge badge-primary badge-pill">
+                {{ catalogo.items.all|length }}
+            </span>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script type="text/javascript">
+    window.addEventListener('load', () => {
+        setSyncMsg();
+    });
+</script>
+
+<script type="text/x-handlebars-template" id="sync-msg-panel-content">
+    <p>
+        Sincronizando catálogo, por favor permanezca en esta página
+        hasta concluir la sincornización.
+    </p>
+</script>
+
+{% endblock %}

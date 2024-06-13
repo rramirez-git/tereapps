@@ -1,0 +1,67 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block content %}
+
+<button
+    type="button" class="btn btn-outline-secondary" title="Eliminar esta lista"
+    onclick="App.showDeletingConfirmation('{% url 'listacatalogo_remove_list' pk=object.pk %}', 'lista {{ object }}', 'la')">
+    <i class="far fa-trash-alt"></i> Eliminar esta lista
+</button>
+
+<div class="btn-group dropleft float-right mb-3">
+    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+        <i class="far fa-list-alt"></i> Mis Listas
+    </button>
+    <div class="dropdown-menu">
+        {% for lista in user.listas_catalogo.all %}
+            <a class="dropdown-item" href="{% url 'listacatalogo_display_detail' pk=lista.pk %}">{{ lista }}</a>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="row row-cols-sm-5">
+    {% for item in object.items.all %}
+    <div class="col mb-4">
+        <div class="card h-100 catalog-item" ondblclick="openImgItemPanel({{ item.pk }}, '{{ item }}')">
+            {% if 'image' in item.item.mimetype %}
+                <img id="thumbail-{{ item.pk }}" data-id-item="item-{{ item.pk }}" src="{{ item.item.url_thumbnail }}" class="card-img-top" alt="{{ item.item }}" />
+            {% else %}
+                <a href="{{ item.item.url }}" download="{{ item.item.as_filename }}" target="_blank" class="m-3">
+                    {{ item }}
+                </a>
+            {% endif %}
+            <div class="card-body">
+                <button onclick="openDeleteItemFromCatalogListPanel({{ item.pk }})" type="button" class="btn btn-outline-secondary float-right" title="Eliminar de la lista">
+                    <i class="fas fa-minus-circle"></i>
+                </button>
+                {{ item }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="d-none" id="images-loader-content">
+    {% for item in object.items.all %}
+        {% if 'image' in item.item.mimetype %}
+            <img id="item-{{ item.pk }}" src="{{ item.item.url }}" alt="{{ item.item }}" class="img-fluid m-auto d-block" />
+        {% endif %}
+    {% endfor %}
+</div>
+
+<script type="text/x-handlebars-template" id="remove-from-list-panel-content">
+    <form method="post" action="{% url 'listacatalogo_remove_item' pk=object.pk %}">
+        {% csrf_token %}
+        <input type="hidden" name="item" {% verbatim %}value="{{item}}"{% endverbatim %} />
+        <p>¿Desea eliminar el elemento de la lista?</p>
+        <button type="submit" class="btn btn-outline-secondary" id="btn-remove" title="Eliminar">
+            <i class="far fa-trash-alt"></i> Eliminar
+        </button>
+    </form>
+</script>
+
+{% endblock %}
