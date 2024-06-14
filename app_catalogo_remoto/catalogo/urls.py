@@ -53,6 +53,15 @@ urlpatterns = [
         name=f"{obj}_display"),
     path(f'detalle/<pk>/', login_required()(views.DisplayItems.as_view()),
         name=f"{obj}_display_detail"),
+    path('eliminar-item/<pk>/', permission_required(
+        f'{app_label}.delete_{obj}')(views.DeleteItem.as_view()),
+        name=f"{obj}_delete_item"),
+    path('eliminar-catalogo/<pk>/', permission_required(
+        f'{app_label}.delete_{obj}')(views.DeleteCatalogo.as_view()),
+        name=f"{obj}_delete_catalogo"),
+    path('catalogo/<pk>/', permission_required(
+        f'{app_label}.view_{obj}')(views.ReadCatalogo.as_view()),
+        name=f"{obj}_read_catalogo"),
 ] + [
     path(f'mostrar/{crc.pk}/', permission_required(
         f'{app_label}.view_{obj}_{crc.pk}')(views.Display.as_view()),

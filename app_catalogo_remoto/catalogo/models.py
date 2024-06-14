@@ -13,7 +13,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
-from zend_django.models import MenuOpc
+from zend_django.models import MenuOpc, ParametroUsuario
+from zend_django.parametros_models import PARAM_TYPES
 
 
 class CatalogoRemotoConfiguracion(models.Model):
@@ -62,6 +63,7 @@ class CatalogoRemotoConfiguracion(models.Model):
         perm.name = f'Ver Catalogo Remoto {self.nombre}'
         perm.save()
         mnu_opc.permisos_requeridos.add(perm)
+
         return res
 
     def delete(self, *args, **kwars):
@@ -96,7 +98,7 @@ class CatalogoRemoto(models.Model):
     """
     Modelo del Catalogo Remoto
     """
-    nombre = models.TextField(max_length=250)
+    nombre = models.CharField(max_length=250)
     url_listado_raiz = models.URLField(max_length=500)
     configuracion = models.ForeignKey(
         CatalogoRemotoConfiguracion, on_delete=models.CASCADE,
@@ -107,6 +109,29 @@ class CatalogoRemoto(models.Model):
 
     def __str__(self) -> str:
         return f"{self.nombre}"
+
+    def create_parametro_usuario(self):
+        if self.pk:
+            return ParametroUsuario.objects.get_or_create(
+                seccion='basic_search', nombre=f'catalogoremoto_{self.pk}',
+                tipo=PARAM_TYPES['CADENA'], es_multiple=False)[0]
+
+    def delete_parametro_usuario(self):
+        if self.pk:
+            return ParametroUsuario.objects.get_or_create(
+                seccion='basic_search', nombre=f'catalogoremoto_{self.pk}',
+                tipo=PARAM_TYPES['CADENA'], es_multiple=False)[0].delete()
+
+
+    def save(self, *args, **kwars):
+        res = super().save(*args, **kwars)
+        self.create_parametro_usuario()
+        return res
+
+    def delete(self, *args, **kwars):
+        self.delete_parametro_usuario()
+        res = super().delete(*args, **kwars)
+        return res
 
 class Item(models.Model):
     """

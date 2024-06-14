@@ -18,7 +18,7 @@
 <div class="clearfix"></div>
 
 <div class="row row-cols-sm-{{ object.configuracion.elementos_por_fila }}">
-    {% for item in object.items.all %}
+    {% for item in items %}
         <div class="col mb-4">
             <div class="card h-100 catalog-item" ondblclick="openImgItemPanel({{ item.pk }}, '{{ item }}')">
                 {% if 'image' in item.mimetype %}
@@ -40,7 +40,7 @@
 </div>
 
 <div class="d-none" id="images-loader-content">
-    {% for item in object.items.all %}
+    {% for item in items %}
         {% if 'image' in item.mimetype %}
             <img id="item-{{ item.pk }}" src="{{ item.url }}" alt="{{ item }}" class="img-fluid m-auto d-block" />
         {% endif %}

@@ -1,0 +1,36 @@
+{% extends "zend_django/html/form.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block extraafter %}
+
+<h3>Elementos del Catálogo</h3>
+
+<table id="items_catalogo" class="table_zd table-sm table-responsive">
+    <thead>
+        <tr>
+            <th>Item</th>
+            <th>URL</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in object.items.all %}
+            <tr>
+                <td>{{ item }}</td>
+                <td>
+                    <a href="{{ item.url }}" target="_blank">
+                        {{ item.url }}
+                    </a>
+                </td>
+                <td>
+                    <button onclick="App.showDeletingConfirmation(`{% url 'catalogoremotoconfiguracion_delete_item' pk=item.pk %}`)" type="button" class="btn btn-outline-secondary" title="Eliminar Elemento">
+                        {% crud_icon 'delete' %}
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

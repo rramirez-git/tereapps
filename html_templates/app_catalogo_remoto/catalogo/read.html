@@ -13,10 +13,20 @@
     {% for catalogo in object.catalogos.all %}
     <div class="col-sm-4 p-1">
         <div class="d-flex justify-content-between align-items-center p-1 rounded border border-secondary">
-            {{ catalogo }}
-            <span class="badge badge-primary badge-pill">
-                {{ catalogo.items.all|length }}
-            </span>
+            <div class="d-inline">
+                <span class="badge badge-primary badge-pill">
+                    {{ catalogo.items.all|length }}
+                </span>
+                {{ catalogo }}
+            </div>
+            <div class="btn-group" role="group" aria-label="btns-catalogo-{{ catalogo.pk }}">
+                <a class="btn btn-outline-secondary" href="{% url 'catalogoremotoconfiguracion_read_catalogo' pk=catalogo.pk %}" title="Ver detalle del Catalogo">
+                    {% crud_icon 'read' %}
+                </a>
+                <button onclick="App.showDeletingConfirmation(`{% url 'catalogoremotoconfiguracion_delete_catalogo' pk=catalogo.pk %}`)" type="button" class="btn btn-outline-secondary" title="Eliminar Catalogo">
+                    {% crud_icon 'delete' %}
+                </button>
+            </div>
         </div>
     </div>
     {% endfor %}
