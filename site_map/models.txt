@@ -1,0 +1,565 @@
+admin.LogEntry
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        action_time - DateTimeField, datetime(6)
+        user - ForeignKey, integer
+        content_type - ForeignKey, integer
+        object_id - TextField, longtext
+        object_repr - CharField, varchar(200)
+        action_flag - PositiveSmallIntegerField, smallint UNSIGNED
+        change_message - TextField, longtext
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_action_flag_display(self, *, field=<django.db.models.fields.PositiveSmallIntegerField: action_flag>)
+        get_admin_url(self)
+        get_change_message(self)
+        get_constraints(self)
+        get_edited_object(self)
+        get_next_by_action_time(self, *, field=<django.db.models.fields.DateTimeField: action_time>, is_next=True, **kwargs)
+        get_previous_by_action_time(self, *, field=<django.db.models.fields.DateTimeField: action_time>, is_next=False, **kwargs)
+        is_addition(self)
+        is_change(self)
+        is_deletion(self)
+        validate_constraints(self, exclude=None)
+
+app_favoritos.Favorito
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        usuario - ForeignKey, integer
+        etiqueta - CharField, varchar(300)
+        url - URLField, varchar(500)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_reports.CampoReporte
+    Fields:
+        relacion_izquierda - ManyToOneRel, integer
+        relacion_derecha - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        campo - CharField, varchar(100)
+        posicion - SmallIntegerField, smallint
+        reporte - ForeignKey, integer
+        tipo - CharField, varchar(20)
+        valor_default - CharField, varchar(100)
+        mostrar - BooleanField, bool
+        es_llave - BooleanField, bool
+    Methods (non-private/internal):
+        actualizar_bd(self)
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        crear_nuevo_bd(self)
+        eliminar_bd(self)
+        get_constraints(self)
+        get_tipo_display(self, *, field=<django.db.models.fields.CharField: tipo>)
+        validate_constraints(self, exclude=None)
+
+app_reports.DimensionReporte
+    Fields:
+        subdimensiones - ManyToOneRel, integer
+        reportes - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        dimension - CharField, varchar(100)
+        esfera - ForeignKey, integer
+        padre - ForeignKey, integer
+    Methods (non-private/internal):
+        accesible_by(self, user)
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_reports.Esfera
+    Fields:
+        reportes - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        nombre - CharField, varchar(100)
+        sigla - CharField, varchar(100)
+        icono - ImageField, varchar(100)
+    Methods (non-private/internal):
+        accesible_by(self, user)
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_reports.Relacion
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        campo_izquierda - ForeignKey, integer
+        tipo - CharField, varchar(20)
+        campo_derecha - ForeignKey, integer
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        get_tipo_display(self, *, field=<django.db.models.fields.CharField: tipo>)
+        validate_constraints(self, exclude=None)
+
+app_reports.Reporte
+    Fields:
+        campos - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        nombre - CharField, varchar(100)
+        dimension - ForeignKey, integer
+        frecuencia - CharField, varchar(20)
+        responsable - ForeignKey, integer
+        delimiter - CharField, varchar(5)
+        doublequote - BooleanField, bool
+        escapechar - CharField, varchar(5)
+        lineterminator - CharField, varchar(5)
+        quotechar - CharField, varchar(5)
+        quoting - CharField, varchar(20)
+        skipinitialspace - BooleanField, bool
+        strict - BooleanField, bool
+        primer_linea_con_encabezados - BooleanField, bool
+    Methods (non-private/internal):
+        accesible_by(self, user)
+        adelete(self, using=None, keep_parents=False)
+        admin_permisos(self)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        cols2Select(self)
+        crear_tabla(self)
+        doSimpleSelect(self, dt)
+        eliminar_permisos(self)
+        eliminar_tabla(self)
+        get_constraints(self)
+        get_fechas(self)
+        get_frecuencia_display(self, *, field=<django.db.models.fields.CharField: frecuencia>)
+        get_quoting_display(self, *, field=<django.db.models.fields.CharField: quoting>)
+        replace_secuence_caracter(cadena)
+        validate_constraints(self, exclude=None)
+
+app_tablero.Comentario
+    Fields:
+        respuestas - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        comentario - TextField, longtext
+        creado - DateTimeField, datetime(6)
+        actualizado - DateTimeField, datetime(6)
+        objeto - CharField, varchar(20)
+        objeto_tipo - CharField, varchar(20)
+        usuario - ForeignKey, integer
+        en_respuesta_a - ForeignKey, integer
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        get_next_by_actualizado(self, *, field=<django.db.models.fields.DateTimeField: actualizado>, is_next=True, **kwargs)
+        get_next_by_creado(self, *, field=<django.db.models.fields.DateTimeField: creado>, is_next=True, **kwargs)
+        get_previous_by_actualizado(self, *, field=<django.db.models.fields.DateTimeField: actualizado>, is_next=False, **kwargs)
+        get_previous_by_creado(self, *, field=<django.db.models.fields.DateTimeField: creado>, is_next=False, **kwargs)
+        validate_constraints(self, exclude=None)
+
+app_tablero.Cuenta
+    Fields:
+        detalle - ManyToOneRel, integer
+        detalle_anual - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        nivel - PositiveSmallIntegerField, smallint UNSIGNED
+        entidad - CharField, varchar(2)
+        cuenta - CharField, varchar(10)
+        descripcion - CharField, varchar(50)
+        formato - CharField, varchar(10)
+        tablero - ForeignKey, integer
+        pre_cve - CharField, varchar(30)
+        pre_posicion - PositiveSmallIntegerField, smallint UNSIGNED
+        pre_cve_2 - CharField, varchar(30)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_tablero.Estadistico
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        periodo - DateField, date
+        cantidad - DecimalField, numeric(12, 2)
+        cuenta - ForeignKey, integer
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        check_n_update_period(self)
+        get_constraints(self)
+        get_next_by_periodo(self, *, field=<django.db.models.fields.DateField: periodo>, is_next=True, **kwargs)
+        get_previous_by_periodo(self, *, field=<django.db.models.fields.DateField: periodo>, is_next=False, **kwargs)
+        validate_constraints(self, exclude=None)
+
+app_tablero.EstadisticoAnual
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        anio - PositiveSmallIntegerField, smallint UNSIGNED
+        cantidad - DecimalField, numeric(12, 2)
+        cuenta - ForeignKey, integer
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_tablero.Tablero
+    Fields:
+        cuentas - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        nombre - CharField, varchar(50)
+        nombre_de_archivo - CharField, varchar(50)
+        cuentas_base - CharField, varchar(200)
+        cuenta_ventas_netas - CharField, varchar(10)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        displayable2user(self, user)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.Factor
+    Fields:
+        niveles - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        factor - CharField, varchar(200)
+        posicion - PositiveSmallIntegerField, smallint UNSIGNED
+        ponderacion_nivel_1 - DecimalField, numeric(6, 2)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        as_dict(self)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.Nivel
+    Fields:
+        puestos_ponderacion - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        nivel_multiplicador - PositiveSmallIntegerField, smallint UNSIGNED
+        nivel - CharField, varchar(200)
+        factor - ForeignKey, integer
+        puestos - ManyToManyField, TypeError (db_type)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        as_dict(self)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.ParametroVP
+    Fields:
+        historia - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        parametro - CharField, varchar(200)
+        valor - DecimalField, numeric(8, 5)
+        fecha - DateField, date
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        get_next_by_fecha(self, *, field=<django.db.models.fields.DateField: fecha>, is_next=True, **kwargs)
+        get_previous_by_fecha(self, *, field=<django.db.models.fields.DateField: fecha>, is_next=False, **kwargs)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.ParametroVPHistoria
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        raiz - ForeignKey, integer
+        parametro - CharField, varchar(200)
+        valor - DecimalField, numeric(8, 5)
+        fecha - DateField, date
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        get_next_by_fecha(self, *, field=<django.db.models.fields.DateField: fecha>, is_next=True, **kwargs)
+        get_previous_by_fecha(self, *, field=<django.db.models.fields.DateField: fecha>, is_next=False, **kwargs)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.Ponderacion
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        puesto - ForeignKey, integer
+        nivel - ForeignKey, integer
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.Puesto
+    Fields:
+        evaluaciones - ManyToOneRel, integer
+        nivel - ManyToManyRel, TypeError (db_type)
+        niveles_ponderacion - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        puesto - CharField, varchar(200)
+        posicion - PositiveSmallIntegerField, smallint UNSIGNED
+        estatus - BooleanField, bool
+        tabulador - ForeignKey, integer
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.PuestoEvaluacion
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        puesto - ForeignKey, integer
+        created - DateTimeField, datetime(6)
+        updated - DateTimeField, datetime(6)
+        data - TextField, longtext
+        nombre - CharField, varchar(200)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        get_next_by_created(self, *, field=<django.db.models.fields.DateTimeField: created>, is_next=True, **kwargs)
+        get_next_by_updated(self, *, field=<django.db.models.fields.DateTimeField: updated>, is_next=True, **kwargs)
+        get_previous_by_created(self, *, field=<django.db.models.fields.DateTimeField: created>, is_next=False, **kwargs)
+        get_previous_by_updated(self, *, field=<django.db.models.fields.DateTimeField: updated>, is_next=False, **kwargs)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.Tabulador
+    Fields:
+        niveles - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        tabulador - CharField, varchar(200)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+app_valuacion_puestos.TabuladorNivel
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        posicion - PositiveSmallIntegerField, smallint UNSIGNED
+        porcentaje - DecimalField, numeric(6, 2)
+        tabulador - ForeignKey, integer
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+auth.Group
+    Fields:
+        user - ManyToManyRel, TypeError (db_type)
+        id - AutoField, integer AUTO_INCREMENT
+        name - CharField, varchar(150)
+        permissions - ManyToManyField, TypeError (db_type)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        natural_key(self)
+        validate_constraints(self, exclude=None)
+
+auth.Permission
+    Fields:
+        group - ManyToManyRel, TypeError (db_type)
+        user - ManyToManyRel, TypeError (db_type)
+        opc_menu - ManyToManyRel, TypeError (db_type)
+        id - AutoField, integer AUTO_INCREMENT
+        name - CharField, varchar(255)
+        content_type - ForeignKey, integer
+        codename - CharField, varchar(100)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        natural_key(self)
+        validate_constraints(self, exclude=None)
+
+auth.User
+    Fields:
+        logentry - ManyToOneRel, integer
+        profile - OneToOneRel, integer
+        mis_favoritos - ManyToOneRel, integer
+        comentarios - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        password - CharField, varchar(128)
+        last_login - DateTimeField, datetime(6)
+        is_superuser - BooleanField, bool
+        username - CharField, varchar(150)
+        first_name - CharField, varchar(150)
+        last_name - CharField, varchar(150)
+        email - EmailField, varchar(254)
+        is_staff - BooleanField, bool
+        is_active - BooleanField, bool
+        date_joined - DateTimeField, datetime(6)
+        groups - ManyToManyField, TypeError (db_type)
+        user_permissions - ManyToManyField, TypeError (db_type)
+    Methods (non-private/internal):
+        acheck_password(self, raw_password)
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        check_password(self, raw_password)
+        email_user(self, subject, message, from_email=None, **kwargs)
+        get_all_permissions(self, obj=None)
+        get_constraints(self)
+        get_email_field_name()
+        get_full_name(self)
+        get_group_permissions(self, obj=None)
+        get_next_by_date_joined(self, *, field=<django.db.models.fields.DateTimeField: date_joined>, is_next=True, **kwargs)
+        get_previous_by_date_joined(self, *, field=<django.db.models.fields.DateTimeField: date_joined>, is_next=False, **kwargs)
+        get_session_auth_fallback_hash(self)
+        get_session_auth_hash(self)
+        get_short_name(self)
+        get_user_permissions(self, obj=None)
+        get_username(self)
+        has_module_perms(self, app_label)
+        has_perm(self, perm, obj=None)
+        has_perms(self, perm_list, obj=None)
+        has_usable_password(self)
+        natural_key(self)
+        normalize_username(username)
+        set_password(self, raw_password)
+        set_unusable_password(self)
+        username_validator(value)
+        validate_constraints(self, exclude=None)
+
+contenttypes.ContentType
+    Fields:
+        logentry - ManyToOneRel, integer
+        permission - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        app_label - CharField, varchar(100)
+        model - CharField, varchar(100)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_all_objects_for_this_type(self, **kwargs)
+        get_constraints(self)
+        get_object_for_this_type(self, **kwargs)
+        model_class(self)
+        natural_key(self)
+        validate_constraints(self, exclude=None)
+
+sessions.Session
+    Fields:
+        session_key - CharField, varchar(40)
+        session_data - TextField, longtext
+        expire_date - DateTimeField, datetime(6)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        get_decoded(self)
+        get_next_by_expire_date(self, *, field=<django.db.models.fields.DateTimeField: expire_date>, is_next=True, **kwargs)
+        get_previous_by_expire_date(self, *, field=<django.db.models.fields.DateTimeField: expire_date>, is_next=False, **kwargs)
+        get_session_store_class()
+        validate_constraints(self, exclude=None)
+
+zend_django.MenuOpc
+    Fields:
+        hijos - ManyToOneRel, integer
+        id - AutoField, integer AUTO_INCREMENT
+        nombre - CharField, varchar(50)
+        vista - CharField, varchar(50)
+        posicion - PositiveSmallIntegerField, smallint UNSIGNED
+        padre - ForeignKey, integer
+        permisos_requeridos - ManyToManyField, TypeError (db_type)
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        get_vista_url(self)
+        user_has_option(self, user)
+        validate_constraints(self, exclude=None)
+
+zend_django.ParametroSistema
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        seccion - CharField, varchar(100)
+        nombre - CharField, varchar(100)
+        nombre_para_mostrar - CharField, varchar(100)
+        valor - TextField, longtext
+        tipo - CharField, varchar(20)
+        es_multiple - BooleanField, bool
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get(seccion, nombre)
+        get_constraints(self)
+        get_tipo_display(self, *, field=<django.db.models.fields.CharField: tipo>)
+        validate_constraints(self, exclude=None)
+
+zend_django.ParametroUsuario
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        seccion - CharField, varchar(100)
+        nombre - CharField, varchar(100)
+        valor_default - TextField, longtext
+        tipo - CharField, varchar(20)
+        es_multiple - BooleanField, bool
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        get_default(seccion, nombre)
+        get_tipo_display(self, *, field=<django.db.models.fields.CharField: tipo>)
+        get_valor(usuario, seccion, nombre)
+        set_valor(usuario, seccion, nombre, valor)
+        validate_constraints(self, exclude=None)
+
+zend_django.ParametroUsuarioValor
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        user - ForeignKey, integer
+        parametro - ForeignKey, integer
+        valor - TextField, longtext
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get(seccion, nombre, username)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+zend_django.UserProfile
+    Fields:
+        id - AutoField, integer AUTO_INCREMENT
+        apellido_materno - CharField, varchar(50)
+        telefono - CharField, varchar(10)
+        celular - CharField, varchar(10)
+        whatsapp - CharField, varchar(10)
+        user - OneToOneField, integer
+    Methods (non-private/internal):
+        adelete(self, using=None, keep_parents=False)
+        arefresh_from_db(self, using=None, fields=None)
+        asave(self, force_insert=False, force_update=False, using=None, update_fields=None)
+        get_constraints(self)
+        validate_constraints(self, exclude=None)
+
+Total Models Listed: 31

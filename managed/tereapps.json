@@ -18,5 +18,9 @@
   "tableros": {
     "mnuopc_position": 2,
     "display_as_app": true
+  },
+  "catalogo_remoto": {
+    "mnuopc_position": 3,
+    "display_as_app": true
   }
 }

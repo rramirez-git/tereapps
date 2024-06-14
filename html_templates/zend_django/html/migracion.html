@@ -21,7 +21,7 @@
             {% elif migracion.result == 'previo' %}
                 Aplicado previamente
             {% else %}
-                {{ migracion.result }}
+                {{ migracion.result|safe }}
             {% endif %}
         </div>
     </div>

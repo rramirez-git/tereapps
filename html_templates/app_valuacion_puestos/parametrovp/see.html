@@ -2,6 +2,8 @@
 
 {%  block extraafter %}
 
+    <p>Valor Actual: <strong><u>{{ object.valor }}</u></strong></p>
+
     {% with data=object.historia.all %}
         {% include 'app_valuacion_puestos/parametrovp/historia.html' %}
     {% endwith %}

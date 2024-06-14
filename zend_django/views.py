@@ -14,6 +14,7 @@ Vistas
 import abc
 import importlib
 import os
+import sys
 
 from abc import ABCMeta
 from datetime import datetime
@@ -24,6 +25,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
+from django.conf import settings
 from os import path
 
 from .parametros_models import ParametroUsuario
@@ -384,30 +386,48 @@ class Migrate(View):
             modulo.migration()
             result = "ok"
         except Exception as e:
-            result = f'{type(e).__name__}: {e}'
+            result = f'{type(e).__name__}: {e} {self.create_traceback(e.__traceback__.tb_next.tb_frame)}'
         finally:
             return {
                 'file': file,
                 'result': result,
             }
 
+    def create_traceback(self, frame, level=1):
+        cad = f"<br /> {frame.f_code.co_filename} en <strong>{frame.f_code.co_name}</strong> (linea <strong>{frame.f_lineno}</strong>)"
+        if not frame.f_back is None and level < 3:
+            cad += self.create_traceback(frame.f_back, level + 1)
+        return cad
+
+    def sort_list_datamigration_files(self, files):
+        files = sorted(files)
+        sorted_files = []
+        for app in settings.INSTALLED_APPS:
+            sorted_files += [f for f in files if app in f]
+        return sorted_files
+
     def get(self, request):
         migraciones = []
+        datamigration_files = []
         for root, dirs, files in os.walk(
                 path.join(os.getcwd(), self.migr_dir)):
             if path.join(os.getcwd(), self.migr_dir) == root:
                 for f in files:
                     if "py" == f[-2:].lower():
-                        if 0 == self.verificar_en_db(f):
-                            result = self.aplicar(f)
-                            migraciones.append(result)
-                            if result['result'] == 'ok':
-                                self.agregar_a_db(f)
-                        else:
-                            migraciones.append({
-                                'file': f[:-3],
-                                'result': 'previo',
-                            })
+                        datamigration_files.append(f)
+                datamigration_files = self.sort_list_datamigration_files(
+                    datamigration_files)
+                for f in datamigration_files:
+                    if 0 == self.verificar_en_db(f):
+                        result = self.aplicar(f)
+                        migraciones.append(result)
+                        if result['result'] == 'ok':
+                            self.agregar_a_db(f)
+                    else:
+                        migraciones.append({
+                            'file': f[:-3],
+                            'result': 'previo',
+                        })
         return render(request, 'zend_django/html/migracion.html', {
             'titulo': "Migraciones",
             'titulo_descripcion': '',
