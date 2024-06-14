@@ -10,7 +10,8 @@ Vistas
 """
 from django.contrib import auth
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.utils.http import url_has_allowed_host_and_scheme
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View
 
@@ -49,7 +50,9 @@ class Login(View):
         form = self.base_data_form(request.POST)
         if form.is_valid():
             auth.login(request, form.user)
-            return HttpResponseRedirect(reverse('session_imin'))
+            nxt = request.GET.get("next", None)
+            return redirect(nxt) if nxt else HttpResponseRedirect(
+                reverse('session_imin'))
         return self.base_render(request, form)
 
 
