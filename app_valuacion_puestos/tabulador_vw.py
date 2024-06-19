@@ -14,7 +14,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from zend_django.parametros_models import ParametroUsuario
 from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
@@ -62,7 +61,7 @@ class Read(GenericRead):
         obj = self.main_data_model.objects.get(pk=pk)
         form = self.base_data_form(
             instance=obj,
-            initial={'cantidad_de_niveles': obj.cantidad_de_niveles,})
+            initial={'cantidad_de_niveles': obj.cantidad_de_niveles, })
         toolbar = GenerateReadCRUDToolbar(
             request, self.model_name, obj, self.main_data_model)
         return render(request, self.html_template, {

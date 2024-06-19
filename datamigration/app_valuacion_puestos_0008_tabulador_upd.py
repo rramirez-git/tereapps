@@ -1,5 +1,6 @@
 from app_valuacion_puestos.models import Tabulador
 
+
 def migration():
     for (tab_desc, new_desc) in [
             ('1er Nivel', '1 Nivel'),
@@ -8,4 +9,3 @@ def migration():
         tab = Tabulador.objects.get(tabulador=tab_desc)
         tab.tabulador = new_desc
         tab.save()
-

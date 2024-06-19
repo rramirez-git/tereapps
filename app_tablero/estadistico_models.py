@@ -1,8 +1,8 @@
 """
 Definición de modelos para Estadisticos de cuentas
 """
-from django.db import models
 from datetime import date
+from django.db import models
 
 from .cuenta_models import Cuenta
 
@@ -13,6 +13,7 @@ def get_4_month(fecha) -> date:
 
 def get4month() -> date:
     return get_4_month(date.today())
+
 
 class Estadistico(models.Model):
     periodo = models.DateField(default=get4month)
@@ -30,5 +31,5 @@ class Estadistico(models.Model):
         return f"{self.cantidad}"
 
     def check_n_update_period(self):
-        self.periodo = get_4_month(self.periodo);
+        self.periodo = get_4_month(self.periodo)
         self.save()

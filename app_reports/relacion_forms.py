@@ -9,8 +9,6 @@ frmRelacion
     - tipo
     - campo_derecha
 """
-from django import forms
-
 from .reporte_models import Relacion
 from zend_django.hiperforms import HorizontalModelForm
 

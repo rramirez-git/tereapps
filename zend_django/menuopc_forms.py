@@ -13,8 +13,8 @@ frmMenuOpc
 """
 from django import forms
 
-from .menuopc_models import MenuOpc
 from .hiperforms import HorizontalModelForm
+from .menuopc_models import MenuOpc
 
 
 class frmMenuOpc(HorizontalModelForm):

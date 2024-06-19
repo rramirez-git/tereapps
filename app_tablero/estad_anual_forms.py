@@ -2,6 +2,7 @@ from zend_django.hiperforms import HorizontalModelForm
 
 from .models import EstadisticoAnual
 
+
 class frmEstadisticoAnual(HorizontalModelForm):
 
     class Meta:
@@ -10,4 +11,3 @@ class frmEstadisticoAnual(HorizontalModelForm):
             'anio',
             'cantidad'
         ]
-

@@ -6,6 +6,7 @@ from zend_django.parametros_models import PARAM_TYPES
 
 from app_valuacion_puestos.models import ParametroVP
 
+
 def migration():
     vp = MenuOpc.objects.get_or_create(
         nombre="Valuacion de Puestos", posicion=1,
@@ -18,16 +19,16 @@ def migration():
     MenuOpc.objects.get_or_create(
         nombre='Factores por Puesto', posicion=1,
         padre=opc_rep, vista='app_vp_rep_fp_ptos')[0].permisos_requeridos.set([
-        Permission.objects.get(codename=f"view_fp_puntos"),
-        Permission.objects.get(codename=f"view_fp_niveles"),])
+            Permission.objects.get(codename=f"view_fp_puntos"),
+            Permission.objects.get(codename=f"view_fp_niveles"), ])
     MenuOpc.objects.get_or_create(
         nombre='Valor por Puesto', posicion=2,
         padre=opc_rep, vista='app_vp_rep_vp')[0].permisos_requeridos.set([
-        Permission.objects.get(codename=f"view_vp"),])
+            Permission.objects.get(codename=f"view_vp"), ])
     MenuOpc.objects.get_or_create(
         nombre='Grafica de Puesto', posicion=3,
         padre=opc_rep, vista='app_vp_rep_gp')[0].permisos_requeridos.set([
-        Permission.objects.get(codename=f"view_gp"),])
+            Permission.objects.get(codename=f"view_gp"), ])
 
     ParametroUsuario.objects.get_or_create(
         seccion='basic_search', nombre='vp_rep_f_psto_ptos',

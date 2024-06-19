@@ -18,11 +18,10 @@ frmFactorRead
     - exponente
     - cantidad_de_niveles
 """
-from django import forms
-
 from .factor_models import Factor
 
 from zend_django.hiperforms import HorizontalModelForm
+
 
 class frmFactor(HorizontalModelForm):
     """
@@ -67,4 +66,4 @@ class frmFactorRead(HorizontalModelForm):
 
     field_order = [
         'factor',
-        'ponderacion_nivel_1',]
+        'ponderacion_nivel_1', ]

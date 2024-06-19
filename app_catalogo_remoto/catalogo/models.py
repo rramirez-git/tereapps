@@ -6,14 +6,13 @@ Modelos
 - CatalogoRemoto => Catalogo Remoto
 - Items => Elementos sincronizados del Catalogo Remoto
 """
-from typing import Any, Iterable
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.urls import reverse
 from django.utils.text import slugify
 
-from zend_django.models import MenuOpc, ParametroUsuario
+from zend_django.models import MenuOpc
+from zend_django.models import ParametroUsuario
 from zend_django.parametros_models import PARAM_TYPES
 
 
@@ -31,7 +30,8 @@ class CatalogoRemotoConfiguracion(models.Model):
     raiz_de_listado = models.CharField(
         max_length=250, help_text="&root=sie/Docu/Masters%20MP&")
     ruta_movil_de_archivo = models.CharField(
-        max_length=250, help_text="&endpoint= -> &endpoint=ACE/ACE01/ACE01-005.png")
+        max_length=250,
+        help_text="&endpoint= -> &endpoint=ACE/ACE01/ACE01-005.png")
     elemento_thumbnail = models.CharField(
         max_length=250, help_text="&thumbnail=true&width=50")
     elementos_por_fila = models.PositiveSmallIntegerField(default=5)
@@ -94,6 +94,7 @@ class CatalogoRemotoConfiguracion(models.Model):
                 url = url.replace(old, new)
         return url[:-1] if url[-1] == "&" else url
 
+
 class CatalogoRemoto(models.Model):
     """
     Modelo del Catalogo Remoto
@@ -122,7 +123,6 @@ class CatalogoRemoto(models.Model):
                 seccion='basic_search', nombre=f'catalogoremoto_{self.pk}',
                 tipo=PARAM_TYPES['CADENA'], es_multiple=False)[0].delete()
 
-
     def save(self, *args, **kwars):
         res = super().save(*args, **kwars)
         self.create_parametro_usuario()
@@ -132,6 +132,7 @@ class CatalogoRemoto(models.Model):
         self.delete_parametro_usuario()
         res = super().delete(*args, **kwars)
         return res
+
 
 class Item(models.Model):
     """

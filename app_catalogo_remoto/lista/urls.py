@@ -19,7 +19,8 @@ permiso_requerido = {app_label}.{Perm}_{obj}
 vista = {obj}_{View}
 
 """
-from django.contrib.auth.decorators import permission_required, login_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.urls import path
 
 import app_catalogo_remoto.lista.vw as views
@@ -48,7 +49,8 @@ urlpatterns = [
     path('eliminar-item-de-lista/<pk>/', login_required()(
         views.RemoveCatalogItemFromList.as_view()),
         name=f"{obj}_remove_item"),
-    path(f'detalle/<pk>/', login_required()(views.DisplayItems.as_view()),
+    path(f'detalle/<pk>/', login_required()(
+        views.DisplayItems.as_view()),
         name=f"{obj}_display_detail"),
     path('eliminar-lista/<pk>/', login_required()(
         views.DeleteFromUsrDisplay.as_view()),

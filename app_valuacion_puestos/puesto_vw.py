@@ -116,8 +116,10 @@ class Read(GenericRead):
                         'nivel': nivel.nivel,
                         'multiplicador': nivel.nivel_multiplicador,
                         'ponderacion': float(nivel.ponderacion),
-                        'ponderacion_en_pesos': float(nivel.ponderacion_en_pesos),
-                        'selected': str(nivel.nivel_multiplicador) == request.POST.get(
+                        'ponderacion_en_pesos': float(
+                            nivel.ponderacion_en_pesos),
+                        'selected': str(nivel.nivel_multiplicador) ==
+                        request.POST.get(
                             f'txt_factor_{factor.pk}', ''),
                     } for nivel in factor.niveles.all()],
                 } for factor in Factor.objects.all()],

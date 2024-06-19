@@ -1,7 +1,8 @@
 from django.contrib.auth.models import Permission
 
 from zend_django.menuopc_models import MenuOpc
-from zend_django.parametros_models import ParametroSistema, PARAM_TYPES
+from zend_django.parametros_models import PARAM_TYPES
+from zend_django.parametros_models import ParametroSistema
 
 from app_tablero.models import Tablero
 
@@ -24,8 +25,8 @@ def migration():
 
     mnu_tableros.permisos_requeridos.set([
         Permission.objects.get(codename=f'{perm}_{elem}')
-            for elem in ['tablero', 'cuenta', 'estadistico']
-                for perm in ['add', 'change', 'delete', 'view']])
+        for elem in ['tablero', 'cuenta', 'estadistico']
+        for perm in ['add', 'change', 'delete', 'view']])
 
     mnu_load.permisos_requeridos.set([
         Permission.objects.get(codename=f'add_estadistico')
@@ -39,11 +40,16 @@ def migration():
         es_multiple=False,
     )
 
+    cuentas_base = '41100,41200,40000,50000,59000,61100,62100,63100,64100,'
+    cuentas_base += '66100,60000,80000'
     Tablero.objects.get_or_create(
         nombre='Elasticintas Teresita',
         nombre_de_archivo='ET-Tablero-Contabilidad.xlsm',
-        cuentas_base='41100,41200,40000,,50000,59000,,61100,62100,63100,64100,66100,60000,,80000')
+        cuentas_base=cuentas_base)
+
+    cuentas_base = '40000,51100,,63000,61100,62100,63300,63400,63500,63600,'
+    cuentas_base += '63700,64100,65100'
     Tablero.objects.get_or_create(
         nombre='Genyka',
         nombre_de_archivo='Genyka-Tablero-Contabilidad.xlsm',
-        cuentas_base='40000,51100,,63000,61100,62100,63300,63400,63500,63600,63700,64100,65100')
+        cuentas_base=cuentas_base)

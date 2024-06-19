@@ -4,15 +4,16 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from zend_django.templatetags.op_helpers import crud_label
 from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
 
-from .models import Cuenta, Estadistico as main_model
 from .estadistico_forms import frmEstadistico as base_form
+from .models import Cuenta
+from .models import Estadistico as main_model
+
 
 def template_base_path(file):
     return 'app_tablero/estadistico/' + file + ".html"
@@ -47,6 +48,7 @@ class Read(GenericRead):
             'tereapp': self.tereapp,
             'object': obj,
         })
+
 
 class Create(GenericCreate):
     titulo = "Estadistico"

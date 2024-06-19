@@ -1,10 +1,11 @@
 """
 Definición de modelos para Tableros
 """
-from django.db import models
-from django.contrib.auth.models import Permission, ContentType
-from zend_django.models import MenuOpc
 import json
+
+from django.contrib.auth.models import ContentType
+from django.contrib.auth.models import Permission
+from django.db import models
 
 
 class Tablero(models.Model):
@@ -83,7 +84,9 @@ class Tablero(models.Model):
     @property
     def periodos_mensuales(self):
         if len(self.__periodos_mensuales) == 0:
-            self.__periodos_mensuales = [reg['periodo'].strftime('%Y-%m') for reg in self.cta_vta_neta.detalle.all().values('periodo')]
+            self.__periodos_mensuales = [
+                reg['periodo'].strftime('%Y-%m')
+                for reg in self.cta_vta_neta.detalle.all().values('periodo')]
         return self.__periodos_mensuales
 
     @property

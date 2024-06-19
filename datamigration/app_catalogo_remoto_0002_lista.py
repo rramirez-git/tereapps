@@ -1,8 +1,8 @@
 from django.contrib.auth.models import Permission
 
-from zend_django.parametros_models import PARAM_TYPES
 from zend_django.models import MenuOpc
 from zend_django.models import ParametroUsuario
+from zend_django.parametros_models import PARAM_TYPES
 
 from .utils import update_permisos
 

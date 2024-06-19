@@ -38,7 +38,8 @@ class ReporteFactPPuestoPtos(GenericList):
 
     def base_render(self, request, data, search_value):
         ParametroUsuario.set_valor(
-                request.user, 'basic_search', 'vp_rep_f_psto_ptos', search_value)
+                request.user,
+                'basic_search', 'vp_rep_f_psto_ptos', search_value)
         return render(request, self.html_template, {
             'titulo': self.titulo,
             'titulo_descripcion': self.titulo_descripcion,
@@ -87,7 +88,8 @@ class ReporteFactPPuestoNiveles(GenericList):
 
     def base_render(self, request, data, search_value):
         ParametroUsuario.set_valor(
-                request.user, 'basic_search', 'vp_rep_f_psto_nvl', search_value)
+                request.user,
+                'basic_search', 'vp_rep_f_psto_nvl', search_value)
         return render(request, self.html_template, {
             'titulo': self.titulo,
             'titulo_descripcion': self.titulo_descripcion,

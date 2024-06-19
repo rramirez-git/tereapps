@@ -12,8 +12,6 @@ frmCampoReporte
     - valor_default
     - mostrar
 """
-from django import forms
-
 from .reporte_models import CampoReporte
 from zend_django.hiperforms import HorizontalModelForm
 

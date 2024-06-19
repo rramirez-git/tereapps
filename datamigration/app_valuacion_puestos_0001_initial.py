@@ -52,85 +52,120 @@ def migration():
             Permission.objects.get(codename=f"delete_{obj}"),
             Permission.objects.get(codename=f"view_{obj}"),
         ])
-        
+
     tab = Tabulador.objects.all().first()
 
     afanadora = Puesto.objects.get_or_create(
-        puesto="Afanadora", posicion=1, estatus=True, tabulador=tab)[0]
+        puesto="Afanadora", posicion=1,
+        estatus=True, tabulador=tab)[0]
     facturista = Puesto.objects.get_or_create(
-        puesto="Facturista", posicion=2, estatus=True, tabulador=tab)[0]
+        puesto="Facturista", posicion=2,
+        estatus=True, tabulador=tab)[0]
     jefe_de_personal = Puesto.objects.get_or_create(
-        puesto="Jefe de Personal", posicion=3, estatus=True, tabulador=tab)[0]
+        puesto="Jefe de Personal", posicion=3,
+        estatus=True, tabulador=tab)[0]
     jefe_de_almacen = Puesto.objects.get_or_create(
-        puesto="Jefe de Almacen", posicion=4, estatus=True, tabulador=tab)[0]
+        puesto="Jefe de Almacen", posicion=4,
+        estatus=True, tabulador=tab)[0]
     sub_jefe_de_almacen = Puesto.objects.get_or_create(
-        puesto="Sub Jefe de Almacen", posicion=5, estatus=True, tabulador=tab)[0]
+        puesto="Sub Jefe de Almacen", posicion=5,
+        estatus=True, tabulador=tab)[0]
     montacarguista = Puesto.objects.get_or_create(
-        puesto="Montacarguista", posicion=6, estatus=True, tabulador=tab)[0]
+        puesto="Montacarguista", posicion=6,
+        estatus=True, tabulador=tab)[0]
     almacenista = Puesto.objects.get_or_create(
-        puesto="Almacenista", posicion=7, estatus=True, tabulador=tab)[0]
+        puesto="Almacenista", posicion=7,
+        estatus=True, tabulador=tab)[0]
     chofer_de_reparto = Puesto.objects.get_or_create(
-        puesto="Chofer de Reparto", posicion=8, estatus=True, tabulador=tab)[0]
+        puesto="Chofer de Reparto", posicion=8,
+        estatus=True, tabulador=tab)[0]
     auxiliar_de_aduana = Puesto.objects.get_or_create(
-        puesto="Auxiliar de Aduana", posicion=9, estatus=True, tabulador=tab)[0]
+        puesto="Auxiliar de Aduana", posicion=9,
+        estatus=True, tabulador=tab)[0]
     auxiliar_de_ventas = Puesto.objects.get_or_create(
-        puesto="Auxiliar de Ventas", posicion=10, estatus=True, tabulador=tab)[0]
+        puesto="Auxiliar de Ventas", posicion=10,
+        estatus=True, tabulador=tab)[0]
     auxiliar_atención_a_clientes = Puesto.objects.get_or_create(
-        puesto="Auxiliar Atención a Clientes", posicion=11, estatus=True, tabulador=tab)[0]
+        puesto="Auxiliar Atención a Clientes", posicion=11,
+        estatus=True, tabulador=tab)[0]
     mensajero_cobrador = Puesto.objects.get_or_create(
-        puesto="Mensajero-Cobrador", posicion=12, estatus=True, tabulador=tab)[0]
+        puesto="Mensajero-Cobrador", posicion=12,
+        estatus=True, tabulador=tab)[0]
     cobrador = Puesto.objects.get_or_create(
-        puesto="Cobrador", posicion=13, estatus=True, tabulador=tab)[0]
+        puesto="Cobrador", posicion=13,
+        estatus=True, tabulador=tab)[0]
     auxiliar_de_cobranza = Puesto.objects.get_or_create(
-        puesto="Auxiliar de Cobranza", posicion=14, estatus=True, tabulador=tab)[0]
+        puesto="Auxiliar de Cobranza", posicion=14,
+        estatus=True, tabulador=tab)[0]
     supervisor_de_crédito_y_cobranza = Puesto.objects.get_or_create(
-        puesto="Supervisor de Crédito y Cobranza",
-        posicion=15,
+        puesto="Supervisor de Crédito y Cobranza", posicion=15,
         estatus=True, tabulador=tab)[0]
     auxiliar_contable = Puesto.objects.get_or_create(
-        puesto="Auxiliar Contable", posicion=16, estatus=True, tabulador=tab)[0]
+        puesto="Auxiliar Contable", posicion=16,
+        estatus=True, tabulador=tab)[0]
     contador_et = Puesto.objects.get_or_create(
-        puesto="Contador ET", posicion=17, estatus=True, tabulador=tab)[0]
+        puesto="Contador ET", posicion=17,
+        estatus=True, tabulador=tab)[0]
     contador_comisiones = Puesto.objects.get_or_create(
-        puesto="Contador Comisiones", posicion=18, estatus=True, tabulador=tab)[0]
+        puesto="Contador Comisiones", posicion=18,
+        estatus=True, tabulador=tab)[0]
     cajera = Puesto.objects.get_or_create(
-        puesto="Cajera", posicion=19, estatus=True, tabulador=tab)[0]
+        puesto="Cajera", posicion=19,
+        estatus=True, tabulador=tab)[0]
     recepcionista = Puesto.objects.get_or_create(
-        puesto="Recepcionista", posicion=20, estatus=True, tabulador=tab)[0]
+        puesto="Recepcionista", posicion=20,
+        estatus=True, tabulador=tab)[0]
     programador_crochet = Puesto.objects.get_or_create(
-        puesto="Programador Crochet", posicion=21, estatus=True, tabulador=tab)[0]
+        puesto="Programador Crochet", posicion=21,
+        estatus=True, tabulador=tab)[0]
     oficial_de_mantenimiento = Puesto.objects.get_or_create(
-        puesto="Oficial de Mantenimiento", posicion=22, estatus=True, tabulador=tab)[0]
+        puesto="Oficial de Mantenimiento", posicion=22,
+        estatus=True, tabulador=tab)[0]
     jefe_de_acabado = Puesto.objects.get_or_create(
-        puesto="Jefe de Acabado", posicion=23, estatus=True, tabulador=tab)[0]
+        puesto="Jefe de Acabado", posicion=23,
+        estatus=True, tabulador=tab)[0]
     auxiliar_de_acabado = Puesto.objects.get_or_create(
-        puesto="Auxiliar de Acabado", posicion=24, estatus=True, tabulador=tab)[0]
+        puesto="Auxiliar de Acabado", posicion=24,
+        estatus=True, tabulador=tab)[0]
     diseñador_de_crochet = Puesto.objects.get_or_create(
-        puesto="Diseñador de Crochet", posicion=25, estatus=True, tabulador=tab)[0]
+        puesto="Diseñador de Crochet", posicion=25,
+        estatus=True, tabulador=tab)[0]
     mecánico_de_crochet = Puesto.objects.get_or_create(
-        puesto="Mecánico de Crochet", posicion=26, estatus=True, tabulador=tab)[0]
+        puesto="Mecánico de Crochet", posicion=26,
+        estatus=True, tabulador=tab)[0]
     diseñador_de_torcido = Puesto.objects.get_or_create(
-        puesto="Diseñador de Torcido", posicion=27, estatus=True, tabulador=tab)[0]
+        puesto="Diseñador de Torcido", posicion=27,
+        estatus=True, tabulador=tab)[0]
     mecánico_de_trenzado_y_bolillo = Puesto.objects.get_or_create(
-        puesto="Mecánico de Trenzado y Bolillo", posicion=28, estatus=True, tabulador=tab)[0]
+        puesto="Mecánico de Trenzado y Bolillo", posicion=28,
+        estatus=True, tabulador=tab)[0]
     diseñador_de_trenzado = Puesto.objects.get_or_create(
-        puesto="Diseñador de Trenzado", posicion=29, estatus=True, tabulador=tab)[0]
+        puesto="Diseñador de Trenzado", posicion=29,
+        estatus=True, tabulador=tab)[0]
     jefe_de_mantenimiento = Puesto.objects.get_or_create(
-        puesto="Jefe de Mantenimiento", posicion=30, estatus=True, tabulador=tab)[0]
+        puesto="Jefe de Mantenimiento", posicion=30,
+        estatus=True, tabulador=tab)[0]
     ayudante_de_mantenimiento = Puesto.objects.get_or_create(
-        puesto="Ayudante de Mantenimiento", posicion=31, estatus=True, tabulador=tab)[0]
+        puesto="Ayudante de Mantenimiento", posicion=31,
+        estatus=True, tabulador=tab)[0]
     encargado_de_compras = Puesto.objects.get_or_create(
-        puesto="Encargado de Compras", posicion=32, estatus=True, tabulador=tab)[0]
+        puesto="Encargado de Compras", posicion=32,
+        estatus=True, tabulador=tab)[0]
     jefe_de_almacén_de_materia_p = Puesto.objects.get_or_create(
-        puesto="Jefe de Almacén de Materia P.", posicion=33, estatus=True, tabulador=tab)[0]
+        puesto="Jefe de Almacén de Materia P.", posicion=33,
+        estatus=True, tabulador=tab)[0]
     encargado_de_exportaciones = Puesto.objects.get_or_create(
-        puesto="Encargado de Exportaciones", posicion=34, estatus=True, tabulador=tab)[0]
+        puesto="Encargado de Exportaciones", posicion=34,
+        estatus=True, tabulador=tab)[0]
     auxiliar_de_sistemas = Puesto.objects.get_or_create(
-        puesto="Auxiliar de Sistemas", posicion=35, estatus=True, tabulador=tab)[0]
+        puesto="Auxiliar de Sistemas", posicion=35,
+        estatus=True, tabulador=tab)[0]
     analista_programador = Puesto.objects.get_or_create(
-        puesto="Analista Programador", posicion=36, estatus=True, tabulador=tab)[0]
+        puesto="Analista Programador", posicion=36,
+        estatus=True, tabulador=tab)[0]
     controlador_bodega_clientes = Puesto.objects.get_or_create(
-        puesto="Controlador bodega clientes", posicion=37, estatus=True, tabulador=tab)[0]
+        puesto="Controlador bodega clientes", posicion=37,
+        estatus=True, tabulador=tab)[0]
 
     escolaridad = Factor.objects.get_or_create(
         factor='Escolaridad', posicion=1,

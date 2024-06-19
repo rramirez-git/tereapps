@@ -89,4 +89,4 @@ class frmPuestoRead(HorizontalModelForm):
         }
 
     field_order = [
-        'puesto', 'estatus',]
+        'puesto', 'estatus', ]

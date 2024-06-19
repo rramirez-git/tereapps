@@ -104,43 +104,80 @@ def migration():
     condiciones_de_trbajo = Factor.objects.get_or_create(
         factor='Condiciones de Trbajo')[0]
 
-    afanadora.tabulador = Tabulador.objects.get(tabulador__in=["1er Nivel", "1 Nivel"])
-    facturista.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    jefe_de_personal.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    jefe_de_almacen.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    sub_jefe_de_almacen.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    montacarguista.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    almacenista.tabulador = Tabulador.objects.get(tabulador__in=["1er Nivel", "1 Nivel"])
-    chofer_de_reparto.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    auxiliar_de_aduana.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    auxiliar_de_ventas.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    auxiliar_atención_a_clientes.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    mensajero_cobrador.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    cobrador.tabulador = Tabulador.objects.get(tabulador__in=["1er Nivel", "1 Nivel"])
-    auxiliar_de_cobranza.tabulador = Tabulador.objects.get(tabulador__in=["1er Nivel", "1 Nivel"])
-    supervisor_de_crédito_y_cobranza.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    auxiliar_contable.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    contador_et.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    contador_comisiones.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    cajera.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    recepcionista.tabulador = Tabulador.objects.get(tabulador__in=["1er Nivel", "1 Nivel"])
-    programador_crochet.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    oficial_de_mantenimiento.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    jefe_de_acabado.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    auxiliar_de_acabado.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    diseñador_de_crochet.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    mecánico_de_crochet.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    diseñador_de_torcido.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    mecánico_de_trenzado_y_bolillo.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    diseñador_de_trenzado.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    jefe_de_mantenimiento.tabulador = Tabulador.objects.get(tabulador__in=["1er Nivel", "1 Nivel"])
-    ayudante_de_mantenimiento.tabulador = Tabulador.objects.get(tabulador__in=["1er Nivel", "1 Nivel"])
-    encargado_de_compras.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    jefe_de_almacén_de_materia_p.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    encargado_de_exportaciones.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    auxiliar_de_sistemas.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
-    analista_programador.tabulador = Tabulador.objects.get(tabulador__in=["3er Nivel", "5 Niveles"])
-    controlador_bodega_clientes.tabulador = Tabulador.objects.get(tabulador__in=["2do Nivel", "3 Niveles"])
+    afanadora.tabulador = Tabulador.objects.get(
+        tabulador__in=["1er Nivel", "1 Nivel"])
+    facturista.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    jefe_de_personal.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    jefe_de_almacen.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    sub_jefe_de_almacen.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    montacarguista.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    almacenista.tabulador = Tabulador.objects.get(
+        tabulador__in=["1er Nivel", "1 Nivel"])
+    chofer_de_reparto.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    auxiliar_de_aduana.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    auxiliar_de_ventas.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    auxiliar_atención_a_clientes.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    mensajero_cobrador.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    cobrador.tabulador = Tabulador.objects.get(
+        tabulador__in=["1er Nivel", "1 Nivel"])
+    auxiliar_de_cobranza.tabulador = Tabulador.objects.get(
+        tabulador__in=["1er Nivel", "1 Nivel"])
+    supervisor_de_crédito_y_cobranza.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    auxiliar_contable.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    contador_et.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    contador_comisiones.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    cajera.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    recepcionista.tabulador = Tabulador.objects.get(
+        tabulador__in=["1er Nivel", "1 Nivel"])
+    programador_crochet.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    oficial_de_mantenimiento.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    jefe_de_acabado.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    auxiliar_de_acabado.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    diseñador_de_crochet.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    mecánico_de_crochet.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    diseñador_de_torcido.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    mecánico_de_trenzado_y_bolillo.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    diseñador_de_trenzado.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    jefe_de_mantenimiento.tabulador = Tabulador.objects.get(
+        tabulador__in=["1er Nivel", "1 Nivel"])
+    ayudante_de_mantenimiento.tabulador = Tabulador.objects.get(
+        tabulador__in=["1er Nivel", "1 Nivel"])
+    encargado_de_compras.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    jefe_de_almacén_de_materia_p.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    encargado_de_exportaciones.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    auxiliar_de_sistemas.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
+    analista_programador.tabulador = Tabulador.objects.get(
+        tabulador__in=["3er Nivel", "5 Niveles"])
+    controlador_bodega_clientes.tabulador = Tabulador.objects.get(
+        tabulador__in=["2do Nivel", "3 Niveles"])
 
     afanadora.save()
     facturista.save()
@@ -218,795 +255,1191 @@ def migration():
     analista_programador.niveles_ponderacion.all().delete()
     controlador_bodega_clientes.niveles_ponderacion.all().delete()
 
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=escolaridad.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=experiencia.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=criterio.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=iniciativa.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=afanadora,
+    Ponderacion.objects.create(
+        puesto=afanadora,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=experiencia.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=criterio.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=facturista,
+    Ponderacion.objects.create(
+        puesto=facturista,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=escolaridad.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=jefe_de_personal,
+    Ponderacion.objects.create(
+        puesto=jefe_de_personal,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=iniciativa.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacen,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=sub_jefe_de_almacen,
+    Ponderacion.objects.create(
+        puesto=sub_jefe_de_almacen,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=experiencia.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=criterio.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=iniciativa.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=montacarguista,
+    Ponderacion.objects.create(
+        puesto=montacarguista,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=experiencia.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=almacenista,
+    Ponderacion.objects.create(
+        puesto=almacenista,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=criterio.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=chofer_de_reparto,
+    Ponderacion.objects.create(
+        puesto=chofer_de_reparto,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=experiencia.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_de_aduana,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_aduana,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=iniciativa.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_ventas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_ventas,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_atención_a_clientes,
+    Ponderacion.objects.create(
+        puesto=auxiliar_atención_a_clientes,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=experiencia.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=criterio.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=mensajero_cobrador,
+    Ponderacion.objects.create(
+        puesto=mensajero_cobrador,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=experiencia.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=criterio.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=iniciativa.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=cobrador,
+    Ponderacion.objects.create(
+        puesto=cobrador,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=experiencia.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=iniciativa.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_cobranza,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_cobranza,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=escolaridad.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=iniciativa.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=supervisor_de_crédito_y_cobranza,
+    Ponderacion.objects.create(
+        puesto=supervisor_de_crédito_y_cobranza,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=iniciativa.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_contable,
+    Ponderacion.objects.create(
+        puesto=auxiliar_contable,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=escolaridad.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=experiencia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=iniciativa.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=contador_et,
+    Ponderacion.objects.create(
+        puesto=contador_et,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=escolaridad.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=contador_comisiones,
+    Ponderacion.objects.create(
+        puesto=contador_comisiones,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=cajera,
+    Ponderacion.objects.create(
+        puesto=cajera,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=programador_crochet,
+    Ponderacion.objects.create(
+        puesto=programador_crochet,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=oficial_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=oficial_de_mantenimiento,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=iniciativa.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_acabado,
+    Ponderacion.objects.create(
+        puesto=jefe_de_acabado,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_de_acabado,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_acabado,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=experiencia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=iniciativa.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_crochet,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_crochet,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_crochet,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_crochet,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=iniciativa.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_torcido,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_torcido,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=criterio.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=mecánico_de_trenzado_y_bolillo,
+    Ponderacion.objects.create(
+        puesto=mecánico_de_trenzado_y_bolillo,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=experiencia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=iniciativa.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=diseñador_de_trenzado,
+    Ponderacion.objects.create(
+        puesto=diseñador_de_trenzado,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=experiencia.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=criterio.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=iniciativa.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=ayudante_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=ayudante_de_mantenimiento,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=escolaridad.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=criterio.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=encargado_de_compras,
+    Ponderacion.objects.create(
+        puesto=encargado_de_compras,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=criterio.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_almacén_de_materia_p,
+    Ponderacion.objects.create(
+        puesto=jefe_de_almacén_de_materia_p,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=escolaridad.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=experiencia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=criterio.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=iniciativa.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=encargado_de_exportaciones,
+    Ponderacion.objects.create(
+        puesto=encargado_de_exportaciones,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=escolaridad.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=experiencia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=iniciativa.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=auxiliar_de_sistemas,
+    Ponderacion.objects.create(
+        puesto=auxiliar_de_sistemas,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=escolaridad.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=experiencia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=iniciativa.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=analista_programador,
+    Ponderacion.objects.create(
+        puesto=analista_programador,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=escolaridad.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=experiencia.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=criterio.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=iniciativa.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=controlador_bodega_clientes,
+    Ponderacion.objects.create(
+        puesto=controlador_bodega_clientes,
         nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=escolaridad.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=experiencia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=criterio.niveles.get(nivel_multiplicador=5))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=iniciativa.niveles.get(nivel_multiplicador=1))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
-       nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=6))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
+        nivel=complejidad_e_importancia.niveles.get(nivel_multiplicador=6))
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=resp_en_supervición.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=resp_en_documentos.niveles.get(nivel_multiplicador=3))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=resp_en_mat_mob_y_equipo.niveles.get(nivel_multiplicador=4))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=grado_de_atención.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
         nivel=esfuerzo_físico.niveles.get(nivel_multiplicador=2))
-    Ponderacion.objects.create(puesto=jefe_de_mantenimiento,
-       nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=5))
+    Ponderacion.objects.create(
+        puesto=jefe_de_mantenimiento,
+        nivel=condiciones_de_trbajo.niveles.get(nivel_multiplicador=5))

@@ -4,6 +4,7 @@ from zend_django.hiperforms import HorizontalModelForm
 
 from .models import Estadistico
 
+
 class frmEstadistico(HorizontalModelForm):
 
     class Meta:

@@ -1,19 +1,17 @@
 from django.shortcuts import render
-from django.urls import reverse
 from django.views import View
-from time import sleep
-
-import threading
 
 from .models import Tablero
 from .tablero_proc import TableroProc
 
 from zend_django.views import GenericTereAppRootView
 
+
 class TablerosView(GenericTereAppRootView):
     html_template = "zend_django/idx_empty.html"
     titulo = "Tableros Contables"
     tereapp = 'tableros'
+
 
 class TablerosAutoLoadView(View):
     html_template = "app_tablero/tablero/autoload.html"
@@ -72,5 +70,3 @@ class VerTablero(View):
             'object': tbl,
             'req_chart': True,
         })
-
-

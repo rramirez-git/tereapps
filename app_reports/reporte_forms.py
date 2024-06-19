@@ -38,8 +38,6 @@ frmReporteright
     - strict
     - primer_linea_con_encabezados
 """
-from django import forms
-
 from .reporte_models import Reporte
 from zend_django.hiperforms import HorizontalModelForm
 

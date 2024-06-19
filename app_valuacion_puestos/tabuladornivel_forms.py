@@ -8,8 +8,6 @@ frmTabuladorNivel
     - posicion
     - porcentaje
 """
-from django import forms
-
 from .tabuladornivel_models import TabuladorNivel
 from zend_django.hiperforms import HorizontalModelForm
 
