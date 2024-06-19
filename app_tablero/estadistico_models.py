@@ -1,8 +1,8 @@
 """
 Definición de modelos para Estadisticos de cuentas
 """
-from django.db import models
 from datetime import date
+from django.db import models
 
 from .cuenta_models import Cuenta
 

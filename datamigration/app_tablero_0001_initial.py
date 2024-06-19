@@ -1,7 +1,8 @@
 from django.contrib.auth.models import Permission
 
 from zend_django.menuopc_models import MenuOpc
-from zend_django.parametros_models import ParametroSistema, PARAM_TYPES
+from zend_django.parametros_models import PARAM_TYPES
+from zend_django.parametros_models import ParametroSistema
 
 from app_tablero.models import Tablero
 

@@ -9,8 +9,8 @@ Modelos
 from .factor_models import Factor
 from .parametrovp_models import ParametroVP
 from .puesto_models import Puesto
-from zend_django.models import ParametroSistema
 from django.db import models
+from zend_django.models import ParametroSistema
 
 
 class Nivel(models.Model):

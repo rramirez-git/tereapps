@@ -19,7 +19,8 @@ permiso_requerido = {app_label}.{Perm}_{obj}
 vista = {obj}_{View}
 
 """
-from django.contrib.auth.decorators import permission_required, login_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from django.urls import path
 
 import app_catalogo_remoto.lista.vw as views

@@ -70,8 +70,9 @@ frmUserResetPassword
     - username
     - password
 """
+from .hiperforms import HorizontalForm
+from .hiperforms import HorizontalModelForm
 from django import forms
-from .hiperforms import HorizontalModelForm, HorizontalForm
 
 from django.contrib.auth.models import User
 

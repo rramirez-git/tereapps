@@ -1,8 +1,8 @@
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
-from django.db.models import Q
 
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
@@ -11,7 +11,8 @@ from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
 
 from .forms import frmMain as base_form
-from .models import ListaCatalogo as main_model, ListaCatalogoItem
+from .models import ListaCatalogo as main_model
+from .models import ListaCatalogoItem
 from app_catalogo_remoto.catalogo.models import Item
 
 

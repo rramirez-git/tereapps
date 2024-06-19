@@ -10,8 +10,8 @@ frmParametroUsuario
     - valor_default
     - tipo
 """
-from .parametros_models import ParametroUsuario
 from .hiperforms import HorizontalModelForm
+from .parametros_models import ParametroUsuario
 
 
 class frmParametroUsuario(HorizontalModelForm):

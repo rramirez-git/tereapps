@@ -1,8 +1,9 @@
 """
 Definición de modelos de cuentas
 """
-from django.db import models
 import json
+
+from django.db import models
 
 from .tablero_models import Tablero
 

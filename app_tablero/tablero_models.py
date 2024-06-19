@@ -1,9 +1,11 @@
 """
 Definición de modelos para Tableros
 """
-from django.db import models
-from django.contrib.auth.models import Permission, ContentType
 import json
+
+from django.contrib.auth.models import ContentType
+from django.contrib.auth.models import Permission
+from django.db import models
 
 
 class Tablero(models.Model):

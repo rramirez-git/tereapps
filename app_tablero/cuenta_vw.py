@@ -10,8 +10,9 @@ from zend_django.views import GenericDelete
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
 
-from .models import Tablero, Cuenta as main_model
 from .cuenta_forms import frmCuenta as base_form
+from .models import Cuenta as main_model
+from .models import Tablero
 
 
 def template_base_path(file):

@@ -17,6 +17,7 @@ import os
 
 from abc import ABCMeta
 from datetime import datetime
+from django.conf import settings
 from django.db import IntegrityError
 from django.db import connection
 from django.db.models import ProtectedError
@@ -24,7 +25,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
-from django.conf import settings
 from os import path
 
 from .parametros_models import ParametroUsuario

@@ -11,7 +11,8 @@ from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.utils.text import slugify
 
-from zend_django.models import MenuOpc, ParametroUsuario
+from zend_django.models import MenuOpc
+from zend_django.models import ParametroUsuario
 from zend_django.parametros_models import PARAM_TYPES
 
 

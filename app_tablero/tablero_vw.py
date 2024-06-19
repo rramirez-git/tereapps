@@ -8,8 +8,8 @@ from zend_django.views import GenericList
 from zend_django.views import GenericRead
 from zend_django.views import GenericUpdate
 
-from .tablero_models import Tablero as main_model
 from .tablero_forms import frmTablero as base_form
+from .tablero_models import Tablero as main_model
 
 
 def template_base_path(file):

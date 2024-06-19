@@ -1,8 +1,8 @@
 """
 Definicion de modelos para comentarios
 """
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 
 class Comentario(models.Model):

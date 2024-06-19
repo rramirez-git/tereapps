@@ -1,8 +1,8 @@
-from django.db import models
 from datetime import date
+from django.db import models
 
-from zend_django.templatetags.utils import GetNextPrevObject
 from .cuenta_models import Cuenta
+from zend_django.templatetags.utils import GetNextPrevObject
 
 
 class EstadisticoAnual(models.Model):

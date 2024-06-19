@@ -4,15 +4,17 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+from zend_django.models import ParametroUsuario
 from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
+from zend_django.views import GenericList
 from zend_django.views import GenericRead
-from zend_django.views import GenericUpdate, GenericList
-from zend_django.models import ParametroUsuario
+from zend_django.views import GenericUpdate
 
-from .models import Cuenta, EstadisticoAnual as main_model
 from .estad_anual_forms import frmEstadisticoAnual as base_form
+from .models import Cuenta
+from .models import EstadisticoAnual as main_model
 
 
 def template_base_path(file):
