@@ -1,5 +1,4 @@
 import requests
-import json
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
@@ -20,6 +19,7 @@ from zend_django.parametros_models import ParametroUsuario
 
 from .forms import frmMain as base_form, frmCatalogo
 from .models import CatalogoRemotoConfiguracion as main_model, CatalogoRemoto, Item
+
 
 def template_base_path(file):
     return 'app_catalogo_remoto/catalogo/' + file + ".html"
@@ -58,7 +58,7 @@ class Read(GenericRead):
         toolbar = GenerateReadCRUDToolbar(
             request, self.model_name, obj, self.main_data_model)
         if request.user.has_perm(
-            "catalogoremotoconfiguracion.synchronize_remote_catalogs"):
+                "catalogoremotoconfiguracion.synchronize_remote_catalogs"):
             toolbar.append({
                 'type': 'link_pk',
                 'label': '<i class="fas fa-sync"></i>',
@@ -160,7 +160,7 @@ class Sincronizar(View):
                 url_file + "&" + thumbnail)
             response = requests.get(url_file_thumbnail)
             if response.status_code == 200:
-                if not "image" in response.headers.get('Content-Type', ''):
+                if "image" not in response.headers.get('Content-Type', ''):
                     url_file_thumbnail = url_file
                 Item.objects.get_or_create(
                     catalogo=catalogo,

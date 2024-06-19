@@ -9,6 +9,7 @@ from zend_django.hiperforms import HorizontalModelForm
 
 from .models import Comentario
 
+
 class frmComentario(HorizontalModelForm):
     """Formulario principal del modelo Comentario"""
 

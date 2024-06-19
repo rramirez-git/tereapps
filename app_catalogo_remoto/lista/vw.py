@@ -1,13 +1,9 @@
-import requests
-import json
-
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import View
 from django.db.models import Q
 
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericList
@@ -17,6 +13,7 @@ from zend_django.views import GenericUpdate
 from .forms import frmMain as base_form
 from .models import ListaCatalogo as main_model, ListaCatalogoItem
 from app_catalogo_remoto.catalogo.models import Item
+
 
 def template_base_path(file):
     return 'app_catalogo_remoto/lista/' + file + ".html"
@@ -70,6 +67,7 @@ class Delete(GenericDelete):
     main_data_model = main_model
     tereapp = 'administrar'
 
+
 class AddCatalogItemToList(View):
 
     def post(self, request, pk):
@@ -82,10 +80,12 @@ class AddCatalogItemToList(View):
                 list = main_model.objects.get(pk=list)
                 ListaCatalogoItem.objects.get_or_create(lista=list, item=item)
             if new_list:
-                list = main_model.objects.get_or_create(nombre=new_list, usr=request.user)[0]
+                list = main_model.objects.get_or_create(
+                    nombre=new_list, usr=request.user)[0]
                 ListaCatalogoItem.objects.get_or_create(lista=list, item=item)
         return HttpResponseRedirect(reverse(
             'catalogoremotoconfiguracion_display_detail', kwargs={'pk': pk}))
+
 
 class RemoveCatalogItemFromList(View):
 
@@ -95,6 +95,7 @@ class RemoveCatalogItemFromList(View):
             ListaCatalogoItem.objects.get(pk=item).delete()
         return HttpResponseRedirect(reverse(
             'listacatalogo_display_detail', kwargs={'pk': pk}))
+
 
 class DisplayItems(View):
     main_data_model = main_model
@@ -118,6 +119,7 @@ class DisplayItems(View):
             'object': obj,
             'withoutBtnSave': True,
         })
+
 
 class DeleteFromUsrDisplay(Delete):
 

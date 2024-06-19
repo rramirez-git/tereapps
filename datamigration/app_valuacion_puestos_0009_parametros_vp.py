@@ -1,6 +1,7 @@
 from app_valuacion_puestos.models import ParametroVP
 from zend_django.parametros_models import ParametroSistema, PARAM_TYPES
 
+
 def migration():
     ParametroSistema.objects.get_or_create(
         seccion='AppValuacionPuestos',

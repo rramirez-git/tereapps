@@ -4,6 +4,7 @@ Definicion de modelos para comentarios
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Comentario(models.Model):
     comentario = models.TextField()
     creado = models.DateTimeField(auto_now_add=True)

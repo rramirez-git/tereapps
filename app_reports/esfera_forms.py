@@ -9,8 +9,6 @@ frmEsfera
     - sigla
     - icono
 """
-from django import forms
-
 from .esfera_models import Esfera
 from zend_django.hiperforms import HorizontalModelForm
 

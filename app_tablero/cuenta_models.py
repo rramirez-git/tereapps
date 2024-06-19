@@ -6,6 +6,7 @@ import json
 
 from .tablero_models import Tablero
 
+
 class Cuenta(models.Model):
     nivel = models.PositiveSmallIntegerField(default=0)
     entidad = models.CharField(max_length=2)
@@ -35,7 +36,8 @@ class Cuenta(models.Model):
     @property
     def cuentas_hijo(self):
         if len(self.__cuentas_hijo) == 0:
-            self.__cuentas_hijo = list(self.tablero.cuentas.filter(pre_cve__endswith=self.cuenta, entidad='T'))
+            self.__cuentas_hijo = list(self.tablero.cuentas.filter(
+                pre_cve__endswith=self.cuenta, entidad='T'))
         return self.__cuentas_hijo
 
     @property
@@ -45,14 +47,21 @@ class Cuenta(models.Model):
     @property
     def periodos_total(self):
         if len(self.__periodos_total) == 0:
-            self.__periodos_total = [float(reg['cantidad']) for reg in self.detalle.all().values('cantidad')]
+            self.__periodos_total = [
+                float(reg['cantidad'])
+                for reg in self.detalle.all().values('cantidad')]
         return self.__periodos_total
 
     @property
     def periodos_promedio(self):
         if len(self.__periodos_promedio) == 0:
-            if self.tablero.cuentas.filter(cuenta=self.cuenta, entidad='PT').exists():
-                self.__periodos_promedio = [float(reg['cantidad']) for reg in self.tablero.cuentas.filter(cuenta=self.cuenta, entidad='PT')[0].detalle.all().values('cantidad')]
+            if self.tablero.cuentas.filter(
+                    cuenta=self.cuenta, entidad='PT').exists():
+                self.__periodos_promedio = [
+                    float(reg['cantidad'])
+                    for reg in self.tablero.cuentas.filter(
+                        cuenta=self.cuenta, entidad='PT'
+                        )[0].detalle.all().values('cantidad')]
         return self.__periodos_promedio
 
     @property

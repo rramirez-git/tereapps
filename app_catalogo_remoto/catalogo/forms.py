@@ -2,6 +2,7 @@ from zend_django.hiperforms import HorizontalModelForm
 
 from .models import CatalogoRemotoConfiguracion, CatalogoRemoto
 
+
 class frmMain(HorizontalModelForm):
 
     class Meta:
@@ -16,6 +17,7 @@ class frmMain(HorizontalModelForm):
             'elemento_thumbnail',
             'elementos_por_fila',
         ]
+
 
 class frmCatalogo(HorizontalModelForm):
 

@@ -6,14 +6,13 @@ Modelos
 - Puesto
 - PuestoEvaluacion
 """
-import decimal
-
 from django.db import models
 
 from zend_django.models import ParametroSistema
 
 from .parametrovp_models import ParametroVP
 from .tabulador_models import Tabulador
+
 
 def get_next_posicion_puesto() -> int:
     max = Puesto.objects.aggregate(models.Max('posicion'))
@@ -64,8 +63,10 @@ class Puesto(models.Model):
     def ponderacion_total_en_pesos(self) -> float:
         if not self.__ponderacion_total_en_pesos__:
             vp = float(ParametroVP.objects.get(parametro='ValorPunto').valor)
-            dias = float(ParametroSistema.get('AppValuacionPuestos', 'DiasPorMes'))
-            self.__ponderacion_total_en_pesos__ = self.ponderacion_total * vp * dias
+            dias = float(ParametroSistema.get(
+                'AppValuacionPuestos', 'DiasPorMes'))
+            self.__ponderacion_total_en_pesos__ = self.ponderacion_total * \
+                vp * dias
         return self.__ponderacion_total_en_pesos__
 
     @property
@@ -75,12 +76,13 @@ class Puesto(models.Model):
             for nivel in self.tabulador.niveles.all():
                 tabs.append({
                     'nivel': nivel,
-                    'puntos': self.ponderacion_total * float(nivel.porcentaje) / 100,
-                    'pesos': self.ponderacion_total_en_pesos * float(nivel.porcentaje) / 100,
+                    'puntos': self.ponderacion_total *
+                    float(nivel.porcentaje) / 100,
+                    'pesos': self.ponderacion_total_en_pesos *
+                    float(nivel.porcentaje) / 100,
                 })
             self.__tabuladores__ = tabs
         return self.__tabuladores__
-
 
 
 class PuestoEvaluacion(models.Model):

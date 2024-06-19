@@ -18,12 +18,18 @@ urlpatterns = [
          login_required(views.ValuacionPuestosView.as_view()),
          name="idx_tereapp_valuacion_de_puestos"),
 
-    path('puesto/', include('app_valuacion_puestos.puesto_urls')),
-    path('factor/', include('app_valuacion_puestos.factor_urls')),
-    path('nivel/', include('app_valuacion_puestos.nivel_urls')),
-    path('parametrovp/', include('app_valuacion_puestos.parametrovp_urls')),
-    path('tabulador/', include('app_valuacion_puestos.tabulador_urls')),
-    path('nivel-de-tabulador/', include('app_valuacion_puestos.tabuladornivel_urls')),
+    path('puesto/', include(
+        'app_valuacion_puestos.puesto_urls')),
+    path('factor/', include(
+        'app_valuacion_puestos.factor_urls')),
+    path('nivel/', include(
+        'app_valuacion_puestos.nivel_urls')),
+    path('parametrovp/', include(
+        'app_valuacion_puestos.parametrovp_urls')),
+    path('tabulador/', include(
+        'app_valuacion_puestos.tabulador_urls')),
+    path('nivel-de-tabulador/', include(
+        'app_valuacion_puestos.tabuladornivel_urls')),
 
     path('factor-por-puesto-puntos/',
          permission_required(f'{app_label}.view_fp_puntos')(

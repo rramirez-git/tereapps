@@ -115,6 +115,7 @@ def main_menu(context, opciones=None, nivel=0, user_id=0, tereapp=None):
         'tereapp': tereapp
     }
 
+
 @register.inclusion_tag(
     'zend_django/menuopc/get_tereapps.html', takes_context=True)
 def get_tereapps(context, user_id=0):
@@ -153,6 +154,7 @@ def get_tereapps(context, user_id=0):
     return {
         'tereapps': [opc for opc in opciones if opc.user_has_option(user)],
     }
+
 
 @register.inclusion_tag(
     'zend_django/menuopc/get_tereapps.html', takes_context=True)
@@ -193,6 +195,7 @@ def get_tereapps(context, user_id=0):
     return {
         'tereapps': [opc for opc in opciones if opc.user_has_option(user)],
     }
+
 
 @register.inclusion_tag(
     'zend_django/menuopc/get_tereapps_hidden.html', takes_context=True)

@@ -1,4 +1,3 @@
-from datetime import date
 from django.contrib.auth.models import Permission
 
 from app_valuacion_puestos.models import Tabulador
@@ -28,17 +27,25 @@ def migration():
         ])
 
     tab = Tabulador.objects.get_or_create(tabulador="1er Nivel")[0]
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=1, porcentaje=100)
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=1, porcentaje=100)
 
     tab = Tabulador.objects.get_or_create(tabulador="2do Nivel")[0]
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=1, porcentaje=92)
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=2, porcentaje=97)
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=3, porcentaje=102)
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=1, porcentaje=92)
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=2, porcentaje=97)
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=3, porcentaje=102)
 
     tab = Tabulador.objects.get_or_create(tabulador="3er Nivel")[0]
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=1, porcentaje=85)
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=2, porcentaje=90)
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=3, porcentaje=95)
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=4, porcentaje=100)
-    TabuladorNivel.objects.get_or_create(tabulador=tab, posicion=5, porcentaje=105)
-    
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=1, porcentaje=85)
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=2, porcentaje=90)
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=3, porcentaje=95)
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=4, porcentaje=100)
+    TabuladorNivel.objects.get_or_create(
+        tabulador=tab, posicion=5, porcentaje=105)

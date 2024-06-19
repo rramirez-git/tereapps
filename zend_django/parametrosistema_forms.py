@@ -10,7 +10,6 @@ frmParametroSistema
     - nombre_para_mostrar
     - tipo
 """
-from django import forms
 from .hiperforms import HorizontalModelForm
 
 from .parametros_models import ParametroSistema

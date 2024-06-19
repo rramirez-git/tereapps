@@ -54,7 +54,8 @@ class ParametroVPHistoria(models.Model):
 
     @property
     def cambio_porcentual(self):
-        obj = GetNextPrevObject(self, False, self.__class__.objects.filter(raiz=self.raiz))
+        obj = GetNextPrevObject(self, False, self.__class__.objects.filter(
+            raiz=self.raiz))
         if obj:
             return (self.valor - obj.valor) / obj.valor * 100
         return 0.0

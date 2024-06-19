@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from zend_django.templatetags.op_helpers import crud_label
 from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
@@ -14,6 +13,7 @@ from zend_django.models import ParametroUsuario
 
 from .models import Cuenta, EstadisticoAnual as main_model
 from .estad_anual_forms import frmEstadisticoAnual as base_form
+
 
 def template_base_path(file):
     return 'app_tablero/estadistico_anual/' + file + ".html"
@@ -27,7 +27,7 @@ class List(GenericList):
     model_name = "estadisticoanual"
     tereapp = 'tableros'
 
-    def get_data(self, pk_cta,search_value=''):
+    def get_data(self, pk_cta, search_value=''):
         return self.main_data_model.objects.filter(cuenta_id=pk_cta)
 
     def base_render(self, request, data, search_value, pk_cta):
@@ -92,6 +92,7 @@ class Read(GenericRead):
             'tereapp': self.tereapp,
             'object': obj,
         })
+
 
 class Create(GenericCreate):
     titulo = "Estadistico Anual"

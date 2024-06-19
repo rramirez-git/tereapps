@@ -10,7 +10,6 @@ Vistas
 """
 from django.contrib import auth
 from django.http import HttpResponseRedirect
-from django.utils.http import url_has_allowed_host_and_scheme
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views import View

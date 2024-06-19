@@ -1,6 +1,7 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 
+
 class HorizontalModelForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):

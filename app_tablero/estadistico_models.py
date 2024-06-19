@@ -14,6 +14,7 @@ def get_4_month(fecha) -> date:
 def get4month() -> date:
     return get_4_month(date.today())
 
+
 class Estadistico(models.Model):
     periodo = models.DateField(default=get4month)
     cantidad = models.DecimalField(max_digits=12, decimal_places=2)
@@ -30,5 +31,5 @@ class Estadistico(models.Model):
         return f"{self.cantidad}"
 
     def check_n_update_period(self):
-        self.periodo = get_4_month(self.periodo);
+        self.periodo = get_4_month(self.periodo)
         self.save()

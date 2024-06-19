@@ -33,6 +33,6 @@ def main():
     print("\n")
     print("Import checking (importchecker)")
     subprocess.call(['importchecker', "."], stdout=sys.stdout)
-    
+
 if __name__ == "__main__":
     main()

@@ -14,7 +14,6 @@ Vistas
 import abc
 import importlib
 import os
-import sys
 
 from abc import ABCMeta
 from datetime import datetime
@@ -386,7 +385,8 @@ class Migrate(View):
             modulo.migration()
             result = "ok"
         except Exception as e:
-            result = f'{type(e).__name__}: {e} {self.create_traceback(e.__traceback__.tb_next.tb_frame)}'
+            result = f'{type(e).__name__}: {e} '
+            result += self.create_traceback(e.__traceback__.tb_next.tb_frame)
         finally:
             return {
                 'file': file,
@@ -394,8 +394,10 @@ class Migrate(View):
             }
 
     def create_traceback(self, frame, level=1):
-        cad = f"<br /> {frame.f_code.co_filename} en <strong>{frame.f_code.co_name}</strong> (linea <strong>{frame.f_lineno}</strong>)"
-        if not frame.f_back is None and level < 3:
+        cad = f"<br /> {frame.f_code.co_filename} en "
+        cad += f"<strong>{frame.f_code.co_name}</strong> "
+        cad += f"(linea <strong>{frame.f_lineno}</strong>)"
+        if frame.f_back is not None and level < 3:
             cad += self.create_traceback(frame.f_back, level + 1)
         return cad
 

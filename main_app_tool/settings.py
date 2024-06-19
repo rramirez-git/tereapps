@@ -164,6 +164,6 @@ else:
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 DATABASE_NAME = 'tereapps'

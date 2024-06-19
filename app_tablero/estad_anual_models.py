@@ -47,5 +47,6 @@ class EstadisticoAnual(models.Model):
         vtas_per_actual = cta_vtas.detalle_anual.filter(anio=self.anio)
         if vtas_per_actual.exists():
             vtas_per_actual = vtas_per_actual[0]
-            return round(float(self.cantidad) / float(vtas_per_actual.cantidad) * 100)
+            return round(float(self.cantidad) / float(
+                vtas_per_actual.cantidad) * 100)
         return 0

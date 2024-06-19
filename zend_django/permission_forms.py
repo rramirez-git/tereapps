@@ -9,8 +9,6 @@ frmPermission
     - content_type
     - codename
 """
-from django import forms
-
 from django.contrib.auth.models import Permission
 from .hiperforms import HorizontalModelForm
 

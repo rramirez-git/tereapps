@@ -6,13 +6,11 @@ Modelos
 - ListaCatalogo => Catalogo Remoto
 - ListaCatalogoItems => Elementos sincronizados del Catalogo Remoto
 """
-from typing import Any, Iterable
-from django.contrib.auth.models import Permission, User
-from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.models import User
 from django.db import models
-from django.urls import reverse
 
 from app_catalogo_remoto.catalogo.models import Item
+
 
 class ListaCatalogo(models.Model):
     nombre = models.CharField(max_length=250)
@@ -24,6 +22,7 @@ class ListaCatalogo(models.Model):
 
     def __str__(self) -> str:
         return f"{self.nombre}"
+
 
 class ListaCatalogoItem(models.Model):
     lista = models.ForeignKey(

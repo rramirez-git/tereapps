@@ -7,7 +7,6 @@ Modelos
 """
 from django.db import models
 
-from .parametrovp_models import ParametroVP
 from zend_django.models import ParametroSistema
 
 
@@ -50,19 +49,22 @@ class Factor(models.Model):
     def exponente(self):
         if not self.__exponente__:
             self.__exponente__ = float(ParametroSistema.get(
-                'AppValuacionPuestos', f"Exponente{self.cantidad_de_niveles}N"))
+                'AppValuacionPuestos',
+                f"Exponente{self.cantidad_de_niveles}N"))
         return self.__exponente__
 
     @property
     def min_nivel(self):
         if not self.__min_nivel__:
-            self.__min_nivel__ = self.niveles.order_by('nivel_multiplicador')[0]
-        return  self.__min_nivel__
+            self.__min_nivel__ = self.niveles.order_by(
+                'nivel_multiplicador')[0]
+        return self.__min_nivel__
 
     @property
     def max_nivel(self):
         if not self.__max_nivel__:
-            self.__max_nivel__ = self.niveles.order_by('-nivel_multiplicador')[0]
+            self.__max_nivel__ = self.niveles.order_by(
+                '-nivel_multiplicador')[0]
         return self.__max_nivel__
 
     def as_dict(self):

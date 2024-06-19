@@ -94,5 +94,3 @@ class Update(GenericUpdate):
 class Delete(GenericDelete):
     model_name = "parametrovp"
     main_data_model = main_model
-
-

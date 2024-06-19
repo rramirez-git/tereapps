@@ -1,10 +1,7 @@
 from django.db.models import Q
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
 
 from zend_django.parametros_models import ParametroUsuario
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
 from zend_django.views import GenericCreate
 from zend_django.views import GenericDelete
 from zend_django.views import GenericList
@@ -13,6 +10,7 @@ from zend_django.views import GenericUpdate
 
 from .tablero_models import Tablero as main_model
 from .tablero_forms import frmTablero as base_form
+
 
 def template_base_path(file):
     return 'app_tablero/tablero/' + file + ".html"
@@ -36,27 +34,26 @@ class List(GenericList):
                 | Q(nombre_de_archivo__icontains=search_value)))
 
     def base_render(self, request, data, search_value):
-            data = [{
-                'pk': reg.pk,
-                'nombre': reg.nombre,
-                'nombre_de_archivo': reg.nombre_de_archivo,
-                'displayable2user': reg.displayable2user(request.user),
-            }
-                for reg in data ]
-            ParametroUsuario.set_valor(
-                request.user, 'basic_search', self.model_name, search_value)
-            return render(request, self.html_template, {
-                'titulo': self.titulo,
-                'titulo_descripcion': self.titulo_descripcion,
-                'toolbar': [{'type': 'search'}],
-                'footer': False,
-                'read_only': False,
-                'alertas': [],
-                'req_chart': False,
-                'search_value': search_value,
-                'data': data,
-                'tereapp': self.tereapp,
-            })
+        data = [{
+            'pk': reg.pk,
+            'nombre': reg.nombre,
+            'nombre_de_archivo': reg.nombre_de_archivo,
+            'displayable2user': reg.displayable2user(request.user),
+            } for reg in data]
+        ParametroUsuario.set_valor(
+            request.user, 'basic_search', self.model_name, search_value)
+        return render(request, self.html_template, {
+            'titulo': self.titulo,
+            'titulo_descripcion': self.titulo_descripcion,
+            'toolbar': [{'type': 'search'}],
+            'footer': False,
+            'read_only': False,
+            'alertas': [],
+            'req_chart': False,
+            'search_value': search_value,
+            'data': data,
+            'tereapp': self.tereapp,
+        })
 
 
 class Read(GenericRead):

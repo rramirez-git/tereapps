@@ -14,8 +14,6 @@ frmParametroVP_Read
     - valor
     - fecha
 """
-from django import forms
-
 from .parametrovp_models import ParametroVP
 from zend_django.hiperforms import HorizontalModelForm
 
@@ -36,6 +34,7 @@ class frmParametroVP(HorizontalModelForm):
             'parametro',
             'valor',
         ]
+
 
 class frmParametroVP_Read(HorizontalModelForm):
     """

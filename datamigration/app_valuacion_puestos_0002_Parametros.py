@@ -1,8 +1,5 @@
-from datetime import date
 from django.contrib.auth.models import Permission
 
-from app_valuacion_puestos.models import Factor
-from app_valuacion_puestos.models import Nivel
 from app_valuacion_puestos.models import ParametroVP
 from app_valuacion_puestos.models import ParametroVPHistoria
 from app_valuacion_puestos.models import Puesto
@@ -30,9 +27,12 @@ def migration():
             Permission.objects.get(codename=f"view_{obj}"),
         ])
 
-    exp5 = ParametroVP.objects.get_or_create(parametro="Exponente5N", valor=2.1)[0]
-    exp6 = ParametroVP.objects.get_or_create(parametro="Exponente6N", valor=1.8104)[0]
-    valpto = ParametroVP.objects.get_or_create(parametro="ValorPunto", valor=0.3792796)[0]
+    exp5 = ParametroVP.objects.get_or_create(
+        parametro="Exponente5N", valor=2.1)[0]
+    exp6 = ParametroVP.objects.get_or_create(
+        parametro="Exponente6N", valor=1.8104)[0]
+    valpto = ParametroVP.objects.get_or_create(
+        parametro="ValorPunto", valor=0.3792796)[0]
     ParametroVPHistoria.objects.get_or_create(
         raiz=exp5,
         parametro=exp5.parametro,
