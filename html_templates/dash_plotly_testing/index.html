@@ -1,0 +1,27 @@
+{% extends "zend_django/html/html_struct.html" %}
+{% load i18n %}
+{% load op_helpers %}
+
+{% block content %}
+
+    <h1>Testing Dash Plotly</h1>
+
+    <div class="list-group">
+        <a href="{% url 'dpt_test1' %}" class="list-group-item list-group-item-action" target="_blank">
+            Test 01 - Uso básico
+        </a>
+        <a href="{% url 'dpt_test2' %}" class="list-group-item list-group-item-action" target="_blank">
+            Test 02 - Tablas
+        </a>
+        <a href="{% url 'dpt_test3' %}" class="list-group-item list-group-item-action" target="_blank">
+            Test 03 - Bogota Apartments
+        </a>
+        <a href="{% url 'dpt_test4' %}" class="list-group-item list-group-item-action" target="_blank">
+            Test 04 - Daily Climate time series data
+        </a>
+        <a href="{% url 'dpt_test5' %}" class="list-group-item list-group-item-action" target="_blank">
+            Test 05 - Microsoft Stock- Time Series Analysis
+        </a>
+    </div>
+
+{% endblock %}
