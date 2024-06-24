@@ -1,9 +1,12 @@
-from typing import Any
 from django.shortcuts import render
 
 from django.views import View
 
-from . import dpt_test01, dpt_test02, dpt_test03, dpt_test04, dpt_test05
+from . import dpt_test01
+from . import dpt_test02
+from . import dpt_test03
+from . import dpt_test04
+from . import dpt_test05
 
 
 def template_base_path(file):
@@ -15,7 +18,7 @@ class ViewDPTGeneric(View):
     titulo = "Test 01"
     titulo_descripcion = "Dash Plotly Test"
     tereapp = 'administrar'
-    dp_name=  "DPTTest"
+    dp_name = "DPTTest"
 
     def setValues(self, idxno):
         self.html_template = template_base_path('test')
@@ -43,11 +46,13 @@ class ViewTest1(ViewDPTGeneric):
         self.setValues(1)
         return super().get(request)
 
+
 class ViewTest2(ViewDPTGeneric):
 
     def get(self, request):
         self.setValues(2)
         return super().get(request)
+
 
 class ViewTest3(ViewDPTGeneric):
 
@@ -55,11 +60,13 @@ class ViewTest3(ViewDPTGeneric):
         self.setValues(3)
         return super().get(request)
 
+
 class ViewTest4(ViewDPTGeneric):
 
     def get(self, request):
         self.setValues(4)
         return super().get(request)
+
 
 class ViewTest5(ViewDPTGeneric):
 

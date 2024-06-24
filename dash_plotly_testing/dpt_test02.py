@@ -1,12 +1,18 @@
 import pandas as pd
 import plotly.express as px
 
-from dash import html, dash_table, dcc, Output, Input
+from dash import Input
+from dash import Output
+from dash import dash_table
+from dash import dcc
+from dash import html
 from django_plotly_dash import DjangoDash
 
 app = DjangoDash('DPTTest02')
 
-df = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminder2007.csv')
+df = pd.read_csv(
+    'https://raw.githubusercontent.com/plotly/'
+    'datasets/master/gapminder2007.csv')
 
 app.layout = html.Div([
     html.H1(children='My First App with Data, Graph, and Controls'),
@@ -31,10 +37,11 @@ app.layout = html.Div([
         html.Div(className='col-sm-9', children=[
             dcc.Graph(
                 figure={}, id='controls-and-graph',
-                config= {'displaylogo': False}),
+                config={'displaylogo': False}),
         ]),
     ]),
 ])
+
 
 @app.callback(
     Output(component_id='controls-and-graph', component_property='figure'),
