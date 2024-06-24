@@ -113,7 +113,6 @@ def update_graph(tipo_propiedad, dimensiones):
     if dimensiones is None or len(dimensiones) == 0:
         return {}
     fig = px.histogram(df_tmp, x='tipo_propiedad', histfunc='count')
-    print(fig)
     # fig = make_subplots(rows=ceil(len(dimensiones) / 3), cols=3)
     # if "precio_venta" in dimensiones:
     #     print(df_tmp.columns)
