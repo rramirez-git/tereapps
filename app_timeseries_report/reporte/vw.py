@@ -1,14 +1,14 @@
-import requests
 import csv
 import io
+import requests
 
-from openpyxl import load_workbook
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.urls.exceptions import NoReverseMatch
 from django.views import View
+from openpyxl import load_workbook
 from os import remove
 
 from zend_django.parametros_models import ParametroUsuario

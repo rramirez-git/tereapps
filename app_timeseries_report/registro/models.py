@@ -7,6 +7,7 @@ TIPO_REGISTRO = (
     ('P', 'Promedio'),
 )
 
+
 class RegistroTS(models.Model):
     reporte = models.ForeignKey(
         ReporteTS, on_delete=models.CASCADE,

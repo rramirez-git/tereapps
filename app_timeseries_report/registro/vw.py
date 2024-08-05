@@ -1,29 +1,18 @@
-import requests
 import csv
 import io
 
-from openpyxl import load_workbook
-from datetime import date, datetime
-from django.db.models import Q
+from datetime import date
+from datetime import datetime
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from django.urls.exceptions import NoReverseMatch
 from django.views import View
+from openpyxl import load_workbook
 from os import remove
 
-from zend_django.parametros_models import ParametroUsuario
-from zend_django.templatetags.op_helpers import crud_icon
-from zend_django.templatetags.op_helpers import crud_label
-from zend_django.templatetags.utils import GenerateReadCRUDToolbar
-from zend_django.views import GenericCreate
-from zend_django.views import GenericDelete
-from zend_django.views import GenericList
-from zend_django.views import GenericRead
-from zend_django.views import GenericUpdate
-
 from .forms import frmUploadUpdateFile
-from .models import ReporteTS as main_model, RegistroTS
+from .models import RegistroTS
+from .models import ReporteTS as main_model
 
 
 def template_base_path(file):
@@ -31,22 +20,25 @@ def template_base_path(file):
 
 
 MSGS_ALERT = [
-"""
-Al realizar la carga del archivo tome en cuenta las siguientes consideraciones:
-<ol>
-    <li>
-        Se actualizarán todos los registros existentes al valor contenido
-        en el archivo
-    </li>
-    <li>
-        Si un registro no existe en la base de datos se agregará como nuevo
-    </li>
-    <li>
-        No se eliminará ningún registro
-    </li>
-</ol>
-""",
-]
+    """
+        Al realizar la carga del archivo tome en cuenta
+        las siguientes consideraciones:
+        <ol>
+            <li>
+                Se actualizarán todos los registros existentes al valor
+                contenido en el archivo
+            </li>
+            <li>
+                Si un registro no existe en la base de datos se agregará
+                como nuevo
+            </li>
+            <li>
+                No se eliminará ningún registro
+            </li>
+        </ol>
+    """,
+    ]
+
 
 def update_report(reporte, rows):
     headers = list(rows[0].keys())
@@ -55,7 +47,6 @@ def update_report(reporte, rows):
     pers = dict()
     for periodo in periodos:
         pers[periodo] = date(int(periodo[0:4]), int(periodo[5:7]), 1)
-    #for row in rows:
     for i, row in enumerate(rows):
         entidad, concepto, tipo = row[desc_field].replace(
             '--', '-@@').split('-')
@@ -84,7 +75,7 @@ class UpdateRecords(View):
     model_name = "reportets"
 
     def base_render(self, request, pk, obj, filters=None):
-        data=None
+        data = None
         if filters:
             data = RegistroTS.objects.all()
             if filters['entidad']:
@@ -136,7 +127,10 @@ class UpdateRecords(View):
                 row.concepto = concepto[idx]
                 row.tipo = tipo[idx].upper()
                 row.valor = float(valor[idx])
-                row.periodo = date(int(periodo[idx][0:4]), int(periodo[idx][-2:]), 1)
+                row.periodo = date(
+                    int(periodo[idx][0:4]),
+                    int(periodo[idx][-2:]),
+                    1)
                 row.save()
         elif request.POST.get('action', '') == 'delete':
             for pkd in request.POST.getlist('pkdelete[]'):
@@ -147,6 +141,7 @@ class UpdateRecords(View):
             'tipo': request.POST.get('filtro-tipo', ''),
             'periodo': request.POST.get('filtro-periodo', ''),
         })
+
 
 class UpdateRecordsTXT(View):
     tereapp = 'administrar'

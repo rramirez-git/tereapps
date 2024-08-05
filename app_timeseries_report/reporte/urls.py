@@ -24,6 +24,7 @@ from django.contrib.auth.decorators import permission_required
 from django.urls import path
 
 import app_timeseries_report.reporte.vw as views
+
 from .models import ReporteTS
 
 obj = 'reportets'
@@ -42,7 +43,8 @@ urlpatterns = [
     path('eliminar/<pk>/', permission_required(
         f'{app_label}.delete_{obj}')(views.Delete.as_view()),
         name=f"{obj}_delete"),
-    path(f'mostrar-reporte/<pk>/', login_required()(views.Display.as_view()),
+    path(f'mostrar-reporte/<pk>/', login_required()(
+        views.Display.as_view()),
         name=f"reportets_display"),
     path('<pk>/', permission_required(
         f'{app_label}.view_{obj}')(views.Read.as_view()),

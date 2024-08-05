@@ -1,7 +1,7 @@
-from zend_django.hiperforms import HorizontalModelForm, HorizontalForm
-from django import forms
+from zend_django.hiperforms import HorizontalModelForm
 
 from .models import ReporteTS
+
 
 class frmMain(HorizontalModelForm):
 

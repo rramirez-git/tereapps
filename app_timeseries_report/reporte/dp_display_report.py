@@ -1,8 +1,10 @@
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 
-from dash import dcc, Input, Output, html
+from dash import Input
+from dash import Output
+from dash import dcc
+from dash import html
 from django_plotly_dash import DjangoDash
 from plotly.subplots import make_subplots
 
@@ -51,6 +53,7 @@ app.layout = html.Div([
     ], className="row"),
 ])
 
+
 @app.callback(
     Output(component_id='graph', component_property='figure'),
     Input(component_id='filter-concepto', component_property='value'),
@@ -91,7 +94,7 @@ def update_mostar_entidades_value(conceptos, entidades, multiple):
                     color='Leyenda'
                     )['data'],
                 rows=[int((idx - idx % 2) / 2 + 1), ] * num_series,
-                cols=[idx % 2 + 1, ] * num_series )
+                cols=[idx % 2 + 1, ] * num_series)
     else:
         df_tmp['Leyenda'] = df_tmp['entidad'] + ' - ' + df_tmp['Leyenda']
         fig = px.line(

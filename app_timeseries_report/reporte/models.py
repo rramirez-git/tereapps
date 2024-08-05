@@ -2,8 +2,7 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 
-from zend_django.models import MenuOpc, ParametroUsuario
-from zend_django.parametros_models import PARAM_TYPES
+from zend_django.models import MenuOpc
 
 
 class ReporteTS(models.Model):

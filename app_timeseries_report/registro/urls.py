@@ -19,7 +19,6 @@ permiso_requerido = {app_label}.{Perm}_{obj}
 vista = {obj}_{View}
 
 """
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
 from django.urls import path
 
@@ -30,12 +29,15 @@ app_label = 'app_timeseries_report'
 
 urlpatterns = [
     path('actualizar-registros/<pk>/', permission_required(
-        f'{app_label}.update_{obj}_by_hand')(views.UpdateRecords.as_view()),
+        f'{app_label}.update_{obj}_by_hand')(
+            views.UpdateRecords.as_view()),
         name=f"{obj}_update_by_hand"),
     path('actualizar-registros-txt/<pk>/', permission_required(
-        f'{app_label}.update_{obj}_by_txt')(views.UpdateRecordsTXT.as_view()),
+        f'{app_label}.update_{obj}_by_txt')(
+            views.UpdateRecordsTXT.as_view()),
         name=f"{obj}_update_by_txt"),
     path('actualizar-registros-xlsx/<pk>/', permission_required(
-        f'{app_label}.update_{obj}_by_xlsx')(views.UpdateRecordsXLSX.as_view()),
+        f'{app_label}.update_{obj}_by_xlsx')(
+            views.UpdateRecordsXLSX.as_view()),
         name=f"{obj}_update_by_xlsx"),
 ]
